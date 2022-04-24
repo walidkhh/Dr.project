@@ -30,12 +30,12 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <RadioButton mnemonicParsing="false" text="مستخدم">
+                  <RadioButton fx:id="normalUser" mnemonicParsing="false" selected="true" text="مستخدم">
                      <toggleGroup>
                         <ToggleGroup fx:id="privileges" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton alignment="CENTER_LEFT" mnemonicParsing="false" text="مسؤول" textAlignment="CENTER" toggleGroup="$privileges">
+                  <RadioButton fx:id="admin" alignment="CENTER_LEFT" mnemonicParsing="false" text="مسؤول" textAlignment="CENTER" toggleGroup="$privileges">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
@@ -74,7 +74,7 @@
             </HBox>
             <HBox prefHeight="80.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="68.0" onAction="#cancel"  prefWidth="180.0" styleClass="btn_login" text="خروج" textAlignment="CENTER" />
+                  <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancel" prefHeight="68.0" prefWidth="180.0" styleClass="btn_login" text="خروج" textAlignment="CENTER" />
                   <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="12.0" mnemonicParsing="false" onAction="#login" prefHeight="12.0" prefWidth="180.0" styleClass="btn_login" stylesheets="@login.css" text="تسجيل دخول" textAlignment="CENTER" />
                </children>
                <opaqueInsets>
