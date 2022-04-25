@@ -1,7 +1,23 @@
-/*
- * Empty Stylesheet file.
- */
 
-.mainFxmlClass {
 
+.btn_add{
+ -fx-background-color: #34495e;
+ -fx-font-family:Times New Roman;
+ -fx-font-size:22px;
+ -fx-text-fill: #FFF;
+ -fx-background-radius: 20px;
+}
+
+ 
+.btn_add:hover{
+    -fx-cursor:hand;
+    -fx-border-color: #2196f3;
+    -fx-border-videth:3px;
+    -fx-border-radius: 20px;
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: #FFF;
+    -fx-font-veight:bold;
+}
+.btn_add{
+    -fx-rotate: 0;
 }

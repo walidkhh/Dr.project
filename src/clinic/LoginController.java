@@ -16,6 +16,7 @@ public class LoginController {
     static Stage primaryStage;
     Alert warning = new Alert(Alert.AlertType.WARNING);
     Alert error = new Alert(Alert.AlertType.ERROR);
+    Alert accesDenail = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     private TextField userName;
@@ -29,25 +30,23 @@ public class LoginController {
     @FXML
     private RadioButton admin;
 
-//    @FXML
-//    private ToggleGroup privileges;
     @FXML
     void login(ActionEvent event) throws IOException, SQLException, ClassNotFoundException {
 
         // من خلال هذا المتغير نحدد فيما اذا كان المستخدم موجود في القاعدة ام لا
-        boolean isLoggedIn = false; 
+        boolean isLoggedIn = false;
 
-        
         // اظهار رسالة تنبيه للمستخدم اذا لم يقوم بملئ حقول الادخال بالبيانات
         warning.setTitle("تحذير");
         warning.setHeaderText("");
-        warning.setContentText("رجاءا قم بملى ملئ حقول الادخال");
+        warning.setContentText("رجاءا قم بملى  حقول الادخال");
 
         // اظهار رسالة خطا في حال لم تكن معلومات المستخدم صحيحية
         error.setTitle("خطا");
         error.setHeaderText("");
         error.setContentText("خطا في اسم المستخدم او كلمة المرور");
 
+        // اظهار رسالة خطا في حال كان المستخدم غير مصرح بالدخول كادمن
         if (userName.getText().isEmpty() || password.getText().isEmpty()) {
             warning.showAndWait(); // اظهار رسالة التنبيه
             return;
@@ -57,7 +56,7 @@ public class LoginController {
         ResultSet resultSet = Database.getUserInfo();
 
         while (resultSet.next()) {
-            
+
             if (userName.getText().equals(resultSet.getString("user_name"))
                     && password.getText().equals(resultSet.getString("pass_word"))) {
                 isLoggedIn = true;
@@ -65,15 +64,37 @@ public class LoginController {
             }
         }
 
-        // التاكد بان المستخدم موجود في القاعدة سواء كان ادمن او مستخدم اعتيادي
         if (isLoggedIn) {
-            
+
             // التاكد فيما اذا كان المستخدم ادمن
-            if (resultSet.getString("user_type").equals("1")) {
+            if (resultSet.getString("user_type").equals("1") && admin.isSelected()) {
                 // تفعيل زر معلومات المستخدمين للادمن
+                ChosseController.isVisibled(true);
+                 // فتح الواجهة بعد التسجيل بشكل صحيح
+                MainView.setRoot("chosse", 950, 760);
+                
+            } else if (resultSet.getString("user_type").equals("0") && normalUser.isSelected()) {
+                // ايقاف تفعيل زر معلومات المستخدمين
+                ChosseController.isVisibled(false);
+                 // فتح الواجهة بعد التسجيل بشكل صحيح
+                MainView.setRoot("chosse", 950, 760);
+                
+            } else if (resultSet.getString("user_type").equals("0") && !normalUser.isSelected()) {
+                 // التاكد بان المستخدم موجود في القاعدة سواء كان ادمن او مستخدم اعتيادي
+                accesDenail.setTitle("خطا");
+                accesDenail.setHeaderText("");
+                accesDenail.setContentText("غير مصرح لك بالدخول كمسؤول");
+                accesDenail.showAndWait();
+                ChosseController.isVisibled(false);
+                
+            } else {
+
+                accesDenail.setTitle("خطا");
+                accesDenail.setHeaderText("");
+                accesDenail.setContentText("هذا الحساب يمتلك صلاحية مسؤول يرجى الدخول كمسؤول");
+                accesDenail.showAndWait();
+                ChosseController.isVisibled(false);
             }
-            // فتح الواجهة بعد التسجيل بشكل صحيح
-            MainView.setRoot("chosse", 950, 760);
 
         } else {
             error.showAndWait(); // اظهار رسالة الخطا
