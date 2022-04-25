@@ -31,7 +31,7 @@ public class Database {
 
         Statement statement = getConnection().createStatement();
 
-        // اضف استعلام استرجاع معلومات كل المرض
+        // اضف استعلام استرجاع معلومات كل المرضى
         return statement.executeQuery("SELECT اكمل الاستعلام ");
     }
     
