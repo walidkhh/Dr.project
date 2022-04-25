@@ -8,9 +8,9 @@ import java.sql.Statement;
 
 public class Database {
 
-    private static final String URL = "jdbc:mysql://localhost/unknown"; // حدد اسم القاعدة
+    private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "1+2*$#"; // حدد كلمة المرور حسب الموجودة عندك
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
 

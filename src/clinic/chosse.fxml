@@ -49,6 +49,7 @@
                         <Image url="@images/backarrow.jpg" />
                      </image>
                   </ImageView>
+                  <Button fx:id="control" disable="true" layoutX="14.0" layoutY="371.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="123.0" styleClass="btn_login" stylesheets="@login.css" text="ok" />
                </children>
             </AnchorPane>
          </center>
