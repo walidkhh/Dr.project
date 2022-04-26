@@ -45,7 +45,7 @@
                         <Insets right="28.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="15.0" />
                      </font></TextField>
                   <Label style="-fx-text-fill: #34495e;" text="أسم المريض" textFill="#2196f3">
                      <HBox.margin>
@@ -70,7 +70,7 @@
                         <Insets right="28.0" />
                      </HBox.margin>
                      <font>
-                        <Font name="Times New Roman" size="20.0" />
+                        <Font name="Arial" size="15.0" />
                      </font>
                   </TextField>
                   <Label style="-fx-text-fill: #34495e;" text="رقم الهاتف" textFill="#2196f3">
@@ -91,7 +91,7 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="210.0" prefHeight="86.0" prefWidth="826.0" spacing="40.0">
                <children>
-                  <TextField fx:id="adderss" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="370.0">
+                  <TextField fx:id="address" nodeOrientation="RIGHT_TO_LEFT" prefHeight="50.0" prefWidth="370.0">
                      <HBox.margin>
                         <Insets right="28.0" />
                      </HBox.margin>
