@@ -57,5 +57,7 @@ public class MainView extends Application {
     public static Stage getPrimaryStage(){
        return MainView.primaryStage;
     }
+    
+    
    
 }

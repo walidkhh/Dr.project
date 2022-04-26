@@ -11,7 +11,7 @@ public class Database {
 
     private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
     private static final String USER = "root";
-    private static final String PASSWORD = "1+2*$#"; // 34634877 حدد كلمة المرور حسب الموجودة عندك
+    private static final String PASSWORD = "34634877"; // 34634877 حدد كلمة المرور حسب الموجودة عندك
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
