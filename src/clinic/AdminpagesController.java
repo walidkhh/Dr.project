@@ -1,6 +1,5 @@
 package clinic;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;

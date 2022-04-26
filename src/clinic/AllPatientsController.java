@@ -24,7 +24,7 @@ public class AllPatientsController implements Initializable {
     private TextField searchName;
 
     @FXML
-    private TableView<AllPatientsHelper> patientsInfo;
+    private  TableView<AllPatientsHelper> patientsInfo;
 
     @FXML
     private TableColumn<AllPatientsHelper, String> patientName;
@@ -41,7 +41,7 @@ public class AllPatientsController implements Initializable {
     @FXML
     private TableColumn<AllPatientsHelper, String> notes;
 
-    static ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
+     ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
