@@ -50,4 +50,15 @@ public class Database {
 
         return pstmt.executeUpdate();
     }
+    
+    // دالة البحث عن مريض معين حسب الاسم
+    public static ResultSet searchPatientsInfo(String patientName) throws ClassNotFoundException, SQLException {
+
+        String query = "SELECT * FROM adding_pateints WHERE p_name = ?";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1,patientName);
+        ResultSet resultSet = pstmt.executeQuery();
+        return resultSet;
+    }
 }

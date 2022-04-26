@@ -14,7 +14,7 @@ import javafx.scene.input.MouseEvent;
 
 public class AddPatientController implements Initializable {
 
-    private static final Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+    private static final Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
     private static final Alert error = new Alert(Alert.AlertType.ERROR);
     private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
     @FXML

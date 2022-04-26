@@ -1,5 +1,6 @@
 package clinic;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -49,8 +50,8 @@ public class AdminpagesController implements Initializable{
     }
 
     @FXML
-    void backTo(MouseEvent event) {
-
+    void backTo(MouseEvent event) throws IOException {
+        MainView.setRoot("chosse", 950, 760);
     }
 
     @FXML
