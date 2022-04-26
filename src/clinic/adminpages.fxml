@@ -42,7 +42,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Text>
-            <ComboBox fx:id="privileges" layoutX="591.0" layoutY="193.0" prefHeight="25.0" prefWidth="187.0" />
+            <ComboBox fx:id="privileges" layoutX="591.0" layoutY="193.0" prefHeight="25.0" prefWidth="187.0" promptText="الصلاحيات" />
             <Button layoutX="529.0" layoutY="345.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="11.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
             <Button layoutX="779.0" layoutY="345.0" mnemonicParsing="false" onAction="#addButton" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
                <opaqueInsets>
