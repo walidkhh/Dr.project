@@ -32,7 +32,7 @@ public class ChosseController implements Initializable {
 
     @FXML
     void allPatients(ActionEvent event) throws IOException {
-        MainView.setRoot("allPatients", 950, 760);
+        MainView.setRoot("allPatients", 1100, 760);
     }
 
     @FXML

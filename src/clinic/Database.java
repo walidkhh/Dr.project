@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
+
     private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
     private static final String USER = "root";
     private static final String PASSWORD = "1+2*$#"; // 34634877 حدد كلمة المرور حسب الموجودة عندك
@@ -30,9 +31,8 @@ public class Database {
     public static ResultSet getPatientsInfo() throws SQLException, ClassNotFoundException {
 
         Statement statement = getConnection().createStatement();
+        return statement.executeQuery("SELECT * FROM adding_pateints;");
 
-        // اضف استعلام استرجاع معلومات كل المرض
-        return statement.executeQuery("SELECT اكمل الاستعلام ");
     }
 
     // دالة اضافة بيانات المرضى
@@ -49,11 +49,5 @@ public class Database {
         pstmt.setString(5, notes);
 
         return pstmt.executeUpdate();
-    }
-
-    // The Method For Test Only
-    public static void updatePatient(String name, String address) throws ClassNotFoundException, SQLException {
-        // code gose here  
-        // hello
     }
 }
