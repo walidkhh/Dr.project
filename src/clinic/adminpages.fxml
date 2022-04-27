@@ -18,7 +18,7 @@
    <top>
       <AnchorPane prefHeight="467.0" prefWidth="682.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="TableView" layoutX="31.0" layoutY="92.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="427.0" prefWidth="479.0">
+            <TableView fx:id="TableView" layoutX="31.0" layoutY="92.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#getSelected" prefHeight="427.0" prefWidth="479.0">
               <columns>
                 <TableColumn fx:id="col_username" prefWidth="75.0" text="اسم المستخدم" />
                 <TableColumn fx:id="col_password" prefWidth="224.0" text="كلمة المرور" />
@@ -42,7 +42,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Text>
-            <ComboBox fx:id="privileges" layoutX="591.0" layoutY="193.0" prefHeight="25.0" prefWidth="187.0" promptText="الصلاحيات" />
+            <ComboBox fx:id="privileges" editable="true" layoutX="591.0" layoutY="193.0" prefHeight="25.0" prefWidth="187.0" promptText="الصلاحيات" />
             <Button layoutX="529.0" layoutY="345.0" mnemonicParsing="false" onAction="#deleteButton" prefHeight="11.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
             <Button layoutX="779.0" layoutY="345.0" mnemonicParsing="false" onAction="#addButton" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
                <opaqueInsets>
