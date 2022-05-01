@@ -45,14 +45,16 @@ public class AllReservationsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         reservationNumber.setCellValueFactory(new PropertyValueFactory<>("reservationNumber"));
-        pName.setCellValueFactory(new PropertyValueFactory<>("pName"));
+        pName.setCellValueFactory(new PropertyValueFactory<>("name"));
         gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         age.setCellValueFactory(new PropertyValueFactory<>("age"));
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
+        
+        // اضافة البيانات الى الجدول
+        reservationTable.setItems(data);
 
-        reservationTable.setItems(ReservationController.getReservationInfo());
     }
 
     @FXML
@@ -61,4 +63,17 @@ public class AllReservationsController implements Initializable {
 
     }
 
+    public static void getReservationInfo(String pReservatioNumber, String name, String pGender,
+            String pAge, String pPhoneNumber, LocalDate pReservationDate, String pReservationType) {
+        
+        data.add(new ReservationHelper(
+                pReservatioNumber,
+                name,
+                pGender,
+                pAge,
+                pPhoneNumber,
+                pReservationDate,
+                pReservationType
+        ));
+    }
 }

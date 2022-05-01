@@ -49,6 +49,6 @@ public class ChosseController implements Initializable {
     //open admi page
     @FXML
     void userInfo(ActionEvent event) throws IOException {
-        MainView.setRoot("adminpages", 950, 760);
+        MainView.setRoot("adminpages", 1010, 760);
     }
 }

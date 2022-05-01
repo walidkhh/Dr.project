@@ -38,14 +38,7 @@ public class ReservationController implements Initializable {
     @FXML
     private ComboBox<String> reservationType;
 
-    static String pReservatioNumber,
-            name,
-            pGender,
-            pAge,
-            pPhoneNumber,
-            pReservationType;
     static LocalDate pReservationDate;
-
     Alert reservation = new Alert(Alert.AlertType.INFORMATION);
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
@@ -58,18 +51,23 @@ public class ReservationController implements Initializable {
     @FXML
     void reservation(ActionEvent event) throws IOException {
 
-        pReservatioNumber = reservationNumber.getText();
-        name = pName.getText();
-        pGender = gender.getText();
-        pAge = age.getText();
-        pPhoneNumber = phoneNumber.getText();
-        pReservationDate = reservationDate.getValue();
-        pReservationType = reservationType.getValue();
-
         reservation.setTitle("تاكيد");
         reservation.setHeaderText("");
         reservation.setContentText("تم الحجز بنجاح");
         reservation.showAndWait();
+
+        // تمرير البيانات الى واجهة اظهار الحجوزات لاضافتها في الجدول
+        AllReservationsController.getReservationInfo(
+                reservationNumber.getText(),
+                pName.getText(),
+                gender.getText(),
+                age.getText(),
+                phoneNumber.getText(),
+                reservationDate.getValue(),
+                reservationType.getValue());
+
+        // مسح محتويات حقول الادخال
+        clearTextField();
     }
 
     @FXML
@@ -82,18 +80,13 @@ public class ReservationController implements Initializable {
         MainView.setRoot("chosse", 950, 760);
     }
 
-    public static ObservableList getReservationInfo() {
+    private void clearTextField() {
 
-        data.add(new ReservationHelper(
-                pReservatioNumber,
-                name,
-                pGender,
-                pAge,
-                pPhoneNumber,
-                pReservationDate,
-                pReservationType
-        ));
+        pName.clear();
+        reservationNumber.clear();
+        gender.clear();
+        age.clear();
+        phoneNumber.clear();
 
-        return data;
     }
 }

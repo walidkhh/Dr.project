@@ -24,7 +24,7 @@ public class Database {
 
         Statement statement = getConnection().createStatement();
 
-        return statement.executeQuery("SELECT user_name , pass_word, user_type FROM login");
+        return statement.executeQuery("SELECT * FROM login");
     }
 
     // دالة ارجاع معلومات المرضى واضافتها الى صفحة جميع المرضى
@@ -50,15 +50,54 @@ public class Database {
 
         return pstmt.executeUpdate();
     }
-    
+
     // دالة البحث عن مريض معين حسب الاسم
     public static ResultSet searchPatientsInfo(String patientName) throws ClassNotFoundException, SQLException {
 
         String query = "SELECT * FROM adding_pateints WHERE p_name = ?";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setString(1,patientName);
+        pstmt.setString(1, patientName);
         ResultSet resultSet = pstmt.executeQuery();
         return resultSet;
+    }
+
+    // اضافة مستخدم جديد
+    public static int addUser(String username, String password, String privilegeType) throws ClassNotFoundException, SQLException {
+
+        String query = "INSERT INTO login(user_name , pass_word, user_type) "
+                + "VALUES(?,?,?)";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
+        pstmt.setString(3, privilegeType);
+
+        return pstmt.executeUpdate();
+    }
+
+    // حذف مستخدم 
+    public static int deleteUser(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM login  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        return pstmt.executeUpdate();
+    }
+
+    // التعديل على بيانات المستخدم 
+    public static int updateUser(String username, String password, String privilegeType, int id) throws ClassNotFoundException, SQLException {
+
+        String query = "UPDATE login SET  user_name = ? , pass_word = ? , user_type = ? WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, username);
+        pstmt.setString(2, password);
+        pstmt.setString(3, privilegeType);
+        pstmt.setInt(4, id);
+
+        return pstmt.executeUpdate();
     }
 }

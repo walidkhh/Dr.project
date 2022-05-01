@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class ReservationHelper {
     
     String reservationNumber;
-    String pName;
+    String name;
     String gender;
     String age;
     String phoneNumber;
@@ -19,7 +19,7 @@ public class ReservationHelper {
     public ReservationHelper(String reservationNumber, String pName, String gender, 
             String age, String phoneNumber, LocalDate reservationDate, String reservationType) {
         this.reservationNumber = reservationNumber;
-        this.pName = pName;
+        this.name = pName;
         this.gender = gender;
         this.age = age;
         this.phoneNumber = phoneNumber;
@@ -35,12 +35,12 @@ public class ReservationHelper {
         this.reservationNumber = reservationNumber;
     }
 
-    public String getpName() {
-        return pName;
+    public String getName() {
+        return name;
     }
 
-    public void setpName(String pName) {
-        this.pName = pName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGender() {

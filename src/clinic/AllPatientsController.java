@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 
 public class AllPatientsController implements Initializable {
@@ -83,6 +84,14 @@ public class AllPatientsController implements Initializable {
 
         // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
         patientName.setCellValueFactory(new PropertyValueFactory<>("name"));
+           patientName.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        patientName.setOnEditCommit((TableColumn.CellEditEvent<AllPatientsHelper, String> t) -> t.getTableView()
+                .getItems()
+                .get(t.getTablePosition().getRow())
+                .setName(t.getNewValue()));
+
+        
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
