@@ -12,7 +12,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class RachetaController implements Initializable {
@@ -59,10 +58,8 @@ public class RachetaController implements Initializable {
         clinicPhone.setText(data.get(5));
         rigesterNum.setText(data.get(6));
         date.setText(data.get(7));
-       
         
     }
-
     
     @FXML
     void print(ActionEvent event)throws IOException {
