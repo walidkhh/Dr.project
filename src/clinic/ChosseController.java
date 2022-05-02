@@ -51,4 +51,9 @@ public class ChosseController implements Initializable {
     void userInfo(ActionEvent event) throws IOException {
         MainView.setRoot("adminpages", 1010, 760);
     }
+
+    @FXML
+    void form(ActionEvent event) throws IOException {
+        MainView.setRoot("form", 850, 760);
+    }
 }

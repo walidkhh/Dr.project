@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="903.0" style="-fx-background-color: #dde8f1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.FormController">
-   <center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="903.0" style="-fx-background-color: #dde8f1;" stylesheets="@reservation.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.FormController">
+   <right>
       <AnchorPane prefHeight="740.0" prefWidth="890.0" BorderPane.alignment="CENTER">
          <children>
             <TextArea fx:id="docId" layoutX="57.0" layoutY="68.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="120.0" prefWidth="778.0" wrapText="true" />
@@ -57,7 +57,7 @@
             <TextField fx:id="phoneNumId" layoutX="585.0" layoutY="628.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="186.0" />
             <TextField fx:id="rigesterId" layoutX="583.0" layoutY="668.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="188.0" />
             <Button layoutX="63.0" layoutY="646.0" mnemonicParsing="false" onAction="#print" prefHeight="44.0" prefWidth="138.0" styleClass="btn_login" stylesheets="@login.css" text="طباعة" />
-            <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="26.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+            <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="26.0" layoutY="13.0" onMouseClicked="#backTo" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@images/backarrow.jpg" />
                </image>
@@ -67,5 +67,5 @@
             <Glow />
          </effect>
       </AnchorPane>
-   </center>
+   </right>
 </BorderPane>
