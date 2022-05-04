@@ -125,15 +125,25 @@ public class AllPatientsController implements Initializable {
         boolean isFound = resultSet.next();
         // التاكد بان الاسم موجود في القاعدة
         if (isFound) {
+            
             data.add(new AllPatientsHelper(
                     resultSet.getString("p_name"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("p_address"),
                     resultSet.getString("p_status"),
-                    resultSet.getString("notes")
-            ));
+                    resultSet.getString("notes")));
 
-            // عرض رسالة خطا في حال اسم المريض غير موجود 
+            while (resultSet.next()) {
+                data.add(new AllPatientsHelper(
+                        resultSet.getString("p_name"),
+                        resultSet.getString("p_phone_number"),
+                        resultSet.getString("p_address"),
+                        resultSet.getString("p_status"),
+                        resultSet.getString("notes")
+                ));
+            }
+
+        // عرض رسالة خطا في حال اسم المريض غير موجود 
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
             isPatientFound.setHeaderText("");
