@@ -47,7 +47,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView fx:id="patientsInfo" editable="true" nodeOrientation="RIGHT_TO_LEFT" prefHeight="560.0" prefWidth="1103.0" style="-fx-background-color: #dde8f1;" HBox.hgrow="ALWAYS">
+                  <TableView fx:id="patientsInfo" editable="true" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#getSelectedPatient" prefHeight="560.0" prefWidth="1103.0" style="-fx-background-color: #dde8f1;" HBox.hgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="patientName" prefWidth="194.0" text="اسم المريض" />
                       <TableColumn fx:id="phoneNumber" prefWidth="166.0" text="رقم الهاتف" />

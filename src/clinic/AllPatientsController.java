@@ -24,6 +24,9 @@ public class AllPatientsController implements Initializable {
 
     Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
 
+    Alert deletePatient = new Alert(Alert.AlertType.INFORMATION);
+    Alert msgDeletePatient = new Alert(Alert.AlertType.ERROR);
+
     @FXML
     private TextField idtext;
 
@@ -72,7 +75,8 @@ public class AllPatientsController implements Initializable {
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("p_address"),
                     resultSet.getString("p_status"),
-                    resultSet.getString("notes")
+                    resultSet.getString("notes"),
+                    resultSet.getString("id")
             ));
         }
     }
@@ -101,6 +105,7 @@ public class AllPatientsController implements Initializable {
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
         notes.setCellValueFactory(new PropertyValueFactory<>("notes"));
+        idcolumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
@@ -152,9 +157,31 @@ public class AllPatientsController implements Initializable {
         }
     }
 
+    @FXML
+    void getSelectedPatient(MouseEvent event) {
+
+        idtext.setText(patientsInfo.getSelectionModel().getSelectedItem().getId());
+    }
+
     // حذف المريض المحدد
     @FXML
-    void deleteSelectedPatient(MouseEvent event) {
+    void deleteSelectedPatient(MouseEvent event) throws ClassNotFoundException, SQLException {
 
+        int isDeleted = Database.deletePatient(Integer.parseInt(idtext.getText()));
+
+        if (isDeleted != 0) {
+            deletePatient.setTitle("تاكيد");
+            deletePatient.setHeaderText("");
+            deletePatient.setContentText("تم الحذف بنجاح");
+            deletePatient.showAndWait();
+            patientsInfo.getItems().removeAll(patientsInfo.getSelectionModel().getSelectedItems());
+            idtext.clear();
+
+        } else {
+            msgDeletePatient.setTitle("خطا");
+            msgDeletePatient.setHeaderText("");
+            msgDeletePatient.setContentText("لم يتم الحذف بنجاح");
+            msgDeletePatient.showAndWait();
+        }
     }
 }

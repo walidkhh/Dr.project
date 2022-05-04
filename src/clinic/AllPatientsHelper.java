@@ -1,17 +1,24 @@
-
 package clinic;
 
-public class AllPatientsHelper  {
-    String name ;
+public class AllPatientsHelper {
+
+    String name;
     String phoneNumber;
     String address;
     String sickCondition;
     String notes;
+    String id;
 
-    public AllPatientsHelper() {
+    public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes,
+            String id) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.sickCondition = sickCondition;
+        this.notes = notes;
+        this.id = id;
     }
 
-    
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes) {
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -19,8 +26,7 @@ public class AllPatientsHelper  {
         this.sickCondition = sickCondition;
         this.notes = notes;
     }
-    
-    
+
     public String getName() {
         return name;
     }
@@ -60,5 +66,15 @@ public class AllPatientsHelper  {
     public void setNotes(String notes) {
         this.notes = notes;
     }
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public AllPatientsHelper() {
+    }
 }

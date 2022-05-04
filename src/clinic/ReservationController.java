@@ -17,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 
 public class ReservationController implements Initializable {
 
+    Alert fillText = new Alert(Alert.AlertType.WARNING);
+
     @FXML
     private TextField reservationNumber;
 
@@ -51,23 +53,32 @@ public class ReservationController implements Initializable {
     @FXML
     void reservation(ActionEvent event) throws IOException {
 
-        reservation.setTitle("تاكيد");
-        reservation.setHeaderText("");
-        reservation.setContentText("تم الحجز بنجاح");
-        reservation.showAndWait();
+        if (reservationNumber.getText().isEmpty() || pName.getText().isEmpty()
+                || gender.getText().isEmpty() || age.getText().isEmpty()
+                || phoneNumber.getText().isEmpty()) {
 
-        // تمرير البيانات الى واجهة اظهار الحجوزات لاضافتها في الجدول
-        AllReservationsController.getReservationInfo(
-                reservationNumber.getText(),
-                pName.getText(),
-                gender.getText(),
-                age.getText(),
-                phoneNumber.getText(),
-                reservationDate.getValue(),
-                reservationType.getValue());
+            fillText.setTitle("تنبيه");
+            fillText.setHeaderText("");
+            fillText.setContentText("رجاء قم بملئ حقول الادخال");
+            fillText.showAndWait();
+        } else {
+            reservation.setTitle("تاكيد");
+            reservation.setHeaderText("");
+            reservation.setContentText("تم الحجز بنجاح");
+            reservation.showAndWait();
+            AllReservationsController.getReservationInfo(
+                    reservationNumber.getText(),
+                    pName.getText(),
+                    gender.getText(),
+                    age.getText(),
+                    phoneNumber.getText(),
+                    reservationDate.getValue(),
+                    reservationType.getValue());
 
-        // مسح محتويات حقول الادخال
-        clearTextField();
+            // مسح محتويات حقول الادخال
+            clearTextField();
+        }
+
     }
 
     @FXML
