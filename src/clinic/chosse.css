@@ -1,7 +1,4 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.class_chosse{
+    -fx-background-image: url("images/bac6.jpg");
+    -fx-background-repeat: no-repeat;
 }

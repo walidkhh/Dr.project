@@ -100,4 +100,15 @@ public class Database {
 
         return pstmt.executeUpdate();
     }
+
+    // حذف مريض ما 
+    public static int deletePatient(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM adding_pateints  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        return pstmt.executeUpdate();
+    }
 }

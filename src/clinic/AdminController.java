@@ -57,28 +57,20 @@ public class AdminController implements Initializable {
 
     @FXML
     private ComboBox<String> privileges;
-    AdminHelper adminHelper;
-    int indexOfSelectedRow;
     ObservableList<AdminHelper> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        ResultSet resultSet;
-
         try {
-            resultSet = Database.getUserInfo();
-            while (resultSet.next()) {
-                String privilegeType = resultSet.getString("user_type").equals("1") ? "مسؤول" : "مستخدم";
-                data.add(new AdminHelper(resultSet.getString("user_name"),
-                        resultSet.getString("pass_word"), privilegeType, resultSet.getInt("id")));
-            }
+            getInfo();
         } catch (SQLException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        
         privileges.getItems().addAll("مسؤول", "مستخدم");
         col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -153,14 +145,12 @@ public class AdminController implements Initializable {
             editUser.setHeaderText("");
             editUser.setContentText("تم التعديل بنجاح");
             editUser.showAndWait();
-
-            adminHelper.setUsername(userName.getText());
-            adminHelper.setPassword(password.getText());
-            adminHelper.setPrivilege(privileges.getValue());
-
-            adminTable.getItems().add(indexOfSelectedRow, adminHelper);
-            //   adminTable.getItems().remove(indexOfSelectedRow);
-
+            
+            // حذف البيانات الموجودة في الجدول
+            data.clear(); 
+            
+            // اضافة البيانات الى الجدول بعد التعديل عليها
+            getInfo();
             clearTextField();
         } else {
             msgEditError.setTitle("خطا");
@@ -185,10 +175,20 @@ public class AdminController implements Initializable {
         password.setText(adminTable.getSelectionModel().getSelectedItem().getPassword());
         privileges.setValue(adminTable.getSelectionModel().getSelectedItem().getPrivilege());
         textID.setText(String.valueOf(adminTable.getSelectionModel().getSelectedItem().getId()));
-        adminHelper = adminTable.getSelectionModel().getSelectedItem();
-        indexOfSelectedRow = adminTable.getSelectionModel().getSelectedIndex();
+
     }
 
+    // اضافة معلومات المستخدمين في الجدول
+    private void getInfo() throws SQLException, ClassNotFoundException {
+        ResultSet resultSet;
+
+        resultSet = Database.getUserInfo();
+        while (resultSet.next()) {
+            String privilegeType = resultSet.getString("user_type").equals("1") ? "مسؤول" : "مستخدم";
+            data.add(new AdminHelper(resultSet.getString("user_name"),
+                    resultSet.getString("pass_word"), privilegeType, resultSet.getInt("id")));
+        }
+    }
     // مسح محتويات حقول الادخال
     private void clearTextField() {
         userName.clear();

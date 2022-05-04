@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="826.0" styleClass="class_chosse" stylesheets="@chosse.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.AddPatientController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.AddPatientController">
    <children>
-      <VBox prefHeight="632.0" prefWidth="927.0" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="632.0" prefWidth="927.0" style="-fx-background-color: #dde8f1;" HBox.hgrow="ALWAYS">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="61.0" prefWidth="826.0">
                <children>

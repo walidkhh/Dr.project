@@ -25,6 +25,9 @@ public class AllPatientsController implements Initializable {
     Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
 
     @FXML
+    private TextField idtext;
+
+    @FXML
     private TextField searchName;
 
     @FXML
@@ -44,6 +47,9 @@ public class AllPatientsController implements Initializable {
 
     @FXML
     private TableColumn<AllPatientsHelper, String> notes;
+
+    @FXML
+    private TableColumn<AllPatientsHelper, String> idcolumn;
 
     ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
 
@@ -84,14 +90,13 @@ public class AllPatientsController implements Initializable {
 
         // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
         patientName.setCellValueFactory(new PropertyValueFactory<>("name"));
-           patientName.setCellFactory(TextFieldTableCell.forTableColumn());
+        patientName.setCellFactory(TextFieldTableCell.forTableColumn());
 
         patientName.setOnEditCommit((TableColumn.CellEditEvent<AllPatientsHelper, String> t) -> t.getTableView()
                 .getItems()
                 .get(t.getTablePosition().getRow())
                 .setName(t.getNewValue()));
 
-        
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
@@ -122,9 +127,9 @@ public class AllPatientsController implements Initializable {
                     resultSet.getString("p_status"),
                     resultSet.getString("notes")
             ));
-            
+
             // عرض رسالة خطا في حال اسم المريض غير موجود 
-        } else if(isFound == false && !searchName.getText().isEmpty()) {
+        } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
             isPatientFound.setHeaderText("");
             isPatientFound.setContentText("اسم المريض غير موجود");
@@ -145,6 +150,11 @@ public class AllPatientsController implements Initializable {
         if (searchName.getText().isEmpty()) {
             patientsInfo();
         }
+    }
+
+    // حذف المريض المحدد
+    @FXML
+    void deleteSelectedPatient(MouseEvent event) {
 
     }
 }

@@ -26,7 +26,7 @@
                      </image>
                   </ImageView>
                   <TextField fx:id="idtext" prefHeight="31.0" prefWidth="83.0" visible="false" />
-                  <ImageView fitHeight="30.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="80.0" onMouseClicked="#deleteSelectedPatient" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                      <HBox.margin>
                         <Insets bottom="10.0" right="40.0" top="7.0" />
                      </HBox.margin>

@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 
 public class FormController {
 
+    private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
     @FXML
     private TextArea docId;
 
@@ -41,17 +43,29 @@ public class FormController {
     @FXML
     void print(ActionEvent event) throws IOException {
 
-        data.addAll(
-                docId.getText(),
-                addressid.getText(),
-                paitentNameId.getText(),
-                ageId.getText(),
-                aboudPaitentId.getText(),
-                phoneNumId.getText(),
-                rigesterId.getText(),
-                dateId.getValue().toString());
+        if (docId.getText().isEmpty() || addressid.getText().isEmpty()
+                || paitentNameId.getText().isEmpty()
+                || ageId.getText().isEmpty()
+                || aboudPaitentId.getText().isEmpty() || phoneNumId.getText().isEmpty() || rigesterId.getText().isEmpty()) {
 
-        MainView.setRoot("racheta", 1000, 760);
+            // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
+            fillText.setTitle("تنبيه");
+            fillText.setHeaderText("");
+            fillText.setContentText("رجاء قم بملئ حقول الادخال");
+            fillText.showAndWait();
+        } else {
+            data.addAll(
+                    docId.getText(),
+                    addressid.getText(),
+                    paitentNameId.getText(),
+                    ageId.getText(),
+                    aboudPaitentId.getText(),
+                    phoneNumId.getText(),
+                    rigesterId.getText(),
+                    dateId.getValue().toString());
+
+            MainView.setRoot("racheta", 1000, 760);
+        }
 
     }
 

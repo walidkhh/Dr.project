@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="920.0" styleClass="class_reservation" stylesheets="@reservation.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ReservationController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="920.0" style="-fx-background-color: #dde8f1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ReservationController">
    <right>
       <AnchorPane prefHeight="463.0" prefWidth="681.0" stylesheets="@reservation.css" BorderPane.alignment="CENTER">
          <children>
@@ -89,6 +89,11 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
+            <ImageView fitHeight="503.0" fitWidth="484.0" layoutX="34.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/doctor2.jpg" />
+               </image>
+            </ImageView>
             <Label alignment="CENTER" layoutX="389.0" layoutY="14.0" prefHeight="45.0" prefWidth="214.0" text="الحجوزات" textAlignment="CENTER">
                <font>
                   <Font name="Times New Roman Bold" size="30.0" />
