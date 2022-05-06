@@ -22,38 +22,42 @@ public class ChosseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        btnVisible.setVisible(visible);
+        btnVisible.setVisible(visible); // اظهار او اخفاء زر معلومات المستخدمين
     }
 
+    // فتح واجهة اضافة المريض
     @FXML
     void addPatients(ActionEvent event) throws IOException {
         MainView.setRoot("addPatient", 950, 760);
     }
 
+    // فتح واجهة كل المرضى
     @FXML
     void allPatients(ActionEvent event) throws IOException {
         MainView.setRoot("allPatients", 1100, 760);
     }
 
+    // فتح واجهة الحجز
     @FXML
     void reservation(ActionEvent event) throws IOException {
         MainView.setRoot("reservation", 950, 760);
     }
 
-    // back to login page
+    //العودة الى الواجهة السابقة
     @FXML
     void backTo(MouseEvent event) throws IOException {
         MainView.setRoot("login", 900, 770);
     }
 
-    //open admi page
+    //فتح واجهة الادمن
     @FXML
     void userInfo(ActionEvent event) throws IOException {
         MainView.setRoot("adminpages", 1010, 760);
     }
 
+    // فتح واجهة فورم معلومات الراجيته
     @FXML
     void form(ActionEvent event) throws IOException {
-        MainView.setRoot("form", 850, 760);
+        MainView.setRoot("form", 1000, 760);
     }
 }

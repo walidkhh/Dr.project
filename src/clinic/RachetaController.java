@@ -17,7 +17,7 @@ import javafx.scene.layout.AnchorPane;
 public class RachetaController implements Initializable {
 
     @FXML
-    private AnchorPane  root;
+    private AnchorPane root;
 
     @FXML
     private Label infoMidic;
@@ -48,7 +48,7 @@ public class RachetaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        data = FormController.getData();
+        data = FormController.getData(); 
 
         info.setText(data.get(0));
         location.setText(data.get(1));
@@ -58,17 +58,18 @@ public class RachetaController implements Initializable {
         clinicPhone.setText(data.get(5));
         rigesterNum.setText(data.get(6));
         date.setText(data.get(7));
-        
     }
-    
+
     @FXML
-    void print(ActionEvent event)throws IOException {
+    void print(ActionEvent event) throws IOException {
         PrinterJob job = PrinterJob.createPrinterJob();
         boolean isPrinted = job.printPage(root);
         if (isPrinted) {
             job.endJob();
         }
         
-        MainView.setRoot("form", 1000, 790);
+        data.clear(); // مسح كل المحتويات
+        
+        MainView.setRoot("form", 1000, 790); // العودة الى الواجهة السابقة
     }
 }

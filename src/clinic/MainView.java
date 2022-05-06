@@ -20,7 +20,7 @@ public class MainView extends Application {
         scene = new Scene(loadFXML("login"),910,700);
         primaryStage = stage;
         primaryStage.setScene(scene);
-       // primaryStage.setMaximized(true);
+        primaryStage.setMaximized(true);
         primaryStage.show();
 
     }
@@ -39,9 +39,9 @@ public class MainView extends Application {
 
     static void setRoot(String fxml, int width, int height) throws IOException {
 
-        primaryStage.setWidth(width);
-        primaryStage.setHeight(height);
-  //      primaryStage.setMaximized(true);
+//        primaryStage.setWidth(width);
+//        primaryStage.setHeight(height);
+        primaryStage.setMaximized(true);
         scene.setRoot(loadFXML(fxml));
 
     }
