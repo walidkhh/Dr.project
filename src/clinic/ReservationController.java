@@ -2,6 +2,7 @@ package clinic;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -51,7 +52,7 @@ public class ReservationController implements Initializable {
     }
 
     @FXML
-    void reservation(ActionEvent event) throws IOException {
+    void reservation(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
 
         if (reservationNumber.getText().isEmpty() || pName.getText().isEmpty()
                 || gender.getText().isEmpty() || age.getText().isEmpty()
@@ -72,7 +73,16 @@ public class ReservationController implements Initializable {
                     gender.getText(),
                     age.getText(),
                     phoneNumber.getText(),
-                    reservationDate.getValue(),
+                    reservationDate.getValue().toString(),
+                    reservationType.getValue());
+
+            Database.addReservation(
+                    reservationNumber.getText(),
+                    pName.getText(),
+                    age.getText(),
+                    gender.getText(),
+                    phoneNumber.getText(),
+                    reservationDate.getValue().toString(),
                     reservationType.getValue());
 
             // مسح محتويات حقول الادخال
@@ -101,4 +111,3 @@ public class ReservationController implements Initializable {
 
     }
 }
-

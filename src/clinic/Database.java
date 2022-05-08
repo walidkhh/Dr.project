@@ -111,4 +111,40 @@ public class Database {
 
         return pstmt.executeUpdate();
     }
+
+    public static int addReservation(String bookingNumber, String pName,String pAge,String pGender,
+            String phoneNumber, String bookingDate, String bookingType) throws ClassNotFoundException, SQLException {
+
+        String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type) "
+                + "VALUES(?,?,?,?,?,?,?)";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, Integer.parseInt(bookingNumber));
+        pstmt.setString(2, pName);
+        pstmt.setString(3, pAge);
+        pstmt.setString(4, pGender);
+        pstmt.setString(5, phoneNumber);
+        pstmt.setString(6, bookingDate);
+        pstmt.setString(7, bookingType);
+
+        return pstmt.executeUpdate();
+    }
+
+    public static ResultSet getReservationInfo() throws SQLException, ClassNotFoundException {
+
+        Statement statement = getConnection().createStatement();
+        return statement.executeQuery("SELECT * FROM booking;");
+
+    }
+
+    public static ResultSet searchReservationInfo(String patientName) throws ClassNotFoundException, SQLException {
+
+        String query = "SELECT * FROM booking WHERE p_name = ?";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, patientName);
+        ResultSet resultSet = pstmt.executeQuery();
+        return resultSet;
+    }
+
 }

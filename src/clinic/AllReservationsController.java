@@ -2,18 +2,16 @@ package clinic;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,6 +19,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class AllReservationsController implements Initializable {
+
+    Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     private TextField searchFiled;
@@ -53,6 +53,27 @@ public class AllReservationsController implements Initializable {
 
     private ObservableList<ReservationHelper> masterData = FXCollections.observableArrayList();
 
+    public void reservationInfo() throws SQLException, ClassNotFoundException {
+
+        ResultSet resultSet;
+
+        // ارجاع بيانات جميع المرضى 
+        resultSet = Database.getReservationInfo();
+        while (resultSet.next()) {
+
+            // اضافة البيانات لعرضها لاحقا في الجدول
+            data.add(new ReservationHelper(
+                    resultSet.getString("booking_number"),
+                    resultSet.getString("p_name"),
+                    resultSet.getString("p_age"),
+                    resultSet.getString("p_gender"),
+                    resultSet.getString("p_phone_number"),
+                    resultSet.getString("booking_date"),
+                    resultSet.getString("booking_type")
+            ));
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -75,7 +96,7 @@ public class AllReservationsController implements Initializable {
     }
 
     public static void getReservationInfo(String pReservatioNumber, String name, String pGender,
-            String pAge, String pPhoneNumber, LocalDate pReservationDate, String pReservationType) {
+            String pAge, String pPhoneNumber, String pReservationDate, String pReservationType) {
 
         data.add(new ReservationHelper(
                 pReservatioNumber,
@@ -89,14 +110,67 @@ public class AllReservationsController implements Initializable {
     }
 
     @FXML
-    void searchBtn(ActionEvent event) {
+    void searchBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+// حذف البيانات السابقة بعد الضغط على زر البحث
+        data.clear();
+        reservationTable.setItems(data);
 
+        ResultSet resultSet;
+
+        // ارجاع اسم المريض من القاعدة
+        resultSet = Database.searchReservationInfo(searchFiled.getText());
+        boolean isFound = resultSet.next();
+        // التاكد بان الاسم موجود في القاعدة
+        if (isFound) {
+
+            data.add(new ReservationHelper(
+                    resultSet.getString("booking_number"),
+                    resultSet.getString("p_name"),
+                    resultSet.getString("p_age"),
+                    resultSet.getString("p_gender"),
+                    resultSet.getString("p_phone_number"),
+                    resultSet.getString("booking_date"),
+                    resultSet.getString("booking_type")));
+
+            while (resultSet.next()) {
+                data.add(new ReservationHelper(
+                        resultSet.getString("booking_number"),
+                        resultSet.getString("p_name"),
+                        resultSet.getString("p_age"),
+                        resultSet.getString("p_gender"),
+                        resultSet.getString("p_phone_number"),
+                        resultSet.getString("booking_date"),
+                        resultSet.getString("booking_type")
+                ));
+            }
+
+            // عرض رسالة خطا في حال اسم المريض غير موجود 
+        } else if (isFound == false && !searchFiled.getText().isEmpty()) {
+            isPatientFound.setTitle("خطا");
+            isPatientFound.setHeaderText("");
+            isPatientFound.setContentText("اسم المريض غير موجود");
+            isPatientFound.showAndWait();
+        }
+
+        // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
+        reservationNumber.setCellValueFactory(new PropertyValueFactory<>("reservationNumber"));
+        pName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        age.setCellValueFactory(new PropertyValueFactory<>("age"));
+        phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
+        reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
+
+        // اضافة البيانات الى الجدول
+        reservationTable.setItems(data);
+
+        // التاكد من قيمة الحقل فارغة لارجاع البيانات السابقة
+        if (searchFiled.getText().isEmpty()) {
+            reservationInfo();
+        }
     }
 
     /*
-    
-    
-    
     
      // 1. Wrap the ObservableList in a FilteredList (initially display all data)
         FilteredList<ReservationHelper> filteredData = new FilteredList<>(masterData, p -> true);

@@ -1,7 +1,6 @@
 
 package clinic;
 
-import java.time.LocalDate;
 
 public class ReservationHelper {
     
@@ -10,14 +9,14 @@ public class ReservationHelper {
     String gender;
     String age;
     String phoneNumber;
-    LocalDate reservationDate;
+    String reservationDate;
     String reservationType;
 
     public ReservationHelper() {
     }
 
     public ReservationHelper(String reservationNumber, String pName, String gender, 
-            String age, String phoneNumber, LocalDate reservationDate, String reservationType) {
+            String age, String phoneNumber, String reservationDate, String reservationType) {
         this.reservationNumber = reservationNumber;
         this.name = pName;
         this.gender = gender;
@@ -67,11 +66,11 @@ public class ReservationHelper {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getReservationDate() {
+    public String getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(LocalDate reservationDate) {
+    public void setReservationDate(String reservationDate) {
         this.reservationDate = reservationDate;
     }
 

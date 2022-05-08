@@ -54,8 +54,7 @@ public class RachetaController implements Initializable {
         data = FormController.getData();
 
         // info.setText(data.get(0));
-       // drName.setText(data.get(0));
-       
+        // drName.setText(data.get(0));
         location.setText(data.get(1));
         patientName.setText(data.get(2));
         patientAge.setText(data.get(3));
