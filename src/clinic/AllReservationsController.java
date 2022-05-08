@@ -3,9 +3,14 @@ package clinic;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -46,6 +51,8 @@ public class AllReservationsController implements Initializable {
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
 
+    private ObservableList<ReservationHelper> masterData = FXCollections.observableArrayList();
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -59,7 +66,6 @@ public class AllReservationsController implements Initializable {
 
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
-
     }
 
     @FXML
@@ -81,18 +87,43 @@ public class AllReservationsController implements Initializable {
                 pReservationType
         ));
     }
-    
-    
+
     @FXML
     void searchBtn(ActionEvent event) {
-        
-        reservationTable.getItems().filtered((t) -> {
-            data.add(t);
-            
-            return true;
-        });
-        
-   
-        
+
     }
+
+    /*
+    
+    
+    
+    
+     // 1. Wrap the ObservableList in a FilteredList (initially display all data)
+        FilteredList<ReservationHelper> filteredData = new FilteredList<>(masterData, p -> true);
+        // 2. Set the filter Predicate whenever the filter changes.
+        searchFiled.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(reservation -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every reservation with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (reservation.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
+
+        // 3. Wrap the FilteredList in a SortedList. 
+        SortedList<ReservationHelper> sortedData = new SortedList<>(filteredData);
+        // 4. Bind the SortedList comparator to the TableView comparator.
+        sortedData.comparatorProperty().bind(reservationTable.comparatorProperty());
+        // 5. Add sorted (and filtered) data to the table.
+        reservationTable.setItems(sortedData);
+    
+     */
 }

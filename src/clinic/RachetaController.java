@@ -12,18 +12,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.print.PrinterJob;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 public class RachetaController implements Initializable {
 
     @FXML
-    private AnchorPane root;
+    private VBox root;
 
     @FXML
-    private Label infoMidic;
+    private Label drName;
 
     @FXML
-    private Label info;
+    private Label firstDrInfo;
+
+    @FXML
+    private Label secondDrInfo;
 
     @FXML
     private Label location;
@@ -35,29 +38,31 @@ public class RachetaController implements Initializable {
     private Label patientAge;
 
     @FXML
+    private Label infoMidic;
+
+    @FXML
     private Label clinicPhone;
 
     @FXML
     private Label rigesterNum;
-
-    @FXML
-    private Label date;
 
     static ObservableList<String> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        data = FormController.getData(); 
+        data = FormController.getData();
 
-        info.setText(data.get(0));
+        // info.setText(data.get(0));
+       // drName.setText(data.get(0));
+       
         location.setText(data.get(1));
         patientName.setText(data.get(2));
         patientAge.setText(data.get(3));
         infoMidic.setText(data.get(4));
         clinicPhone.setText(data.get(5));
         rigesterNum.setText(data.get(6));
-        date.setText(data.get(7));
+        //  date.setText(data.get(7));
     }
 
     @FXML
@@ -67,9 +72,9 @@ public class RachetaController implements Initializable {
         if (isPrinted) {
             job.endJob();
         }
-        
+
         data.clear(); // مسح كل المحتويات
-        
+
         MainView.setRoot("form", 1000, 790); // العودة الى الواجهة السابقة
     }
 }
