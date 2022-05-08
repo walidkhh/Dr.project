@@ -6,14 +6,19 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class AllReservationsController implements Initializable {
+
+    @FXML
+    private TextField searchFiled;
 
     @FXML
     private TableView<ReservationHelper> reservationTable;
@@ -51,7 +56,7 @@ public class AllReservationsController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
-        
+
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
 
@@ -65,7 +70,7 @@ public class AllReservationsController implements Initializable {
 
     public static void getReservationInfo(String pReservatioNumber, String name, String pGender,
             String pAge, String pPhoneNumber, LocalDate pReservationDate, String pReservationType) {
-        
+
         data.add(new ReservationHelper(
                 pReservatioNumber,
                 name,
@@ -75,5 +80,19 @@ public class AllReservationsController implements Initializable {
                 pReservationDate,
                 pReservationType
         ));
+    }
+    
+    
+    @FXML
+    void searchBtn(ActionEvent event) {
+        
+        reservationTable.getItems().filtered((t) -> {
+            data.add(t);
+            
+            return true;
+        });
+        
+   
+        
     }
 }
