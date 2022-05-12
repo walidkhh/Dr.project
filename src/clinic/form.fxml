@@ -16,17 +16,17 @@
    <right>
       <AnchorPane prefHeight="740.0" prefWidth="890.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="docId" layoutX="57.0" layoutY="68.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="120.0" prefWidth="778.0" wrapText="true" />
-            <TextField fx:id="addressid" layoutX="57.0" layoutY="208.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="33.0" prefWidth="712.0" />
-            <Label contentDisplay="CENTER" layoutX="370.0" layoutY="24.0" prefHeight="39.0" prefWidth="127.0" text="معلومات عن الدكتور" textAlignment="CENTER" textFill="#0d0d0d">
+            <TextArea fx:id="drName" layoutX="165.0" layoutY="66.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="589.0" wrapText="true" />
+            <TextField fx:id="addressid" layoutX="53.0" layoutY="221.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="34.0" prefWidth="706.0" />
+            <Label contentDisplay="CENTER" layoutX="370.0" layoutY="12.0" prefHeight="39.0" prefWidth="127.0" text="معلومات عن الدكتور" textAlignment="CENTER" textFill="#0d0d0d">
                <font>
                   <Font name="Arabic Typesetting" size="28.0" />
                </font></Label>
-            <Label layoutX="790.0" layoutY="201.0" prefHeight="22.0" prefWidth="46.0" text="العنوان">
+            <TextField fx:id="paitentNameId" layoutX="510.0" layoutY="262.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="33.0" prefWidth="247.0" />
+            <Label layoutX="788.0" layoutY="218.0" prefHeight="22.0" prefWidth="46.0" text="العنوان">
                <font>
                   <Font name="Arabic Typesetting" size="29.0" />
                </font></Label>
-            <TextField fx:id="paitentNameId" layoutX="522.0" layoutY="262.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="33.0" prefWidth="247.0" />
             <TextField fx:id="ageId" layoutX="695.0" layoutY="317.0" prefHeight="33.0" prefWidth="53.0" />
             <Label layoutX="777.0" layoutY="260.0" prefHeight="25.0" prefWidth="71.0" text="اسم المريض">
                <font>
@@ -62,6 +62,24 @@
                   <Image url="@images/backarrow.jpg" />
                </image>
             </ImageView>
+            <Label layoutX="784.0" layoutY="76.0" />
+            <TextArea fx:id="drSpe" layoutX="165.0" layoutY="117.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="589.0" wrapText="true" />
+            <Label layoutX="764.0" layoutY="65.0" prefHeight="40.0" prefWidth="95.0" text="أسم الدكتور">
+               <font>
+                  <Font name="Arabic Typesetting" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="766.0" layoutY="117.0" prefHeight="40.0" prefWidth="95.0" text="ألاختصاص">
+               <font>
+                  <Font name="Arabic Typesetting" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="764.0" layoutY="173.0" prefHeight="40.0" prefWidth="95.0" text="الشهادة ">
+               <font>
+                  <Font name="Arabic Typesetting" size="31.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="drCerti" layoutX="165.0" layoutY="173.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="26.0" prefWidth="590.0" wrapText="true" />
          </children>
          <effect>
             <Glow />

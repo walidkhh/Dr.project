@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.RachetaController">
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="597.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.RachetaController">
    <children>
-      <VBox prefHeight="680.0" prefWidth="468.0">
+      <VBox fx:id="root" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
-            <VBox fx:id="root" prefHeight="600.0" prefWidth="400.0" VBox.vgrow="ALWAYS">
+            <VBox alignment="CENTER" prefHeight="755.0" prefWidth="563.0" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER" prefHeight="154.0" prefWidth="400.0">
+                  <VBox alignment="CENTER" prefHeight="154.0" prefWidth="395.0">
                      <children>
                         <Label id="dr.specialist" contentDisplay="TOP" text="الدكتور الاختصاص ">
                            <VBox.margin>
@@ -28,7 +28,7 @@
                               <Font name="Arial" size="30.0" />
                            </font>
                         </Label>
-                        <Label id="description" fx:id="firstDrInfo" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر   " textFill="#6047dc" VBox.vgrow="ALWAYS" />
+                        <Label id="description" fx:id="firstDrInfo" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر   " textFill="#6047dc" />
                         <Label id="jurisdiction" fx:id="secondDrInfo" text=" دكتور (بورد) بالطب الباطني زميل المجلس العربي للاختصاصات الطبية " />
                      </children>
                   </VBox>
@@ -41,11 +41,11 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="57.0" prefWidth="395.0">
+                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="303.0" prefWidth="395.0">
                      <children>
                         <HBox prefHeight="22.0" prefWidth="395.0">
                            <children>
-                              <Label id="patient_name" prefHeight="20.0" prefWidth="97.0" text="أسم المريض : ">
+                              <Label id="patient_name" prefHeight="20.0" prefWidth="97.0" text="أسم المريض : " HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -53,16 +53,19 @@
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label fx:id="patientName" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="212.0" text=" الاسم ">
+                              <Label fx:id="patientName" layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="46.0" text=" الاسم ">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
+                           <VBox.margin>
+                              <Insets right="10.0" />
+                           </VBox.margin>
                         </HBox>
                         <HBox prefHeight="27.0" prefWidth="395.0">
                            <children>
-                              <Label prefHeight="20.0" prefWidth="60.0" text="العمر : ">
+                              <Label prefHeight="20.0" prefWidth="60.0" text="العمر : " HBox.hgrow="ALWAYS">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -70,25 +73,39 @@
                                     <Insets left="5.0" />
                                  </HBox.margin>
                               </Label>
-                              <Label id="age" fx:id="patientAge" prefHeight="19.0" prefWidth="50.0" text="العمر">
+                              <Label id="age" fx:id="patientAge" text="العمر">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
                            </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                         </HBox>
-                     </children>
-                  </VBox>
-                  <VBox prefHeight="287.0" prefWidth="468.0">
-                     <children>
-                        <HBox prefHeight="219.0" prefWidth="395.0" VBox.vgrow="ALWAYS">
+                        <HBox prefHeight="218.0" prefWidth="597.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label fx:id="infoMidic" alignment="CENTER_RIGHT" prefHeight="291.0" prefWidth="469.0" text="Label" HBox.hgrow="ALWAYS" />
+                              <Label fx:id="infoMidic" prefHeight="255.0" prefWidth="458.0" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label id="id_data" fx:id="date" alignment="CENTER" prefHeight="38.0" prefWidth="123.0" text="2000/5/10" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Malgun Gothic Semilight" size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="40.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="72.0" prefWidth="468.0">
+                  <VBox alignment="CENTER_RIGHT" prefHeight="65.0" prefWidth="395.0" VBox.vgrow="ALWAYS">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="395.0">
                            <children>
@@ -97,7 +114,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label id="phone" contentDisplay="CENTER" layoutX="162.0" layoutY="16.0" prefHeight="20.0" prefWidth="83.0" text="هاتف العيادة " textFill="#cc0808">
+                              <Label id="phone" contentDisplay="CENTER" layoutX="162.0" layoutY="16.0" prefHeight="20.0" prefWidth="90.0" text="هاتف العيادة " textFill="#cc0808">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -115,27 +132,19 @@
                                  <font>
                                     <Font size="14.0" />
                                  </font>
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
                               </Label>
                            </children>
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
                         </HBox>
                      </children>
                   </VBox>
                </children>
             </VBox>
-            <VBox prefHeight="77.0" prefWidth="395.0">
+            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="597.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#print" prefHeight="31.0" prefWidth="148.0" style="-fx-background-color: #000; -fx-text-fill: #fff; -fx-cursor: hand;" text="طباعة">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
+                  <Button mnemonicParsing="false" onAction="#print" prefHeight="31.0" prefWidth="157.0" text="طباعة" />
                </children>
             </VBox>
          </children>

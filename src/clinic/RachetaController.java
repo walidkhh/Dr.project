@@ -46,6 +46,9 @@ public class RachetaController implements Initializable {
     @FXML
     private Label rigesterNum;
 
+    //@FXML
+   // private Label date;
+
     static ObservableList<String> data = FXCollections.observableArrayList();
 
     @Override
@@ -53,15 +56,16 @@ public class RachetaController implements Initializable {
 
         data = FormController.getData();
 
-        // info.setText(data.get(0));
-        // drName.setText(data.get(0));
-        location.setText(data.get(1));
-        patientName.setText(data.get(2));
-        patientAge.setText(data.get(3));
-        infoMidic.setText(data.get(4));
-        clinicPhone.setText(data.get(5));
-        rigesterNum.setText(data.get(6));
-        //  date.setText(data.get(7));
+        drName.setText(data.get(0));
+        firstDrInfo.setText(data.get(1));
+        secondDrInfo.setText(data.get(2));
+        location.setText(data.get(3));
+        patientName.setText(data.get(4));
+        patientAge.setText(data.get(5));
+        infoMidic.setText(data.get(6));
+        clinicPhone.setText(data.get(7));
+        rigesterNum.setText(data.get(8));
+       // date.setText(data.get(9));
     }
 
     @FXML
@@ -72,7 +76,7 @@ public class RachetaController implements Initializable {
             job.endJob();
         }
 
-        data.clear(); // مسح كل المحتويات
+      //  data.clear(); // مسح كل المحتويات
 
         MainView.setRoot("form", 1000, 790); // العودة الى الواجهة السابقة
     }

@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `login`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `login` (
-  `id` varchar(45) NOT NULL,
-  `user_name` varchar(30) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(30) NOT NULL, 
   `pass_word` varchar(30) NOT NULL,
   `user_type` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)

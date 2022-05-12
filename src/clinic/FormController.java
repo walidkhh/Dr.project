@@ -15,8 +15,9 @@ import javafx.scene.input.MouseEvent;
 public class FormController {
 
     private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
+
     @FXML
-    private TextArea docId;
+    private TextArea drName;
 
     @FXML
     private TextField addressid;
@@ -38,12 +39,19 @@ public class FormController {
 
     @FXML
     private TextField rigesterId;
+
+    @FXML
+    private TextArea drSpe;
+
+    @FXML
+    private TextArea drCerti;
+
     static ObservableList<String> data = FXCollections.observableArrayList();
 
     @FXML
     void print(ActionEvent event) throws IOException {
 
-        if (docId.getText().isEmpty() || addressid.getText().isEmpty()
+        if (drName.getText().isEmpty() || addressid.getText().isEmpty()
                 || paitentNameId.getText().isEmpty()
                 || ageId.getText().isEmpty()
                 || aboudPaitentId.getText().isEmpty() || phoneNumId.getText().isEmpty() || rigesterId.getText().isEmpty()) {
@@ -55,14 +63,17 @@ public class FormController {
             fillText.showAndWait();
         } else {
             data.addAll(
-                    docId.getText(),
+                    drName.getText(),
+                    drSpe.getText(),
+                    drCerti.getText(),
                     addressid.getText(),
                     paitentNameId.getText(),
                     ageId.getText(),
                     aboudPaitentId.getText(),
                     phoneNumId.getText(),
-                    rigesterId.getText(),
-                    dateId.getValue().toString());
+                    rigesterId.getText()//,
+                   // dateId.getValue().toString()
+                    );
 
             MainView.setRoot("racheta", 1000, 760);
         }

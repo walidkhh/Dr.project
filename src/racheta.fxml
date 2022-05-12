@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="395.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="575.0" prefWidth="416.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="154.0" prefWidth="395.0">
+               <children>
+                  <Label id="dr.specialist" contentDisplay="TOP" text="الدكتور الاختصاص ">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label id="dr.name" text="عبد علي شنانن جابر " textFill="#cc0808">
+                     <font>
+                        <Font name="Arial" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label id="description" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر   " textFill="#6047dc" />
+                  <Label id="jurisdiction" text=" دكتور (بورد) بالطب الباطني زميل المجلس العربي للاختصاصات الطبية " />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="34.0" prefWidth="395.0" style="-fx-background-color: #160563;">
+               <children>
+                  <Label id="title" text="المركز التركي - شارع السعدي - قرب شركة كيا" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="303.0" prefWidth="395.0">
+               <children>
+                  <HBox prefHeight="22.0" prefWidth="395.0">
+                     <children>
+                        <Label id="patient_name" prefHeight="20.0" prefWidth="97.0" text="أسم المريض : ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label layoutX="10.0" layoutY="10.0" prefHeight="20.0" prefWidth="46.0" text=" الاسم ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="27.0" prefWidth="395.0">
+                     <children>
+                        <Label prefHeight="20.0" prefWidth="60.0" text="العمر : ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label id="age" text="العمر">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="65.0" prefWidth="395.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="395.0">
+                     <children>
+                        <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="90.0" text=" ( )" textFill="#cc0808">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label id="phone" contentDisplay="CENTER" layoutX="162.0" layoutY="16.0" prefHeight="20.0" prefWidth="90.0" text="هاتف العيادة " textFill="#cc0808">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="395.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="83.0" textFill="#160563">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label id="num_record" alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="13.0" text="رقم التسجيل " textFill="#160563">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

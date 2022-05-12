@@ -23,7 +23,7 @@ DROP TABLE IF EXISTS `adding_pateints`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `adding_pateints` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `p_name` varchar(45) NOT NULL,
   `p_phone_number` int NOT NULL,
   `p_address` varchar(45) NOT NULL,
