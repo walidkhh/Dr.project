@@ -101,6 +101,7 @@ public class PatientController implements Initializable {
             ));
            
         }
+         resultSet.close();
     }
 
     @Override
@@ -231,6 +232,7 @@ public class PatientController implements Initializable {
                 ));
             }
 
+             resultSet.close();
             // عرض رسالة خطا في حال اسم المريض غير موجود 
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");

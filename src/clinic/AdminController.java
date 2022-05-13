@@ -188,6 +188,8 @@ public class AdminController implements Initializable {
             data.add(new AdminHelper(resultSet.getString("user_name"),
                     resultSet.getString("pass_word"), privilegeType, resultSet.getInt("id")));
         }
+        
+        resultSet.close();
     }
     // مسح محتويات حقول الادخال
     private void clearTextField() {

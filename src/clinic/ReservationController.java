@@ -26,9 +26,15 @@ public class ReservationController implements Initializable {
 
     private static final Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
     private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
-    private static final Alert addMsg = new Alert(Alert.AlertType.INFORMATION);
-    private static final Alert dontAddMsg = new Alert(Alert.AlertType.ERROR);
-    static LocalDate pReservationDate;
+
+    private static final Alert addReservation = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert msgAddError = new Alert(Alert.AlertType.ERROR);
+
+    private static final Alert deleteReservation = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert msgDeleteError = new Alert(Alert.AlertType.ERROR);
+
+    private static final Alert editReservation = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert msgEditError = new Alert(Alert.AlertType.ERROR);
 
     @FXML
     private TextField searchName;
@@ -168,27 +174,42 @@ public class ReservationController implements Initializable {
                     Integer.parseInt(tfReservationCost.getText()));
 
             if (res != 0) {
-                addMsg.setTitle("تاكيد");
-                addMsg.setHeaderText("");
-                addMsg.setContentText("تم الحجز بنجاح");
-                addMsg.showAndWait();
+                addReservation.setTitle("تاكيد");
+                addReservation.setHeaderText("");
+                addReservation.setContentText("تم الحجز بنجاح");
+                addReservation.showAndWait();
                 data.clear();
                 reservationInfo();
                 // مسح محتويات حقول الادخال
                 clearTextField();
             } else {
-                dontAddMsg.setTitle("خطا");
-                dontAddMsg.setHeaderText("");
-                dontAddMsg.setContentText("لم يتم الحجز بنجاح");
-                dontAddMsg.showAndWait();
+                msgAddError.setTitle("خطا");
+                msgAddError.setHeaderText("");
+                msgAddError.setContentText("لم يتم الحجز بنجاح");
+                msgAddError.showAndWait();
             }
         }
 
     }
 
     @FXML
-    void deleteBtn(ActionEvent event) {
+    void deleteBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
+        int isDeleted = Database.deleteUser(Integer.parseInt(idtext.getText()));
+
+        if (isDeleted != 0) {
+            deleteReservation.setTitle("تاكيد");
+            deleteReservation.setHeaderText("");
+            deleteReservation.setContentText("تم الحذف بنجاح");
+            deleteReservation.showAndWait();
+            reservationTable.getItems().removeAll(reservationTable.getSelectionModel().getSelectedItems());
+            clearTextField();
+        } else {
+            msgDeleteError.setTitle("خطا");
+            msgDeleteError.setHeaderText("");
+            msgDeleteError.setContentText("لم يتم الحذف بنجاح");
+            msgDeleteError.showAndWait();
+        }
     }
 
     @FXML
@@ -261,12 +282,22 @@ public class ReservationController implements Initializable {
         }
     }
 
-     @FXML
+    @FXML
     void getSelectedItem(MouseEvent event) {
-        
+
         idtext.setText(String.valueOf(reservationTable.getSelectionModel().getSelectedItem().getId()));
+        tfReservationNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getPhoneNumber());
+        tfPName.setText(reservationTable.getSelectionModel().getSelectedItem().getName());
+        tfAge.setText(reservationTable.getSelectionModel().getSelectedItem().getAge());
+        tfPhoneNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getPhoneNumber());
+
+        tfReservationCost.setText(String.valueOf(reservationTable.getSelectionModel().getSelectedItem().getCost()));
+        reservationTypeList.setValue(reservationTable.getSelectionModel().getSelectedItem().getReservationType());
+        genderList.setValue(reservationTable.getSelectionModel().getSelectedItem().getGender());
+        reservationDatePicker.setValue(LocalDate.parse(reservationTable.getSelectionModel().getSelectedItem().getReservationDate()));
+
     }
-    
+
     private void clearTextField() {
 
         tfReservationNumber.clear();

@@ -32,7 +32,6 @@ public class Database {
 
         Statement statement = getConnection().createStatement();
         return statement.executeQuery("SELECT * FROM adding_pateints;");
-
     }
 
     // دالة اضافة بيانات المرضى
@@ -48,7 +47,42 @@ public class Database {
         pstmt.setString(4, pStatus);
         pstmt.setString(5, notes);
 
-        return pstmt.executeUpdate();
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+    }
+
+    // التعديل على بيانات المريض 
+    public static int updatePatient(String pName, String phoneNumber, String pAddress,
+            String pStatus, String notes, int id) throws ClassNotFoundException, SQLException {
+
+        String query = "UPDATE adding_pateints SET  p_name = ? ,p_phone_number = ? ,p_address = ?"
+                + ", p_status = ? , p_status, notes = ?  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, pName);
+        pstmt.setString(2, phoneNumber);
+        pstmt.setString(3, pAddress);
+        pstmt.setString(4, pStatus);
+        pstmt.setString(5, notes);
+        pstmt.setInt(6, id);
+
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+    }
+
+    // حذف مريض ما 
+    public static int deletePatient(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM adding_pateints  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
     }
 
     // دالة البحث عن مريض معين حسب الاسم
@@ -58,8 +92,8 @@ public class Database {
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, patientName);
-        ResultSet resultSet = pstmt.executeQuery();
-        return resultSet;
+        return pstmt.executeQuery();
+
     }
 
     // اضافة مستخدم جديد
@@ -73,7 +107,9 @@ public class Database {
         pstmt.setString(2, password);
         pstmt.setString(3, privilegeType);
 
-        return pstmt.executeUpdate();
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
     }
 
     // حذف مستخدم 
@@ -84,7 +120,9 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, id);
 
-        return pstmt.executeUpdate();
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
     }
 
     // التعديل على بيانات المستخدم 
@@ -98,20 +136,12 @@ public class Database {
         pstmt.setString(3, privilegeType);
         pstmt.setInt(4, id);
 
-        return pstmt.executeUpdate();
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
     }
 
-    // حذف مريض ما 
-    public static int deletePatient(int id) throws ClassNotFoundException, SQLException {
-
-        String query = "DELETE FROM adding_pateints  WHERE id = ? ";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setInt(1, id);
-
-        return pstmt.executeUpdate();
-    }
-
+    // اضافة حجز
     public static int addReservation(String bookingNumber, String pName, String pAge, String pGender,
             String phoneNumber, String bookingDate, String bookingType, int bookingCost) throws ClassNotFoundException, SQLException {
 
@@ -128,24 +158,64 @@ public class Database {
         pstmt.setString(7, bookingType);
         pstmt.setInt(8, bookingCost);
 
-        return pstmt.executeUpdate();
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
     }
 
+    // حذف حجز محدد
+    public static int deleteReservation(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM booking  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+    }
+
+    // التعديل على بيانات الحجز 
+    public static int updateReservation(String bookNumber, String name, String gender, String age,
+            String phoneNumber, String bookingDate, String bookingType, int bookingCost,
+            int id) throws ClassNotFoundException, SQLException {
+
+        String query = "UPDATE booking SET  book_number = ? , p_name = ? , p_age = ?"
+                + ", p_gender = ? , p_phone_number = ? , booking_date = ?, booking_type = ? , booking_cost = ?"
+                + " WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, bookNumber);
+        pstmt.setString(2, name);
+        pstmt.setString(3, age);
+        pstmt.setString(4, gender);
+        pstmt.setString(5, phoneNumber);
+        pstmt.setString(6, bookingDate);
+        pstmt.setString(7, bookingType);
+        pstmt.setInt(8, bookingCost);
+        pstmt.setInt(9, id);
+
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+    }
+
+    // ارجاع كل الحجوزات
     public static ResultSet getReservationInfo() throws SQLException, ClassNotFoundException {
 
         Statement statement = getConnection().createStatement();
         return statement.executeQuery("SELECT * FROM booking;");
-
     }
 
+    // البحث عن حجز معين
     public static ResultSet searchReservationInfo(String patientName) throws ClassNotFoundException, SQLException {
 
         String query = "SELECT * FROM booking WHERE p_name = ?";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, patientName);
-        ResultSet resultSet = pstmt.executeQuery();
-        return resultSet;
+        return pstmt.executeQuery();
     }
 
 }
