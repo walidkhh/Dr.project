@@ -11,7 +11,7 @@ public class Database {
 
     private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
     private static final String USER = "root";
-    private static final String PASSWORD = "1+2*$#"; //1234   حدد كلمة المرور حسب الموجودة عندك  
+    private static final String PASSWORD = ""; //1234   حدد كلمة المرور حسب الموجودة عندك  
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
@@ -112,8 +112,8 @@ public class Database {
         return pstmt.executeUpdate();
     }
 
-    public static int addReservation(String bookingNumber, String pName,String pAge,String pGender,
-            String phoneNumber, String bookingDate, String bookingType) throws ClassNotFoundException, SQLException {
+    public static int addReservation(String bookingNumber, String pName, String pAge, String pGender,
+            String phoneNumber, String bookingDate, String bookingType, int bookingCost) throws ClassNotFoundException, SQLException {
 
         String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type) "
                 + "VALUES(?,?,?,?,?,?,?)";
@@ -126,6 +126,7 @@ public class Database {
         pstmt.setString(5, phoneNumber);
         pstmt.setString(6, bookingDate);
         pstmt.setString(7, bookingType);
+        pstmt.setInt(8, bookingCost);
 
         return pstmt.executeUpdate();
     }

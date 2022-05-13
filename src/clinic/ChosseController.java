@@ -25,16 +25,10 @@ public class ChosseController implements Initializable {
         btnVisible.setVisible(visible); // اظهار او اخفاء زر معلومات المستخدمين
     }
 
-    // فتح واجهة اضافة المريض
-    @FXML
-    void addPatients(ActionEvent event) throws IOException {
-        MainView.setRoot("addPatient", 950, 760);
-    }
-
-    // فتح واجهة كل المرضى
+    // فتح واجهة  المرضى
     @FXML
     void allPatients(ActionEvent event) throws IOException {
-        MainView.setRoot("allPatients", 1100, 760);
+        MainView.setRoot("patientsInfo", 1100, 760);
     }
 
     // فتح واجهة الحجز

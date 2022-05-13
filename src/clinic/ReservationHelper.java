@@ -1,9 +1,7 @@
-
 package clinic;
 
-
 public class ReservationHelper {
-    
+
     String reservationNumber;
     String name;
     String gender;
@@ -11,12 +9,14 @@ public class ReservationHelper {
     String phoneNumber;
     String reservationDate;
     String reservationType;
+    int cost;
+    int id;
 
     public ReservationHelper() {
     }
 
-    public ReservationHelper(String reservationNumber, String pName, String gender, 
-            String age, String phoneNumber, String reservationDate, String reservationType) {
+    public ReservationHelper(String reservationNumber, String pName, String gender,
+            String age, String phoneNumber, String reservationDate, String reservationType, int cost) {
         this.reservationNumber = reservationNumber;
         this.name = pName;
         this.gender = gender;
@@ -24,6 +24,19 @@ public class ReservationHelper {
         this.phoneNumber = phoneNumber;
         this.reservationDate = reservationDate;
         this.reservationType = reservationType;
+        this.cost = cost;
+    }
+
+    public ReservationHelper(String reservationNumber, String name, String gender, String age, String phoneNumber, String reservationDate, String reservationType, int cost, int id) {
+        this.reservationNumber = reservationNumber;
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.reservationDate = reservationDate;
+        this.reservationType = reservationType;
+        this.cost = cost;
+        this.id = id;
     }
 
     public String getReservationNumber() {
@@ -81,7 +94,21 @@ public class ReservationHelper {
     public void setReservationType(String reservationType) {
         this.reservationType = reservationType;
     }
-    
-    
-    
+
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

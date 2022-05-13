@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1611.0" styleClass="class_reservation" stylesheets="@reservations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.AllReservationsController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <ImageView fitHeight="31.0" fitWidth="34.0" onMouseClicked="#backTo" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="50.0" right="350.0" top="7.0" />
+                     </HBox.margin>
+                     <image>
+                        <Image url="@images/backarrow.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="idtext" prefHeight="31.0" prefWidth="83.0" visible="false" />
+                  <TextField fx:id="searchName" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="300.0" promptText="أسم المريض" />
+                  <Button mnemonicParsing="false" onAction="#btnSearch" prefHeight="42.0" prefWidth="102.0" styleClass="btn_login" stylesheets="@login.css" text="بحث">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="1709.0">
+               <children>
+                  <AnchorPane prefHeight="604.0" prefWidth="1554.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="reservationTable" layoutX="59.0" layoutY="16.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="588.0" prefWidth="1109.0">
+                           <columns>
+                              <TableColumn fx:id="reservationNumber" editable="false" prefWidth="92.0" text="رقم الحجز" />
+                              <TableColumn fx:id="pName" editable="false" prefWidth="165.0" text="اسم المريض" />
+                              <TableColumn fx:id="gender" editable="false" prefWidth="110.0" text="الجنس" />
+                              <TableColumn fx:id="age" editable="false" prefWidth="90.0" text="العمر" />
+                              <TableColumn fx:id="phoneNumber" editable="false" prefWidth="167.0" text="رقم الهاتف" />
+                              <TableColumn fx:id="reservationType" editable="false" prefWidth="126.0" text="نوع الحجز" />
+                              <TableColumn fx:id="reservationDate" editable="false" prefWidth="169.0" text="تاريخ الحجز" />
+                              <TableColumn fx:id="reservationCost" editable="false" prefWidth="169.0" text="كلفة الحجز" />
+                              <TableColumn fx:id="idColumn" editable="false" maxWidth="200.0" prefWidth="10.0" text="id" visible="false" />
+                           </columns>
+                        </TableView>
+                        <Button layoutX="1177.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="90.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
+                        <Button layoutX="1386.0" layoutY="560.0" mnemonicParsing="false" onAction="#addBtn" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
+                        <Button layoutX="1284.0" layoutY="560.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
+                        <Text layoutX="1444.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الحجز ">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField id="number" fx:id="tfReservationNumber" layoutX="1183.0" layoutY="17.0" prefHeight="40.0" prefWidth="220.0" />
+                        <Text layoutX="1447.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="اسم المريض">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField id="name" fx:id="tfPName" layoutX="1183.0" layoutY="82.0" prefHeight="40.0" prefWidth="220.0" />
+                        <Text layoutX="1466.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="الجنس">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField id="ginder" fx:id="tfAge" layoutX="1183.0" layoutY="228.0" prefHeight="40.0" prefWidth="220.0" />
+                        <Text layoutX="1470.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="العمر">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="1447.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الهاتف">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField id="numphpon" fx:id="tfPhoneNumber" layoutX="1183.0" layoutY="286.0" prefHeight="40.0" prefWidth="220.0" />
+                        <Text layoutX="1450.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="نوع الحجز">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="1453.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="تاريخ الحجز">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="1447.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="كلفة الحجز">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Text>
+                        <TextField id="price" fx:id="tfReservationCost" layoutX="1183.0" layoutY="477.0" prefHeight="40.0" prefWidth="220.0" />
+                        <ComboBox fx:id="reservationTypeList" layoutX="1183.0" layoutY="355.0" prefHeight="40.0" prefWidth="220.0" />
+                        <ComboBox fx:id="genderList" layoutX="1183.0" layoutY="158.0" prefHeight="40.0" prefWidth="220.0" />
+                        <DatePicker fx:id="reservationDatePicker" editable="false" layoutX="1183.0" layoutY="420.0" prefHeight="40.0" prefWidth="220.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>

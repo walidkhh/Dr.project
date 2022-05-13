@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,9 +23,39 @@ import javafx.scene.input.MouseEvent;
 public class AllReservationsController implements Initializable {
 
     Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
+    Alert fillText = new Alert(Alert.AlertType.WARNING);
+    Alert reservation = new Alert(Alert.AlertType.INFORMATION);
+    static LocalDate pReservationDate;
 
     @FXML
     private TextField searchFiled;
+
+    @FXML
+    private TextField idtext;
+
+    @FXML
+    private TextField tfReservationNumber;
+
+    @FXML
+    private TextField tfPName;
+
+    @FXML
+    private TextField tfAge;
+
+    @FXML
+    private TextField tfPhoneNumber;
+
+    @FXML
+    private TextField tfReservationCost;
+
+    @FXML
+    private ComboBox<String> reservationTypeList;
+
+    @FXML
+    private ComboBox<String> genderList;
+
+    @FXML
+    private DatePicker reservationDatePicker;
 
     @FXML
     private TableView<ReservationHelper> reservationTable;
@@ -47,7 +79,13 @@ public class AllReservationsController implements Initializable {
     private TableColumn<ReservationHelper, String> reservationType;
 
     @FXML
+    private TableColumn<ReservationHelper, Integer> reservationCost;
+
+    @FXML
     private TableColumn<ReservationHelper, LocalDate> reservationDate;
+
+    @FXML
+    private TableColumn<ReservationHelper, Integer> idColumn;
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
 
@@ -69,13 +107,18 @@ public class AllReservationsController implements Initializable {
                     resultSet.getString("p_gender"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
-                    resultSet.getString("booking_type")
+                    resultSet.getString("booking_type"),
+                    resultSet.getInt("booking_cost"),
+                    resultSet.getInt("id")
             ));
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        reservationTypeList.getItems().addAll("عبر الهاتف", "حضور");
+        genderList.getItems().addAll("ذكر", "أنثى");
 
         reservationNumber.setCellValueFactory(new PropertyValueFactory<>("reservationNumber"));
         pName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -84,19 +127,67 @@ public class AllReservationsController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
+        reservationCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
     }
 
     @FXML
-    void backTo(MouseEvent event) throws IOException {
-        MainView.setRoot("reservation", 960, 770);
+    void addBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
+
+        if (reservationNumber.getText().isEmpty() || pName.getText().isEmpty()
+                || gender.getText().isEmpty() || age.getText().isEmpty()
+                || phoneNumber.getText().isEmpty()) {
+
+            fillText.setTitle("تنبيه");
+            fillText.setHeaderText("");
+            fillText.setContentText("رجاء قم بملئ حقول الادخال");
+            fillText.showAndWait();
+        } else {
+            reservation.setTitle("تاكيد");
+            reservation.setHeaderText("");
+            reservation.setContentText("تم الحجز بنجاح");
+            reservation.showAndWait();
+            AllReservationsController.getReservationInfo(
+                    tfReservationNumber.getText(),
+                    tfPName.getText(),
+                    genderList.getValue(),
+                    tfAge.getText(),
+                    tfPhoneNumber.getText(),
+                    reservationDatePicker.getValue().toString(),
+                    reservationTypeList.getValue(),
+                    Integer.parseInt(tfReservationCost.getText()));
+
+            Database.addReservation(
+                    tfReservationNumber.getText(),
+                    tfPName.getText(),
+                    genderList.getValue(),
+                    tfAge.getText(),
+                    tfPhoneNumber.getText(),
+                    reservationDatePicker.getValue().toString(),
+                    reservationTypeList.getValue(),
+                    Integer.parseInt(tfReservationCost.getText()));
+
+            // مسح محتويات حقول الادخال
+            clearTextField();
+        }
+
+    }
+
+    @FXML
+    void deleteBtn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editBtn(ActionEvent event) {
 
     }
 
     public static void getReservationInfo(String pReservatioNumber, String name, String pGender,
-            String pAge, String pPhoneNumber, String pReservationDate, String pReservationType) {
+            String pAge, String pPhoneNumber, String pReservationDate, String pReservationType, int pReservationCost) {
 
         data.add(new ReservationHelper(
                 pReservatioNumber,
@@ -105,7 +196,8 @@ public class AllReservationsController implements Initializable {
                 pAge,
                 pPhoneNumber,
                 pReservationDate,
-                pReservationType
+                pReservationType,
+                pReservationCost
         ));
     }
 
@@ -130,7 +222,9 @@ public class AllReservationsController implements Initializable {
                     resultSet.getString("p_gender"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
-                    resultSet.getString("booking_type")));
+                    resultSet.getString("booking_type"),
+                    resultSet.getInt("booking_cost")
+            ));
 
             while (resultSet.next()) {
                 data.add(new ReservationHelper(
@@ -140,7 +234,8 @@ public class AllReservationsController implements Initializable {
                         resultSet.getString("p_gender"),
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("booking_date"),
-                        resultSet.getString("booking_type")
+                        resultSet.getString("booking_type"),
+                        resultSet.getInt("booking_cost")
                 ));
             }
 
@@ -160,6 +255,7 @@ public class AllReservationsController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
+        reservationCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
@@ -170,34 +266,19 @@ public class AllReservationsController implements Initializable {
         }
     }
 
-    /*
-    
-     // 1. Wrap the ObservableList in a FilteredList (initially display all data)
-        FilteredList<ReservationHelper> filteredData = new FilteredList<>(masterData, p -> true);
-        // 2. Set the filter Predicate whenever the filter changes.
-        searchFiled.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(reservation -> {
-                // If filter text is empty, display all persons.
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
+    private void clearTextField() {
 
-                // Compare first name and last name of every reservation with filter text.
-                String lowerCaseFilter = newValue.toLowerCase();
+        tfReservationNumber.clear();
+        tfPName.clear();
+        tfAge.clear();
+        tfPhoneNumber.clear();
+        tfReservationCost.clear();
 
-                if (reservation.getName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true; // Filter matches first name.
-                }
-                return false; // Does not match.
-            });
-        });
+    }
 
-        // 3. Wrap the FilteredList in a SortedList. 
-        SortedList<ReservationHelper> sortedData = new SortedList<>(filteredData);
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        sortedData.comparatorProperty().bind(reservationTable.comparatorProperty());
-        // 5. Add sorted (and filtered) data to the table.
-        reservationTable.setItems(sortedData);
-    
-     */
+    @FXML
+    void backTo(MouseEvent event) throws IOException {
+        MainView.setRoot("reservation", 960, 770);
+
+    }
 }

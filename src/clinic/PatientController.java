@@ -15,17 +15,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 
-public class AllPatientsController implements Initializable {
+public class PatientController implements Initializable {
 
-    Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
+    private static final Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
 
-    Alert deletePatient = new Alert(Alert.AlertType.INFORMATION);
-    Alert msgDeletePatient = new Alert(Alert.AlertType.ERROR);
+    private static final Alert deletePatient = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert msgDeletePatient = new Alert(Alert.AlertType.ERROR);
+
+    private static final Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert error = new Alert(Alert.AlertType.ERROR);
+    private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
 
     @FXML
     private TextField idtext;
@@ -53,6 +58,21 @@ public class AllPatientsController implements Initializable {
 
     @FXML
     private TableColumn<AllPatientsHelper, String> idcolumn;
+
+    @FXML
+    private TextField txtName;
+
+    @FXML
+    private TextField txtPhoneNumber;
+
+    @FXML
+    private TextField txtAddress;
+
+    @FXML
+    private TextArea txtSickCondition;
+
+    @FXML
+    private TextArea txtNotes;
 
     ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
 
@@ -87,20 +107,14 @@ public class AllPatientsController implements Initializable {
         try {
             patientsInfo();
         } catch (SQLException ex) {
-            Logger.getLogger(AllPatientsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AllPatientsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
         patientName.setCellValueFactory(new PropertyValueFactory<>("name"));
         patientName.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        patientName.setOnEditCommit((TableColumn.CellEditEvent<AllPatientsHelper, String> t) -> t.getTableView()
-                .getItems()
-                .get(t.getTablePosition().getRow())
-                .setName(t.getNewValue()));
-
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
@@ -109,6 +123,75 @@ public class AllPatientsController implements Initializable {
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
+    }
+
+    @FXML
+    void addBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
+
+        // التاكد بان حقول الادخال غير فارغة
+        if (txtName.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()
+                || txtAddress.getText().isEmpty() || txtSickCondition.getText().isEmpty()
+                || txtNotes.getText().isEmpty()) {
+
+            // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
+            fillText.setTitle("تنبيه");
+            fillText.setHeaderText("");
+            fillText.setContentText("رجاء قم بملئ حقول الادخال");
+            fillText.showAndWait();
+
+        } else {
+
+            // ارسال المدخلات الى قاعدة البيانات وارجاع النتيجة الى المتغير
+            int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
+                    txtSickCondition.getText(), txtNotes.getText());
+
+            // التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
+            if (res != 0) {
+
+                // اظهار رسالة تاكد اضافة البيانات بنجاح
+                confirmation.setTitle("تاكيد");
+                confirmation.setHeaderText("");
+                confirmation.setContentText("تم اضافة البيانات بنجاح");
+                confirmation.showAndWait();
+
+                // استدعاء الدالة لمسح محتوى حقول الادخال
+                clearTextField();
+            } else {
+
+                // اظهار رسالة خطا في حال لم يتم الاضافة بشكل صحيح
+                error.setTitle("خطا");
+                error.setHeaderText("");
+                error.setContentText("لم يتم اضافة البيانات بنجاح");
+                error.showAndWait();
+                // استدعاء الدالة لمسح محتوى حقول الادخال
+                clearTextField();
+            }
+        }
+    }
+
+    @FXML
+    void deleteBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
+        int isDeleted = Database.deletePatient(Integer.parseInt(idtext.getText()));
+
+        if (isDeleted != 0) {
+            deletePatient.setTitle("تاكيد");
+            deletePatient.setHeaderText("");
+            deletePatient.setContentText("تم الحذف بنجاح");
+            deletePatient.showAndWait();
+            patientsInfo.getItems().removeAll(patientsInfo.getSelectionModel().getSelectedItems());
+            idtext.clear();
+
+        } else {
+            msgDeletePatient.setTitle("خطا");
+            msgDeletePatient.setHeaderText("");
+            msgDeletePatient.setContentText("لم يتم الحذف بنجاح");
+            msgDeletePatient.showAndWait();
+        }
+    }
+
+    @FXML
+    void editBtn(ActionEvent event) {
+
     }
 
     @FXML
@@ -125,7 +208,7 @@ public class AllPatientsController implements Initializable {
         boolean isFound = resultSet.next();
         // التاكد بان الاسم موجود في القاعدة
         if (isFound) {
-            
+
             data.add(new AllPatientsHelper(
                     resultSet.getString("p_name"),
                     resultSet.getString("p_phone_number"),
@@ -143,7 +226,7 @@ public class AllPatientsController implements Initializable {
                 ));
             }
 
-        // عرض رسالة خطا في حال اسم المريض غير موجود 
+            // عرض رسالة خطا في حال اسم المريض غير موجود 
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
             isPatientFound.setHeaderText("");
@@ -173,25 +256,12 @@ public class AllPatientsController implements Initializable {
         idtext.setText(patientsInfo.getSelectionModel().getSelectedItem().getId());
     }
 
-    // حذف المريض المحدد
-    @FXML
-    void deleteSelectedPatient(MouseEvent event) throws ClassNotFoundException, SQLException {
-
-        int isDeleted = Database.deletePatient(Integer.parseInt(idtext.getText()));
-
-        if (isDeleted != 0) {
-            deletePatient.setTitle("تاكيد");
-            deletePatient.setHeaderText("");
-            deletePatient.setContentText("تم الحذف بنجاح");
-            deletePatient.showAndWait();
-            patientsInfo.getItems().removeAll(patientsInfo.getSelectionModel().getSelectedItems());
-            idtext.clear();
-
-        } else {
-            msgDeletePatient.setTitle("خطا");
-            msgDeletePatient.setHeaderText("");
-            msgDeletePatient.setContentText("لم يتم الحذف بنجاح");
-            msgDeletePatient.showAndWait();
-        }
+    // دالة مسح محتوى حقول الادخال
+    private void clearTextField() {
+        txtName.clear();
+        txtPhoneNumber.clear();
+        txtAddress.clear();
+        txtSickCondition.clear();
+        txtNotes.clear();
     }
 }
