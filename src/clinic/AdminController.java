@@ -197,6 +197,7 @@ public class AdminController implements Initializable {
         }
 
         resultSet.close();
+        Database.closeConnection();
     }
 
     // مسح محتويات حقول الادخال

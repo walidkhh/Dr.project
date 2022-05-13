@@ -9,16 +9,10 @@ import java.sql.Statement;
 
 public class Database {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
-    private static final String USER = "root";
-    private static final String PASSWORD = ""; //1234   حدد كلمة المرور حسب الموجودة عندك  
-    private static Connection connection = null;
-
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
-
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        connection =  DriverManager.getConnection(URL, USER, PASSWORD);
-        return connection ;
+   
+        Class.forName("org.sqlite.JDBC");
+        return DriverManager.getConnection("jdbc:sqlite:my_clinic.db");
     }
 
     // دالة ارجاع معلومات المستخدم
@@ -49,9 +43,7 @@ public class Database {
         pstmt.setString(4, pStatus);
         pstmt.setString(5, notes);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
     }
 
     // التعديل على بيانات المريض 
@@ -69,9 +61,7 @@ public class Database {
         pstmt.setString(5, notes);
         pstmt.setInt(6, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
     }
 
     // حذف مريض ما 
@@ -82,9 +72,7 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
     }
 
     // دالة البحث عن مريض معين حسب الاسم
@@ -103,22 +91,19 @@ public class Database {
 
         String query = "INSERT INTO login(user_name , pass_word, user_type) "
                 + "VALUES(?,?,?)";
-        
+
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, username);
         pstmt.setString(2, password);
         pstmt.setString(3, privilegeType);
 
-         int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
-        
+        return pstmt.executeUpdate();
+
     }
 
     // التعديل على بيانات المستخدم 
     public static int updateUser(String username, String password, String privilegeType, int id) throws ClassNotFoundException, SQLException {
 
-        
         String query = "UPDATE login SET  user_name = ? , pass_word = ? , user_type = ? WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
@@ -127,13 +112,11 @@ public class Database {
         pstmt.setString(3, privilegeType);
         pstmt.setInt(4, id);
 
-         int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
 
     }
-    
-     // حذف مستخدم 
+
+    // حذف مستخدم 
     public static int deleteUser(int id) throws ClassNotFoundException, SQLException {
 
         String query = "DELETE FROM login  WHERE id = ? ";
@@ -141,17 +124,15 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, id);
 
-       int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
-   
+        return pstmt.executeUpdate();
+
     }
 
     // اضافة حجز
     public static int addReservation(String bookingNumber, String pName, String pAge, String pGender,
             String phoneNumber, String bookingDate, String bookingType, int bookingCost) throws ClassNotFoundException, SQLException {
 
-        String query = "INSERT INTO booking(book_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type, booking_cost) "
+        String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type, booking_cost) "
                 + "VALUES(?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
@@ -164,9 +145,8 @@ public class Database {
         pstmt.setString(7, bookingType);
         pstmt.setInt(8, bookingCost);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
+
     }
 
     // التعديل على بيانات الحجز 
@@ -174,7 +154,7 @@ public class Database {
             String phoneNumber, String bookingDate, String bookingType, int bookingCost,
             int id) throws ClassNotFoundException, SQLException {
 
-        String query = "UPDATE booking SET  book_number = ? , p_name = ? , p_age = ?"
+        String query = "UPDATE booking SET  booking_number = ? , p_name = ? , p_age = ?"
                 + ", p_gender = ? , p_phone_number = ? , booking_date = ?, booking_type = ? , booking_cost = ?"
                 + " WHERE id = ? ";
 
@@ -189,9 +169,7 @@ public class Database {
         pstmt.setInt(8, bookingCost);
         pstmt.setInt(9, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
     }
 
     // حذف حجز محدد
@@ -202,9 +180,7 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
 
     }
 
@@ -223,6 +199,10 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, patientName);
         return pstmt.executeQuery();
+    }
+
+    public static void closeConnection() throws ClassNotFoundException, SQLException {
+        getConnection().close();
     }
 
 }

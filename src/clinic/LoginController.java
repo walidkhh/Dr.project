@@ -100,6 +100,7 @@ public class LoginController {
             error.showAndWait(); // اظهار رسالة الخطا
         }
 
+        resultSet.close();
     }
 
     @FXML

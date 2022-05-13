@@ -105,6 +105,7 @@ public class PatientController implements Initializable {
 
         }
         resultSet.close();
+        Database.closeConnection();
     }
 
     @Override

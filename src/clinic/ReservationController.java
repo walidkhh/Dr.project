@@ -110,7 +110,7 @@ public class ReservationController implements Initializable {
 
             // اضافة البيانات لعرضها لاحقا في الجدول
             data.add(new ReservationHelper(
-                    resultSet.getString("book_number"),
+                    resultSet.getString("booking_number"),
                     resultSet.getString("p_name"),
                     resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
@@ -121,6 +121,8 @@ public class ReservationController implements Initializable {
                     resultSet.getInt("id")
             ));
         }
+         resultSet.close();
+         Database.closeConnection();
     }
 
     @Override
@@ -255,7 +257,7 @@ public class ReservationController implements Initializable {
         if (isFound) {
 
             data.add(new ReservationHelper(
-                    resultSet.getString("book_number"),
+                    resultSet.getString("booking_number"),
                     resultSet.getString("p_name"),
                     resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
@@ -267,7 +269,7 @@ public class ReservationController implements Initializable {
 
             while (resultSet.next()) {
                 data.add(new ReservationHelper(
-                        resultSet.getString("book_number"),
+                        resultSet.getString("booking_number"),
                         resultSet.getString("p_name"),
                         resultSet.getString("p_age"),
                         resultSet.getString("p_gender"),
@@ -278,6 +280,7 @@ public class ReservationController implements Initializable {
                 ));
             }
 
+            resultSet.close();
             // عرض رسالة خطا في حال اسم المريض غير موجود 
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");

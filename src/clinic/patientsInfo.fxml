@@ -16,7 +16,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1699.0" styleClass="reservations.css" stylesheets="@reservations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.PatientController">
    <children>
-      <VBox prefHeight="507.0" prefWidth="1274.0" styleClass="class_patients" stylesheets="@editpatients.css" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="507.0" prefWidth="1274.0" styleClass="class_reservation" stylesheets="@reservations.css" HBox.hgrow="ALWAYS">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
@@ -40,7 +40,7 @@
                   <Insets top="20.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="1709.0" styleClass="class_reservation" stylesheets="@reservations.css">
+            <HBox alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="1709.0">
                <children>
                   <AnchorPane prefHeight="660.0" prefWidth="1213.0" HBox.hgrow="ALWAYS">
                      <children>
