@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,15 +22,16 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-public class AllReservationsController implements Initializable {
+public class ReservationController implements Initializable {
 
-    Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
-    Alert fillText = new Alert(Alert.AlertType.WARNING);
-    Alert reservation = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert isPatientFound = new Alert(Alert.AlertType.ERROR);
+    private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
+    private static final Alert addMsg = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert dontAddMsg = new Alert(Alert.AlertType.ERROR);
     static LocalDate pReservationDate;
 
     @FXML
-    private TextField searchFiled;
+    private TextField searchName;
 
     @FXML
     private TextField idtext;
@@ -101,7 +104,7 @@ public class AllReservationsController implements Initializable {
 
             // اضافة البيانات لعرضها لاحقا في الجدول
             data.add(new ReservationHelper(
-                    resultSet.getString("booking_number"),
+                    resultSet.getString("book_number"),
                     resultSet.getString("p_name"),
                     resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
@@ -117,6 +120,13 @@ public class AllReservationsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        try {
+            reservationInfo();
+        } catch (SQLException ex) {
+            Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         reservationTypeList.getItems().addAll("عبر الهاتف", "حضور");
         genderList.getItems().addAll("ذكر", "أنثى");
 
@@ -146,11 +156,8 @@ public class AllReservationsController implements Initializable {
             fillText.setContentText("رجاء قم بملئ حقول الادخال");
             fillText.showAndWait();
         } else {
-            reservation.setTitle("تاكيد");
-            reservation.setHeaderText("");
-            reservation.setContentText("تم الحجز بنجاح");
-            reservation.showAndWait();
-            AllReservationsController.getReservationInfo(
+
+            int res = Database.addReservation(
                     tfReservationNumber.getText(),
                     tfPName.getText(),
                     genderList.getValue(),
@@ -160,18 +167,21 @@ public class AllReservationsController implements Initializable {
                     reservationTypeList.getValue(),
                     Integer.parseInt(tfReservationCost.getText()));
 
-            Database.addReservation(
-                    tfReservationNumber.getText(),
-                    tfPName.getText(),
-                    genderList.getValue(),
-                    tfAge.getText(),
-                    tfPhoneNumber.getText(),
-                    reservationDatePicker.getValue().toString(),
-                    reservationTypeList.getValue(),
-                    Integer.parseInt(tfReservationCost.getText()));
-
-            // مسح محتويات حقول الادخال
-            clearTextField();
+            if (res != 0) {
+                addMsg.setTitle("تاكيد");
+                addMsg.setHeaderText("");
+                addMsg.setContentText("تم الحجز بنجاح");
+                addMsg.showAndWait();
+                data.clear();
+                reservationInfo();
+                // مسح محتويات حقول الادخال
+                clearTextField();
+            } else {
+                dontAddMsg.setTitle("خطا");
+                dontAddMsg.setHeaderText("");
+                dontAddMsg.setContentText("لم يتم الحجز بنجاح");
+                dontAddMsg.showAndWait();
+            }
         }
 
     }
@@ -186,23 +196,8 @@ public class AllReservationsController implements Initializable {
 
     }
 
-    public static void getReservationInfo(String pReservatioNumber, String name, String pGender,
-            String pAge, String pPhoneNumber, String pReservationDate, String pReservationType, int pReservationCost) {
-
-        data.add(new ReservationHelper(
-                pReservatioNumber,
-                name,
-                pGender,
-                pAge,
-                pPhoneNumber,
-                pReservationDate,
-                pReservationType,
-                pReservationCost
-        ));
-    }
-
     @FXML
-    void searchBtn(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void btnSearch(ActionEvent event) throws SQLException, ClassNotFoundException {
 // حذف البيانات السابقة بعد الضغط على زر البحث
         data.clear();
         reservationTable.setItems(data);
@@ -210,13 +205,13 @@ public class AllReservationsController implements Initializable {
         ResultSet resultSet;
 
         // ارجاع اسم المريض من القاعدة
-        resultSet = Database.searchReservationInfo(searchFiled.getText());
+        resultSet = Database.searchReservationInfo(searchName.getText());
         boolean isFound = resultSet.next();
         // التاكد بان الاسم موجود في القاعدة
         if (isFound) {
 
             data.add(new ReservationHelper(
-                    resultSet.getString("booking_number"),
+                    resultSet.getString("book_number"),
                     resultSet.getString("p_name"),
                     resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
@@ -228,7 +223,7 @@ public class AllReservationsController implements Initializable {
 
             while (resultSet.next()) {
                 data.add(new ReservationHelper(
-                        resultSet.getString("booking_number"),
+                        resultSet.getString("book_number"),
                         resultSet.getString("p_name"),
                         resultSet.getString("p_age"),
                         resultSet.getString("p_gender"),
@@ -240,7 +235,7 @@ public class AllReservationsController implements Initializable {
             }
 
             // عرض رسالة خطا في حال اسم المريض غير موجود 
-        } else if (isFound == false && !searchFiled.getText().isEmpty()) {
+        } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
             isPatientFound.setHeaderText("");
             isPatientFound.setContentText("اسم المريض غير موجود");
@@ -261,11 +256,17 @@ public class AllReservationsController implements Initializable {
         reservationTable.setItems(data);
 
         // التاكد من قيمة الحقل فارغة لارجاع البيانات السابقة
-        if (searchFiled.getText().isEmpty()) {
+        if (searchName.getText().isEmpty()) {
             reservationInfo();
         }
     }
 
+     @FXML
+    void getSelectedItem(MouseEvent event) {
+        
+        idtext.setText(String.valueOf(reservationTable.getSelectionModel().getSelectedItem().getId()));
+    }
+    
     private void clearTextField() {
 
         tfReservationNumber.clear();
@@ -278,7 +279,8 @@ public class AllReservationsController implements Initializable {
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
-        MainView.setRoot("reservation", 960, 770);
+        data.clear();
+        MainView.setRoot("chosse", 960, 770);
 
     }
 }

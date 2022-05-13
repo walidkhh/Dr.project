@@ -34,7 +34,7 @@ public class ChosseController implements Initializable {
     // فتح واجهة الحجز
     @FXML
     void reservation(ActionEvent event) throws IOException {
-        MainView.setRoot("reservation", 950, 760);
+        MainView.setRoot("reservations", 950, 760);
     }
 
     //العودة الى الواجهة السابقة

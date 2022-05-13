@@ -115,8 +115,8 @@ public class Database {
     public static int addReservation(String bookingNumber, String pName, String pAge, String pGender,
             String phoneNumber, String bookingDate, String bookingType, int bookingCost) throws ClassNotFoundException, SQLException {
 
-        String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type) "
-                + "VALUES(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO booking(book_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type, booking_cost) "
+                + "VALUES(?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, Integer.parseInt(bookingNumber));

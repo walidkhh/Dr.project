@@ -78,6 +78,7 @@ public class PatientController implements Initializable {
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
+    
         MainView.setRoot("chosse", 950, 760);
     }
 
@@ -98,12 +99,13 @@ public class PatientController implements Initializable {
                     resultSet.getString("notes"),
                     resultSet.getString("id")
             ));
+           
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+ 
         try {
             patientsInfo();
         } catch (SQLException ex) {
@@ -123,6 +125,7 @@ public class PatientController implements Initializable {
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
+           
     }
 
     @FXML
@@ -154,6 +157,8 @@ public class PatientController implements Initializable {
                 confirmation.setContentText("تم اضافة البيانات بنجاح");
                 confirmation.showAndWait();
 
+                data.clear();
+                patientsInfo();
                 // استدعاء الدالة لمسح محتوى حقول الادخال
                 clearTextField();
             } else {
