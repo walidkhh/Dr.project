@@ -195,7 +195,7 @@ public class ReservationController implements Initializable {
     @FXML
     void deleteBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
-        int isDeleted = Database.deleteUser(Integer.parseInt(idtext.getText()));
+        int isDeleted = Database.deleteReservation(Integer.parseInt(idtext.getText()));
 
         if (isDeleted != 0) {
             deleteReservation.setTitle("تاكيد");
@@ -213,7 +213,30 @@ public class ReservationController implements Initializable {
     }
 
     @FXML
-    void editBtn(ActionEvent event) {
+    void editBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
+
+        int isUpdated = Database.updateReservation(tfReservationNumber.getText(), tfPName.getText(),
+                genderList.getValue(), tfAge.getText(), tfPhoneNumber.getText(), reservationDatePicker.getValue().toString(),
+                reservationTypeList.getValue(), Integer.parseInt(tfReservationCost.getText()),
+                Integer.parseInt(idtext.getText()));
+
+        if (isUpdated != 0) {
+            editReservation.setTitle("تاكيد");
+            editReservation.setHeaderText("");
+            editReservation.setContentText("تم التعديل بنجاح");
+            editReservation.showAndWait();
+
+            // حذف البيانات الموجودة في الجدول
+            data.clear();
+            // اضافة البيانات الى الجدول بعد التعديل عليها
+            reservationInfo();
+            clearTextField();
+        } else {
+            msgEditError.setTitle("خطا");
+            msgEditError.setHeaderText("");
+            msgEditError.setContentText("لم يتم التعديل على بيانات المستخدم بنجاح");
+            msgEditError.showAndWait();
+        }
 
     }
 
@@ -259,7 +282,7 @@ public class ReservationController implements Initializable {
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
             isPatientFound.setHeaderText("");
-            isPatientFound.setContentText("اسم المريض غير موجود");
+            isPatientFound.setContentText(" الحجز غير موجود");
             isPatientFound.showAndWait();
         }
 
@@ -286,7 +309,7 @@ public class ReservationController implements Initializable {
     void getSelectedItem(MouseEvent event) {
 
         idtext.setText(String.valueOf(reservationTable.getSelectionModel().getSelectedItem().getId()));
-        tfReservationNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getPhoneNumber());
+        tfReservationNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getReservationNumber());
         tfPName.setText(reservationTable.getSelectionModel().getSelectedItem().getName());
         tfAge.setText(reservationTable.getSelectionModel().getSelectedItem().getAge());
         tfPhoneNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getPhoneNumber());

@@ -28,6 +28,9 @@ public class PatientController implements Initializable {
     private static final Alert deletePatient = new Alert(Alert.AlertType.INFORMATION);
     private static final Alert msgDeletePatient = new Alert(Alert.AlertType.ERROR);
 
+    private static final Alert editUser = new Alert(Alert.AlertType.INFORMATION);
+    private static final Alert msgEditError = new Alert(Alert.AlertType.ERROR);
+
     private static final Alert confirmation = new Alert(Alert.AlertType.INFORMATION);
     private static final Alert error = new Alert(Alert.AlertType.ERROR);
     private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
@@ -78,7 +81,7 @@ public class PatientController implements Initializable {
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
-    
+
         MainView.setRoot("chosse", 950, 760);
     }
 
@@ -99,14 +102,14 @@ public class PatientController implements Initializable {
                     resultSet.getString("notes"),
                     resultSet.getString("id")
             ));
-           
+
         }
-         resultSet.close();
+        resultSet.close();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
- 
+
         try {
             patientsInfo();
         } catch (SQLException ex) {
@@ -126,7 +129,7 @@ public class PatientController implements Initializable {
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
-           
+
     }
 
     @FXML
@@ -196,7 +199,28 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void editBtn(ActionEvent event) {
+    void editBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
+
+        int isUpdated = Database.updatePatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
+                txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()));
+
+        if (isUpdated != 0) {
+            editUser.setTitle("تاكيد");
+            editUser.setHeaderText("");
+            editUser.setContentText("تم التعديل بنجاح");
+            editUser.showAndWait();
+
+            // حذف البيانات الموجودة في الجدول
+            data.clear();
+            // اضافة البيانات الى الجدول بعد التعديل عليها
+            patientsInfo();
+            clearTextField();
+        } else {
+            msgEditError.setTitle("خطا");
+            msgEditError.setHeaderText("");
+            msgEditError.setContentText("لم يتم التعديل على البيانات بنجاح");
+            msgEditError.showAndWait();
+        }
 
     }
 
@@ -232,7 +256,7 @@ public class PatientController implements Initializable {
                 ));
             }
 
-             resultSet.close();
+            resultSet.close();
             // عرض رسالة خطا في حال اسم المريض غير موجود 
         } else if (isFound == false && !searchName.getText().isEmpty()) {
             isPatientFound.setTitle("خطا");
@@ -261,6 +285,12 @@ public class PatientController implements Initializable {
     void getSelectedPatient(MouseEvent event) {
 
         idtext.setText(patientsInfo.getSelectionModel().getSelectedItem().getId());
+        txtName.setText(patientsInfo.getSelectionModel().getSelectedItem().getName());
+        txtPhoneNumber.setText(patientsInfo.getSelectionModel().getSelectedItem().getPhoneNumber());
+        txtAddress.setText(patientsInfo.getSelectionModel().getSelectedItem().getAddress());
+        txtSickCondition.setText(patientsInfo.getSelectionModel().getSelectedItem().getSickCondition());
+        txtNotes.setText(patientsInfo.getSelectionModel().getSelectedItem().getNotes());
+
     }
 
     // دالة مسح محتوى حقول الادخال

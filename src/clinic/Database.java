@@ -57,7 +57,7 @@ public class Database {
             String pStatus, String notes, int id) throws ClassNotFoundException, SQLException {
 
         String query = "UPDATE adding_pateints SET  p_name = ? ,p_phone_number = ? ,p_address = ?"
-                + ", p_status = ? , p_status, notes = ?  WHERE id = ? ";
+                + ", p_status = ?, notes = ?  WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);
@@ -107,9 +107,8 @@ public class Database {
         pstmt.setString(2, password);
         pstmt.setString(3, privilegeType);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
+        
     }
 
     // حذف مستخدم 
@@ -120,9 +119,8 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+      return pstmt.executeUpdate();
+   
     }
 
     // التعديل على بيانات المستخدم 
@@ -136,9 +134,9 @@ public class Database {
         pstmt.setString(3, privilegeType);
         pstmt.setInt(4, id);
 
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
+        return pstmt.executeUpdate();
+       
+
     }
 
     // اضافة حجز
@@ -157,19 +155,6 @@ public class Database {
         pstmt.setString(6, bookingDate);
         pstmt.setString(7, bookingType);
         pstmt.setInt(8, bookingCost);
-
-        int res = pstmt.executeUpdate();
-        pstmt.close();
-        return res;
-    }
-
-    // حذف حجز محدد
-    public static int deleteReservation(int id) throws ClassNotFoundException, SQLException {
-
-        String query = "DELETE FROM booking  WHERE id = ? ";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setInt(1, id);
 
         int res = pstmt.executeUpdate();
         pstmt.close();
@@ -199,6 +184,20 @@ public class Database {
         int res = pstmt.executeUpdate();
         pstmt.close();
         return res;
+    }
+
+    // حذف حجز محدد
+    public static int deleteReservation(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM booking  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+
     }
 
     // ارجاع كل الحجوزات
