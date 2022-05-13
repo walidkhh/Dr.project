@@ -70,7 +70,6 @@ public class AdminController implements Initializable {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
         privileges.getItems().addAll("مسؤول", "مستخدم");
         col_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -99,6 +98,10 @@ public class AdminController implements Initializable {
                     privileges.getValue()
             ));
 
+            // حذف البيانات الموجودة في الجدول
+            data.clear();
+            // اضافة البيانات الى الجدول بعد التعديل عليها
+            getInfo();
             clearTextField();
         } else {
 
@@ -121,6 +124,10 @@ public class AdminController implements Initializable {
             deleteUser.setContentText("تم الحذف بنجاح");
             deleteUser.showAndWait();
             adminTable.getItems().removeAll(adminTable.getSelectionModel().getSelectedItems());
+            // حذف البيانات الموجودة في الجدول
+            data.clear();
+            // اضافة البيانات الى الجدول بعد التعديل عليها
+            getInfo();
             clearTextField();
         } else {
             msgDeleteError.setTitle("خطا");
@@ -145,13 +152,13 @@ public class AdminController implements Initializable {
             editUser.setHeaderText("");
             editUser.setContentText("تم التعديل بنجاح");
             editUser.showAndWait();
-            
+
             // حذف البيانات الموجودة في الجدول
-            data.clear(); 
-            
+            data.clear();
             // اضافة البيانات الى الجدول بعد التعديل عليها
             getInfo();
             clearTextField();
+
         } else {
             msgEditError.setTitle("خطا");
             msgEditError.setHeaderText("");
@@ -188,13 +195,15 @@ public class AdminController implements Initializable {
             data.add(new AdminHelper(resultSet.getString("user_name"),
                     resultSet.getString("pass_word"), privilegeType, resultSet.getInt("id")));
         }
-        
+
         resultSet.close();
     }
+
     // مسح محتويات حقول الادخال
     private void clearTextField() {
         userName.clear();
         password.clear();
+        textID.clear();
     }
 
 }

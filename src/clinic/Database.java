@@ -12,11 +12,13 @@ public class Database {
     private static final String URL = "jdbc:mysql://localhost:3306/my_clinic"; // حدد اسم  القاعدة حسب الموجودة عندك
     private static final String USER = "root";
     private static final String PASSWORD = ""; //1234   حدد كلمة المرور حسب الموجودة عندك  
+    private static Connection connection = null;
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        connection =  DriverManager.getConnection(URL, USER, PASSWORD);
+        return connection ;
     }
 
     // دالة ارجاع معلومات المستخدم
@@ -101,31 +103,22 @@ public class Database {
 
         String query = "INSERT INTO login(user_name , pass_word, user_type) "
                 + "VALUES(?,?,?)";
-
+        
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, username);
         pstmt.setString(2, password);
         pstmt.setString(3, privilegeType);
 
-        return pstmt.executeUpdate();
+         int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
         
-    }
-
-    // حذف مستخدم 
-    public static int deleteUser(int id) throws ClassNotFoundException, SQLException {
-
-        String query = "DELETE FROM login  WHERE id = ? ";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setInt(1, id);
-
-      return pstmt.executeUpdate();
-   
     }
 
     // التعديل على بيانات المستخدم 
     public static int updateUser(String username, String password, String privilegeType, int id) throws ClassNotFoundException, SQLException {
 
+        
         String query = "UPDATE login SET  user_name = ? , pass_word = ? , user_type = ? WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
@@ -134,9 +127,24 @@ public class Database {
         pstmt.setString(3, privilegeType);
         pstmt.setInt(4, id);
 
-        return pstmt.executeUpdate();
-       
+         int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
 
+    }
+    
+     // حذف مستخدم 
+    public static int deleteUser(int id) throws ClassNotFoundException, SQLException {
+
+        String query = "DELETE FROM login  WHERE id = ? ";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setInt(1, id);
+
+       int res = pstmt.executeUpdate();
+        pstmt.close();
+        return res;
+   
     }
 
     // اضافة حجز
