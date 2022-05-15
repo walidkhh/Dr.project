@@ -97,9 +97,7 @@ public class ReservationController implements Initializable {
     private TableColumn<ReservationHelper, Integer> idColumn;
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
-
-    private ObservableList<ReservationHelper> masterData = FXCollections.observableArrayList();
-
+    static ObservableList<String> resCost = FXCollections.observableArrayList();
     public void reservationInfo() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet;
@@ -112,8 +110,8 @@ public class ReservationController implements Initializable {
             data.add(new ReservationHelper(
                     resultSet.getString("booking_number"),
                     resultSet.getString("p_name"),
-                    resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
+                    resultSet.getString("p_age"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
                     resultSet.getString("booking_type"),
@@ -121,8 +119,8 @@ public class ReservationController implements Initializable {
                     resultSet.getInt("id")
             ));
         }
-         resultSet.close();
-         Database.closeConnection();
+        resultSet.close();
+        //   Database.closeConnection();
     }
 
     @Override
@@ -130,9 +128,7 @@ public class ReservationController implements Initializable {
 
         try {
             reservationInfo();
-        } catch (SQLException ex) {
-            Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(ReservationController.class.getName()).log(Level.SEVERE, null, ex);
         }
         reservationTypeList.getItems().addAll("عبر الهاتف", "حضور");
@@ -259,8 +255,8 @@ public class ReservationController implements Initializable {
             data.add(new ReservationHelper(
                     resultSet.getString("booking_number"),
                     resultSet.getString("p_name"),
-                    resultSet.getString("p_age"),
                     resultSet.getString("p_gender"),
+                    resultSet.getString("p_age"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
                     resultSet.getString("booking_type"),
@@ -271,8 +267,8 @@ public class ReservationController implements Initializable {
                 data.add(new ReservationHelper(
                         resultSet.getString("booking_number"),
                         resultSet.getString("p_name"),
-                        resultSet.getString("p_age"),
                         resultSet.getString("p_gender"),
+                        resultSet.getString("p_age"),
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("booking_date"),
                         resultSet.getString("booking_type"),
@@ -321,7 +317,6 @@ public class ReservationController implements Initializable {
         reservationTypeList.setValue(reservationTable.getSelectionModel().getSelectedItem().getReservationType());
         genderList.setValue(reservationTable.getSelectionModel().getSelectedItem().getGender());
         reservationDatePicker.setValue(LocalDate.parse(reservationTable.getSelectionModel().getSelectedItem().getReservationDate()));
-
     }
 
     private void clearTextField() {
@@ -339,5 +334,24 @@ public class ReservationController implements Initializable {
         data.clear();
         MainView.setRoot("chosse", 960, 770);
 
+    }
+    
+    public static ObservableList<String> getReservationInfo(){
+        return resCost;
+    }
+    
+     @FXML
+    void printCost(ActionEvent event) throws IOException {
+           resCost.addAll(
+                tfReservationNumber.getText(),
+                tfPName.getText(),
+                genderList.getValue(),
+                tfAge.getText(),
+                tfPhoneNumber.getText(),
+                reservationTypeList.getValue(),
+                reservationDatePicker.getValue().toString(),
+                tfReservationCost.getText()
+        );
+        MainView.setRoot("rachetaReservation", 1000, 760);
     }
 }

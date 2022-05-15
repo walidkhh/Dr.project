@@ -23,13 +23,8 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label id="dr.name" fx:id="drName" text="عبد علي شنانن جابر " textFill="#cc0808">
-                           <font>
-                              <Font name="Arial" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label id="description" fx:id="firstDrInfo" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر   " textFill="#6047dc" VBox.vgrow="ALWAYS" />
-                        <Label id="jurisdiction" fx:id="secondDrInfo" text=" دكتور (بورد) بالطب الباطني زميل المجلس العربي للاختصاصات الطبية " />
+                        <Label fx:id="drName" alignment="CENTER" prefHeight="21.0" prefWidth="264.0" text="Label" textAlignment="CENTER" textFill="#c90f0f" VBox.vgrow="ALWAYS" />
+                        <Label id="description" fx:id="firstDrInfo" alignment="CENTER" contentDisplay="RIGHT" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر " textAlignment="RIGHT" textFill="#6047dc" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="34.0" prefWidth="395.0" style="-fx-background-color: #160563;">
@@ -83,16 +78,21 @@
                      <children>
                         <HBox prefHeight="219.0" prefWidth="395.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label fx:id="infoMidic" alignment="CENTER_RIGHT" prefHeight="291.0" prefWidth="469.0" text="Label" HBox.hgrow="ALWAYS" />
+                              <Label fx:id="infoMidic" alignment="TOP_LEFT" prefHeight="291.0" prefWidth="469.0" text="علاج" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="date" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="194.0" text="التاريخ" textAlignment="JUSTIFY" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
                   <VBox alignment="CENTER" prefHeight="72.0" prefWidth="468.0">
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="395.0">
                            <children>
-                              <Label fx:id="clinicPhone" contentDisplay="CENTER" prefHeight="20.0" prefWidth="90.0" text=" ( )" textFill="#cc0808">
+                              <Label fx:id="clinicPhone" contentDisplay="CENTER" prefHeight="20.0" prefWidth="226.0" text=" ( )" textFill="#cc0808">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

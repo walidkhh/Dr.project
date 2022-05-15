@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1699.0" styleClass="reservations.css" stylesheets="@reservations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.PatientController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1699.0" style="-fx-background-color: #c5c6d0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.PatientController">
    <children>
-      <VBox prefHeight="507.0" prefWidth="1274.0" styleClass="class_reservation" stylesheets="@reservations.css" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="507.0" prefWidth="1274.0" HBox.hgrow="ALWAYS">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
@@ -63,31 +63,31 @@
                         <Button layoutX="1275.0" layoutY="462.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
                         <Text layoutX="1426.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="أسم المريض ">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="name" fx:id="txtName" layoutX="1119.0" layoutY="23.0" prefHeight="35.0" prefWidth="290.0" />
                         <Text layoutX="1430.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الهاتف">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="number" fx:id="txtPhoneNumber" layoutX="1119.0" layoutY="76.0" prefHeight="35.0" prefWidth="290.0" />
                         <Text layoutX="1441.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="العنوان">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="title" fx:id="txtAddress" layoutX="1119.0" layoutY="135.0" prefHeight="35.0" prefWidth="290.0" />
                         <Text layoutX="1440.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="الحالة المرضية">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextArea fx:id="txtSickCondition" layoutX="1119.0" layoutY="201.0" prefHeight="86.0" prefWidth="290.0" />
                         <Text layoutX="1456.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ملاحظات">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextArea fx:id="txtNotes" layoutX="1119.0" layoutY="314.0" prefHeight="93.0" prefWidth="290.0" />

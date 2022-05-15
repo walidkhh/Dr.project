@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1611.0" styleClass="class_reservation" stylesheets="@reservations.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ReservationController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1611.0" style="-fx-background-color: #c5c6d0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ReservationController">
    <children>
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
          <children>
@@ -29,6 +29,7 @@
                         <Image url="@images/backarrow.jpg" />
                      </image>
                   </ImageView>
+                  <Button mnemonicParsing="false" onAction="#printCost" styleClass="btn_login" stylesheets="@login.css" text="طباعة" />
                   <TextField fx:id="idtext" prefHeight="31.0" prefWidth="83.0" visible="false" />
                   <TextField fx:id="searchName" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="300.0" promptText="أسم المريض" />
                   <Button mnemonicParsing="false" onAction="#btnSearch" prefHeight="42.0" prefWidth="102.0" styleClass="btn_login" stylesheets="@login.css" text="بحث">
@@ -67,46 +68,46 @@
                         <Button layoutX="1284.0" layoutY="560.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
                         <Text layoutX="1444.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الحجز ">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="number" fx:id="tfReservationNumber" layoutX="1183.0" layoutY="17.0" prefHeight="40.0" prefWidth="220.0" />
                         <Text layoutX="1447.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="اسم المريض">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="name" fx:id="tfPName" layoutX="1183.0" layoutY="82.0" prefHeight="40.0" prefWidth="220.0" />
                         <Text layoutX="1466.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="الجنس">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="ginder" fx:id="tfAge" layoutX="1183.0" layoutY="228.0" prefHeight="40.0" prefWidth="220.0" />
                         <Text layoutX="1470.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="العمر">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <Text layoutX="1447.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الهاتف">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="numphpon" fx:id="tfPhoneNumber" layoutX="1183.0" layoutY="286.0" prefHeight="40.0" prefWidth="220.0" />
                         <Text layoutX="1450.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="نوع الحجز">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <Text layoutX="1453.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="تاريخ الحجز">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <Text layoutX="1447.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="كلفة الحجز">
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
                         <TextField id="price" fx:id="tfReservationCost" layoutX="1183.0" layoutY="477.0" prefHeight="40.0" prefWidth="220.0" />

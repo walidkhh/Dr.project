@@ -26,9 +26,6 @@ public class RachetaController implements Initializable {
     private Label firstDrInfo;
 
     @FXML
-    private Label secondDrInfo;
-
-    @FXML
     private Label location;
 
     @FXML
@@ -46,9 +43,8 @@ public class RachetaController implements Initializable {
     @FXML
     private Label rigesterNum;
 
-    //@FXML
-   // private Label date;
-
+    @FXML
+     private Label date;
     static ObservableList<String> data = FXCollections.observableArrayList();
 
     @Override
@@ -57,26 +53,30 @@ public class RachetaController implements Initializable {
         data = FormController.getData();
 
         drName.setText(data.get(0));
-        firstDrInfo.setText(data.get(1));
-        secondDrInfo.setText(data.get(2));
-        location.setText(data.get(3));
-        patientName.setText(data.get(4));
-        patientAge.setText(data.get(5));
-        infoMidic.setText(data.get(6));
-        clinicPhone.setText(data.get(7));
-        rigesterNum.setText(data.get(8));
-       // date.setText(data.get(9));
+        firstDrInfo.setText(data.get(1));   
+        location.setText(data.get(2));
+        patientName.setText(data.get(3));
+        patientAge.setText(data.get(4));
+        infoMidic.setText(data.get(5));
+        clinicPhone.setText(data.get(6));
+        rigesterNum.setText(data.get(7));
+         date.setText(data.get(8));
     }
 
     @FXML
     void print(ActionEvent event) throws IOException {
         PrinterJob job = PrinterJob.createPrinterJob();
-        boolean isPrinted = job.printPage(root);
-        if (isPrinted) {
-            job.endJob();
-        }
 
-      //  data.clear(); // مسح كل المحتويات
+        boolean isShowPageSetup = job.showPageSetupDialog(MainView.getPrimaryStage());
+
+        if (isShowPageSetup) {
+            boolean isPrinted = job.printPage(root);
+            if (isPrinted) {
+                job.endJob();
+            }
+
+        }
+          data.clear(); // مسح كل المحتويات
 
         MainView.setRoot("form", 1000, 790); // العودة الى الواجهة السابقة
     }

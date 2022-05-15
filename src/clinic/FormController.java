@@ -43,9 +43,6 @@ public class FormController {
     @FXML
     private TextArea drSpe;
 
-    @FXML
-    private TextArea drCerti;
-
     static ObservableList<String> data = FXCollections.observableArrayList();
 
     @FXML
@@ -65,15 +62,14 @@ public class FormController {
             data.addAll(
                     drName.getText(),
                     drSpe.getText(),
-                    drCerti.getText(),
                     addressid.getText(),
                     paitentNameId.getText(),
                     ageId.getText(),
                     aboudPaitentId.getText(),
                     phoneNumId.getText(),
-                    rigesterId.getText()//,
-                   // dateId.getValue().toString()
-                    );
+                    rigesterId.getText(),
+                    dateId.getValue().toString()
+            );
 
             MainView.setRoot("racheta", 1000, 760);
         }

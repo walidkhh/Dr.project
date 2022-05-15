@@ -10,9 +10,11 @@ import java.sql.Statement;
 public class Database {
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
-   
+
         Class.forName("org.sqlite.JDBC");
-        return DriverManager.getConnection("jdbc:sqlite:my_clinic.db");
+        return DriverManager.getConnection("jdbc:sqlite:my_clinic.sql");
+//        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+//        return DriverManager.getConnection("jdbc:ucanaccess://my_clinic.accdb");
     }
 
     // دالة ارجاع معلومات المستخدم
@@ -138,8 +140,8 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, Integer.parseInt(bookingNumber));
         pstmt.setString(2, pName);
-        pstmt.setString(3, pAge);
-        pstmt.setString(4, pGender);
+        pstmt.setString(3, pGender);
+        pstmt.setString(4, pAge);
         pstmt.setString(5, phoneNumber);
         pstmt.setString(6, bookingDate);
         pstmt.setString(7, bookingType);
@@ -154,8 +156,8 @@ public class Database {
             String phoneNumber, String bookingDate, String bookingType, int bookingCost,
             int id) throws ClassNotFoundException, SQLException {
 
-        String query = "UPDATE booking SET  booking_number = ? , p_name = ? , p_age = ?"
-                + ", p_gender = ? , p_phone_number = ? , booking_date = ?, booking_type = ? , booking_cost = ?"
+        String query = "UPDATE booking SET  booking_number = ? , p_name = ? , p_age = ?,p_gender = ?"
+                + " , p_phone_number = ? , booking_date = ?, booking_type = ? , booking_cost = ?"
                 + " WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);

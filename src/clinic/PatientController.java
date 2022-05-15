@@ -105,7 +105,7 @@ public class PatientController implements Initializable {
 
         }
         resultSet.close();
-        Database.closeConnection();
+        //Database.closeConnection();
     }
 
     @Override
@@ -113,9 +113,7 @@ public class PatientController implements Initializable {
 
         try {
             patientsInfo();
-        } catch (SQLException ex) {
-            Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

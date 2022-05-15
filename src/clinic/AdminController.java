@@ -64,9 +64,7 @@ public class AdminController implements Initializable {
 
         try {
             getInfo();
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
+        } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -197,7 +195,7 @@ public class AdminController implements Initializable {
         }
 
         resultSet.close();
-        Database.closeConnection();
+       // Database.closeConnection();
     }
 
     // مسح محتويات حقول الادخال
