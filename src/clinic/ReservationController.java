@@ -87,8 +87,6 @@ public class ReservationController implements Initializable {
     @FXML
     private TableColumn<ReservationHelper, String> reservationType;
 
-
-
     @FXML
     private TableColumn<ReservationHelper, LocalDate> reservationDate;
 
@@ -97,6 +95,7 @@ public class ReservationController implements Initializable {
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
     static ObservableList<String> resCost = FXCollections.observableArrayList();
+
     public void reservationInfo() throws SQLException, ClassNotFoundException {
 
         ResultSet resultSet;
@@ -267,11 +266,9 @@ public class ReservationController implements Initializable {
                         resultSet.getString("p_age"),
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("booking_date"),
-                        resultSet.getString("booking_type"),
+                        resultSet.getString("booking_type")
                 ));
-                        
-                        
-                    
+
             }
 
             resultSet.close();
@@ -291,7 +288,6 @@ public class ReservationController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
-        
 
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
@@ -331,14 +327,14 @@ public class ReservationController implements Initializable {
         MainView.setRoot("chosse", 960, 770);
 
     }
-    
-    public static ObservableList<String> getReservationInfo(){
+
+    public static ObservableList<String> getReservationInfo() {
         return resCost;
     }
-    
-     @FXML
+
+    @FXML
     void printCost(ActionEvent event) throws IOException {
-           resCost.addAll(
+        resCost.addAll(
                 tfReservationNumber.getText(),
                 tfPName.getText(),
                 genderList.getValue(),
@@ -346,7 +342,6 @@ public class ReservationController implements Initializable {
                 tfPhoneNumber.getText(),
                 reservationTypeList.getValue(),
                 reservationDatePicker.getValue().toString()
-                
         );
         MainView.setRoot("rachetaReservation", 1000, 760);
     }

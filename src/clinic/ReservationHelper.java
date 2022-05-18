@@ -15,7 +15,7 @@ public class ReservationHelper {
     }
 
     public ReservationHelper(String reservationNumber, String pName, String gender,
-            String age, String phoneNumber, String reservationDate, String reservationType, int cost) {
+            String age, String phoneNumber, String reservationDate, String reservationType) {
         this.reservationNumber = reservationNumber;
         this.name = pName;
         this.gender = gender;
@@ -25,7 +25,7 @@ public class ReservationHelper {
         this.reservationType = reservationType;
     }
 
-    public ReservationHelper(String reservationNumber, String name, String gender, String age, String phoneNumber, String reservationDate, String reservationType, int cost, int id) {
+    public ReservationHelper(String reservationNumber, String name, String gender, String age, String phoneNumber, String reservationDate, String reservationType, int id) {
         this.reservationNumber = reservationNumber;
         this.name = name;
         this.gender = gender;
