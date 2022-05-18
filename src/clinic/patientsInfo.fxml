@@ -35,6 +35,7 @@
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#print" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #000; -fx-text-fill: #fff;" styleClass="btn_login" stylesheets="@login.css" text="طباعة" />
                </children>
                <padding>
                   <Insets top="20.0" />

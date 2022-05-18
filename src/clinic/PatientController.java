@@ -135,66 +135,66 @@ public class PatientController implements Initializable {
     void addBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
         // التاكد بان حقول الادخال غير فارغة
-//        if (txtName.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()
-//                || txtAddress.getText().isEmpty() || txtSickCondition.getText().isEmpty()
-//                || txtNotes.getText().isEmpty()) {
-//
-//            // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
-//            fillText.setTitle("تنبيه");
-//            fillText.setHeaderText("");
-//            fillText.setContentText("رجاء قم بملئ حقول الادخال");
-//            fillText.showAndWait();
-//
-//        } else {
+        if (txtName.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()
+                || txtAddress.getText().isEmpty() || txtSickCondition.getText().isEmpty()
+                || txtNotes.getText().isEmpty()) {
+
+            // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
+            fillText.setTitle("تنبيه");
+            fillText.setHeaderText("");
+            fillText.setContentText("رجاء قم بملئ حقول الادخال");
+            fillText.showAndWait();
+
+        } else {
 
             // ارسال المدخلات الى قاعدة البيانات وارجاع النتيجة الى المتغير
             int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
                     txtSickCondition.getText(), txtNotes.getText());
 
-            // التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
-//            if (res != 0) {
-//
-//                // اظهار رسالة تاكد اضافة البيانات بنجاح
-//                confirmation.setTitle("تاكيد");
-//                confirmation.setHeaderText("");
-//                confirmation.setContentText("تم اضافة البيانات بنجاح");
-//                confirmation.showAndWait();
+           //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
+            if (res != 0) {
+
+                // اظهار رسالة تاكد اضافة البيانات بنجاح
+                confirmation.setTitle("تاكيد");
+                confirmation.setHeaderText("");
+                confirmation.setContentText("تم اضافة البيانات بنجاح");
+                confirmation.showAndWait();
 
                 data.clear();
                 patientsInfo();
                 // استدعاء الدالة لمسح محتوى حقول الادخال
                 clearTextField();
-//            } else {
-//
-//                // اظهار رسالة خطا في حال لم يتم الاضافة بشكل صحيح
-//                error.setTitle("خطا");
-//                error.setHeaderText("");
-//                error.setContentText("لم يتم اضافة البيانات بنجاح");
-//                error.showAndWait();
-//                // استدعاء الدالة لمسح محتوى حقول الادخال
-//                clearTextField();
-//            }
-//        }
+            } else {
+
+                // اظهار رسالة خطا في حال لم يتم الاضافة بشكل صحيح
+                error.setTitle("خطا");
+                error.setHeaderText("");
+                error.setContentText("لم يتم اضافة البيانات بنجاح");
+                error.showAndWait();
+                // استدعاء الدالة لمسح محتوى حقول الادخال
+                clearTextField();
+            }
+        }
     }
 
     @FXML
     void deleteBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
         int isDeleted = Database.deletePatient(Integer.parseInt(idtext.getText()));
 
-//        if (isDeleted != 0) {
-//            deletePatient.setTitle("تاكيد");
-//            deletePatient.setHeaderText("");
-//            deletePatient.setContentText("تم الحذف بنجاح");
-//            deletePatient.showAndWait();
+        if (isDeleted != 0) {
+            deletePatient.setTitle("تاكيد");
+            deletePatient.setHeaderText("");
+            deletePatient.setContentText("تم الحذف بنجاح");
+            deletePatient.showAndWait();
             patientsInfo.getItems().removeAll(patientsInfo.getSelectionModel().getSelectedItems());
             idtext.clear();
 
-        /*} else {
+        } else {
             msgDeletePatient.setTitle("خطا");
             msgDeletePatient.setHeaderText("");
             msgDeletePatient.setContentText("لم يتم الحذف بنجاح");
             msgDeletePatient.showAndWait();
-        }*/
+        }
     }
 
     @FXML
@@ -203,23 +203,23 @@ public class PatientController implements Initializable {
         int isUpdated = Database.updatePatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
                 txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()));
 
-//        if (isUpdated != 0) {
-//            editUser.setTitle("تاكيد");
-//            editUser.setHeaderText("");
-//            editUser.setContentText("تم التعديل بنجاح");
-//            editUser.showAndWait();
+        if (isUpdated != 0) {
+            editUser.setTitle("تاكيد");
+            editUser.setHeaderText("");
+            editUser.setContentText("تم التعديل بنجاح");
+            editUser.showAndWait();
 
             // حذف البيانات الموجودة في الجدول
             data.clear();
             // اضافة البيانات الى الجدول بعد التعديل عليها
             patientsInfo();
             clearTextField();
-//        } else {
-//            msgEditError.setTitle("خطا");
-//            msgEditError.setHeaderText("");
-//            msgEditError.setContentText("لم يتم التعديل على البيانات بنجاح");
-//            msgEditError.showAndWait();
-//        }
+        } else {
+            msgEditError.setTitle("خطا");
+            msgEditError.setHeaderText("");
+            msgEditError.setContentText("لم يتم التعديل على البيانات بنجاح");
+            msgEditError.showAndWait();
+        }
 
     }
 
@@ -299,5 +299,11 @@ public class PatientController implements Initializable {
         txtAddress.clear();
         txtSickCondition.clear();
         txtNotes.clear();
+    }
+    
+    // طباعة 
+    @FXML
+    void print(ActionEvent event) {
+
     }
 }
