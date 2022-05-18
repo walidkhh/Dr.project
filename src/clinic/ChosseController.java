@@ -42,16 +42,4 @@ public class ChosseController implements Initializable {
     void backTo(MouseEvent event) throws IOException {
         MainView.setRoot("login", 900, 770);
     }
-
-    //فتح واجهة الادمن
-    @FXML
-    void userInfo(ActionEvent event) throws IOException {
-        MainView.setRoot("adminpages", 1010, 760);
-    }
-
-    // فتح واجهة فورم معلومات الراجيته
-    @FXML
-    void form(ActionEvent event) throws IOException {
-        MainView.setRoot("form", 1000, 760);
-    }
 }
