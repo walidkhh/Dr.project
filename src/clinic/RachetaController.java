@@ -1,6 +1,6 @@
 package clinic;
 
-import static clinic.ChosseController.visible;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;

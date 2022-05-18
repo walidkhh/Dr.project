@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -51,6 +52,12 @@ public class PatientController implements Initializable {
     private TableColumn<AllPatientsHelper, String> phoneNumber;
 
     @FXML
+    private TableColumn<AllPatientsHelper, String> ageColumn;
+
+    @FXML
+    private TableColumn<AllPatientsHelper, String> genderColumn;
+
+    @FXML
     private TableColumn<AllPatientsHelper, String> address;
 
     @FXML
@@ -64,6 +71,12 @@ public class PatientController implements Initializable {
 
     @FXML
     private TextField txtName;
+
+    @FXML
+    private TextField tfAge;
+
+    @FXML
+    private ComboBox<String> tfGender;
 
     @FXML
     private TextField txtPhoneNumber;
@@ -151,7 +164,7 @@ public class PatientController implements Initializable {
             int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
                     txtSickCondition.getText(), txtNotes.getText());
 
-           //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
+            //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
             if (res != 0) {
 
                 // اظهار رسالة تاكد اضافة البيانات بنجاح
@@ -300,7 +313,7 @@ public class PatientController implements Initializable {
         txtSickCondition.clear();
         txtNotes.clear();
     }
-    
+
     // طباعة 
     @FXML
     void print(ActionEvent event) {

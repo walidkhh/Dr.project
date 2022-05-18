@@ -14,18 +14,9 @@ import javafx.scene.input.MouseEvent;
 
 public class ChosseController implements Initializable {
 
-    @FXML
-    private Button btnVisible;
-    public static boolean visible = false;
-
-    public static void isVisibled(boolean isVisibled) {
-        visible = isVisibled;
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        btnVisible.setVisible(visible); // اظهار او اخفاء زر معلومات المستخدمين
     }
 
     // فتح واجهة  المرضى

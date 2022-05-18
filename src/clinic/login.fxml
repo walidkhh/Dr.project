@@ -4,16 +4,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.LoginController">
    <children>
       <VBox alignment="CENTER" prefHeight="558.0" prefWidth="430.0" spacing="5.0" stylesheets="@login.css" HBox.hgrow="ALWAYS">
          <padding>
@@ -33,23 +31,6 @@
                   <Font name="Arabic Typesetting" size="51.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <RadioButton fx:id="normalUser" mnemonicParsing="false" selected="true" text="مستخدم">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="privileges" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="admin" alignment="CENTER_LEFT" mnemonicParsing="false" text="مسؤول" textAlignment="CENTER" toggleGroup="$privileges">
-                     <HBox.margin>
-                        <Insets left="30.0" />
-                     </HBox.margin>
-                  </RadioButton>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
                   <TextField fx:id="userName" alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="334.0" promptText="أسم المستخدم " HBox.hgrow="ALWAYS">
