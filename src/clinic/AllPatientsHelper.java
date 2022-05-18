@@ -7,6 +7,8 @@ public class AllPatientsHelper {
     String address;
     String sickCondition;
     String notes;
+    String age;
+    String gender;
     String id;
 
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes,
@@ -17,15 +19,27 @@ public class AllPatientsHelper {
         this.sickCondition = sickCondition;
         this.notes = notes;
         this.id = id;
+        this.age = age;
+        this.gender = gender;
     }
 
-    public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes) {
+    public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes, String age, String gender) {
         this.Name = Name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.sickCondition = sickCondition;
         this.notes = notes;
+        this.age = age;
+        this.gender = gender;
     }
+
+    public AllPatientsHelper(String Name, String age,String gender,String phoneNumber) {
+        this.Name = Name;
+        this.phoneNumber = phoneNumber;
+        this.age = age;
+        this.gender = gender;
+    }
+    
 
     public String getName() {
         return Name;
@@ -75,6 +89,23 @@ public class AllPatientsHelper {
         this.id = id;
     }
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    
     public AllPatientsHelper() {
     }
 }

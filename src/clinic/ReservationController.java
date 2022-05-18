@@ -94,7 +94,7 @@ public class ReservationController implements Initializable {
     private TableColumn<ReservationHelper, Integer> idColumn;
 
     static ObservableList<ReservationHelper> data = FXCollections.observableArrayList();
-    static ObservableList<String> resCost = FXCollections.observableArrayList();
+    static ObservableList<AllPatientsHelper> sentPatient = FXCollections.observableArrayList();
 
     public void reservationInfo() throws SQLException, ClassNotFoundException {
 
@@ -328,21 +328,17 @@ public class ReservationController implements Initializable {
 
     }
 
-    public static ObservableList<String> getReservationInfo() {
-        return resCost;
+    public static ObservableList<AllPatientsHelper> getReservationInfo() {
+        return sentPatient;
     }
 
     @FXML
-    void printCost(ActionEvent event) throws IOException {
-        resCost.addAll(
-                tfReservationNumber.getText(),
+    void addPatient(ActionEvent event) throws IOException {
+        sentPatient.addAll(new AllPatientsHelper(
                 tfPName.getText(),
-                genderList.getValue(),
                 tfAge.getText(),
-                tfPhoneNumber.getText(),
-                reservationTypeList.getValue(),
-                reservationDatePicker.getValue().toString()
+                genderList.getValue(),
+                tfPhoneNumber.getText())
         );
-        MainView.setRoot("rachetaReservation", 1000, 760);
     }
 }

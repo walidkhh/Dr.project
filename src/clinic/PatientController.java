@@ -130,6 +130,7 @@ public class PatientController implements Initializable {
             Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+        data = ReservationController.getReservationInfo();
         // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
         patientName.setCellValueFactory(new PropertyValueFactory<>("name"));
         patientName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -138,6 +139,8 @@ public class PatientController implements Initializable {
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
         notes.setCellValueFactory(new PropertyValueFactory<>("notes"));
         idcolumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
@@ -253,6 +256,8 @@ public class PatientController implements Initializable {
 
             data.add(new AllPatientsHelper(
                     resultSet.getString("p_name"),
+                    resultSet.getString("age"),
+                    resultSet.getString("gender"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("p_address"),
                     resultSet.getString("p_status"),
@@ -261,6 +266,8 @@ public class PatientController implements Initializable {
             while (resultSet.next()) {
                 data.add(new AllPatientsHelper(
                         resultSet.getString("p_name"),
+                        resultSet.getString("age"),
+                        resultSet.getString("gender"),
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("p_address"),
                         resultSet.getString("p_status"),
@@ -302,6 +309,8 @@ public class PatientController implements Initializable {
         txtAddress.setText(patientsInfo.getSelectionModel().getSelectedItem().getAddress());
         txtSickCondition.setText(patientsInfo.getSelectionModel().getSelectedItem().getSickCondition());
         txtNotes.setText(patientsInfo.getSelectionModel().getSelectedItem().getNotes());
+        tfAge.setText(patientsInfo.getSelectionModel().getSelectedItem().getAge());
+        tfGender.setValue(patientsInfo.getSelectionModel().getSelectedItem().getGender());
 
     }
 
@@ -312,6 +321,8 @@ public class PatientController implements Initializable {
         txtAddress.clear();
         txtSickCondition.clear();
         txtNotes.clear();
+        tfAge.clear();
+       
     }
 
     // طباعة 
