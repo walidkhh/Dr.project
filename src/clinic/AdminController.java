@@ -73,7 +73,6 @@ public class AdminController implements Initializable {
         col_password.setCellValueFactory(new PropertyValueFactory<>("password"));
         col_prev.setCellValueFactory(new PropertyValueFactory<>("privilege"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         adminTable.setItems(data);
 
     }
@@ -195,7 +194,7 @@ public class AdminController implements Initializable {
         }
 
         resultSet.close();
-       // Database.closeConnection();
+        // Database.closeConnection();
     }
 
     // مسح محتويات حقول الادخال

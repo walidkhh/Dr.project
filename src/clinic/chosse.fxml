@@ -11,37 +11,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="718.0" prefWidth="1200.0" styleClass="class_chosse" stylesheets="@chosse.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ChosseController">
+<HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="1200.0" styleClass="class_chosse" stylesheets="@chosse.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.ChosseController">
    <children>
       <VBox alignment="TOP_CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="600.0" prefWidth="568.0">
          <children>
             <BorderPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="600.0" prefWidth="474.0">
-               <center>
+               <bottom>
                   <AnchorPane prefHeight="600.0" prefWidth="491.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button layoutX="219.0" layoutY="277.0" mnemonicParsing="false" onAction="#reservation" prefHeight="55.0" prefWidth="203.0" styleClass="btn_login" stylesheets="@login.css" text="الحجز" AnchorPane.bottomAnchor="268.0" AnchorPane.topAnchor="277.0">
+                        <Button layoutX="121.0" layoutY="205.0" mnemonicParsing="false" onAction="#reservation" prefHeight="55.0" prefWidth="337.0" styleClass="btn_login" stylesheets="@login.css" text="الحجز" AnchorPane.bottomAnchor="340.0" AnchorPane.topAnchor="205.0">
                            <font>
                               <Font size="23.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="46.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/reservation.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
-                        <Button layoutX="220.0" layoutY="358.0" mnemonicParsing="false" onAction="#allPatients" prefHeight="55.0" prefWidth="221.0" styleClass="btn_login" stylesheets="@login.css" text="جميع المرضى">
+                        <Button layoutX="-73.0" layoutY="369.0" mnemonicParsing="false" onAction="#allPatients" prefHeight="55.0" prefWidth="258.0" styleClass="btn_login" stylesheets="@login.css" text="جميع المرضى">
                            <font>
                               <Font size="23.0" />
                            </font>
-                           <graphic>
-                              <ImageView fitHeight="20.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/all.jpg" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
                         </Button>
                         <Label layoutX="250.0" layoutY="80.0" text="عيادتي " textFill="#2196f3">
                            <font>
@@ -56,30 +42,15 @@
                               <Font name="Arial Bold" size="28.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="32.0" fitWidth="93.0" layoutX="14.0" layoutY="5.0" onMouseClicked="#backTo" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                        <ImageView fitHeight="32.0" fitWidth="93.0" layoutX="-200.0" layoutY="5.0" onMouseClicked="#backTo" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                            <image>
                               <Image url="@images/backarrow.jpg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="btnVisible" layoutX="185.0" layoutY="530.0" mnemonicParsing="false" onAction="#userInfo" prefHeight="56.0" prefWidth="307.0" styleClass="btn_login" stylesheets="@login.css" text="معلومات المستخدمين">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/personal.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button layoutX="229.0" layoutY="443.0" mnemonicParsing="false" onAction="#form" prefHeight="55.0" prefWidth="203.0" styleClass="btn_login" stylesheets="@login.css" text="طباعة الراجيتة " AnchorPane.rightAnchor="136.0" AnchorPane.topAnchor="443.0">
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/rageta.jpg" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
+                        <Button layoutX="356.0" layoutY="369.0" mnemonicParsing="false" onAction="#form" prefHeight="55.0" prefWidth="241.0" styleClass="btn_login" stylesheets="@login.css" text="طباعة الراجيتة " AnchorPane.rightAnchor="-29.600000000000023" AnchorPane.topAnchor="369.0" />
                      </children>
                   </AnchorPane>
-               </center>
+               </bottom>
             </BorderPane>
          </children>
       </VBox>

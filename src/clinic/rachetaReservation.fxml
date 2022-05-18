@@ -7,45 +7,96 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.RachetaReservationController">
+<VBox alignment="CENTER" prefHeight="680.0" prefWidth="490.0" style="-fx-border-color: #B9D4EF; -fx-background-color: #FFFFFF; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.RachetaReservationController">
    <children>
-      <HBox fx:id="root" alignment="CENTER" prefWidth="600.0">
+      <HBox fx:id="root" alignment="CENTER" prefHeight="680.0" prefWidth="468.0">
          <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="416.0" prefWidth="236.0">
+            <VBox alignment="CENTER_LEFT" prefHeight="600.0" prefWidth="400.0">
                <children>
-                  <Label fx:id="tfReservationNumber" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="tfPName" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="tfReservationCost" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="tfPhoneNumber" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="genderList" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="reservationTypeList" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="reservationDatePicker" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
-                  <Label fx:id="tfAge" alignment="CENTER" prefHeight="52.0" prefWidth="200.0" text="Label" />
+                  <Label fx:id="tfReservationNumber" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" style="-fx-border-width: 3;" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="tfPName" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="tfReservationCost" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="tfPhoneNumber" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="genderList" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="reservationTypeList" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="reservationDatePicker" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label fx:id="tfAge" alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="Label">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
                </children>
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </VBox>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="600.0" prefWidth="395.0">
                <children>
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="رقم الحجز :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="اسم المريض :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="العمر :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="الجنس :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="رقم الهاتف :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="نوع الحجز :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="تاريخ الحجز :-" />
-                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="287.0" text="التكلفة :-" />
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="رقم الحجز :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="اسم المريض :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="العمر :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="الجنس :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="رقم الهاتف :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="نوع الحجز :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="تاريخ الحجز :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
+                    <Label alignment="CENTER" prefHeight="52.0" prefWidth="300.0" text="التكلفة :-">
+                     <font>
+                        <Font name="Arial Bold" size="17.0" />
+                     </font></Label>
                </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
             </VBox>
          </children>
       </HBox>
-        <Button mnemonicParsing="false" onAction="#print" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: #000; -fx-text-fill: #fff; -fx-cursor: hand;" text="طباعة">
+        <Button mnemonicParsing="false" onAction="#print" prefHeight="44.0" prefWidth="124.0" style="-fx-background-color: #619EDB; -fx-text-fill: #fff; -fx-cursor: hand;" styleClass="btn_login" stylesheets="@login.css" text="طباعة">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
          <VBox.margin>
-            <Insets top="50.0" />
+            <Insets bottom="15.0" top="50.0" />
          </VBox.margin>
       </Button>
    </children>

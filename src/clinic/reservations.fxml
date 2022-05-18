@@ -55,17 +55,16 @@
                               <TableColumn fx:id="phoneNumber" editable="false" prefWidth="167.0" text="رقم الهاتف" />
                               <TableColumn fx:id="reservationType" editable="false" prefWidth="126.0" text="نوع الحجز" />
                               <TableColumn fx:id="reservationDate" editable="false" prefWidth="169.0" text="تاريخ الحجز" />
-                              <TableColumn fx:id="reservationCost" editable="false" prefWidth="169.0" text="كلفة الحجز" />
                               <TableColumn fx:id="idColumn" editable="false" maxWidth="200.0" prefWidth="10.0" text="id" visible="false" />
                            </columns>
                         </TableView>
-                        <Button layoutX="1177.0" layoutY="560.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="90.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
-                        <Button layoutX="1386.0" layoutY="560.0" mnemonicParsing="false" onAction="#addBtn" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
+                        <Button layoutX="1183.0" layoutY="521.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="90.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
+                        <Button layoutX="1392.0" layoutY="521.0" mnemonicParsing="false" onAction="#addBtn" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button layoutX="1284.0" layoutY="560.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
+                        <Button layoutX="1290.0" layoutY="521.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
                         <Text layoutX="1444.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الحجز ">
                            <font>
                               <Font name="System Bold" size="20.0" />
@@ -105,12 +104,6 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <Text layoutX="1447.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="كلفة الحجز">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Text>
-                        <TextField id="price" fx:id="tfReservationCost" layoutX="1183.0" layoutY="477.0" prefHeight="40.0" prefWidth="220.0" />
                         <ComboBox fx:id="reservationTypeList" layoutX="1183.0" layoutY="355.0" prefHeight="40.0" prefWidth="220.0" />
                         <ComboBox fx:id="genderList" layoutX="1183.0" layoutY="158.0" prefHeight="40.0" prefWidth="220.0" />
                         <DatePicker fx:id="reservationDatePicker" editable="false" layoutX="1183.0" layoutY="420.0" prefHeight="40.0" prefWidth="220.0" />

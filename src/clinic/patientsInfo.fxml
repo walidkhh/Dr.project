@@ -54,13 +54,6 @@
                               <TableColumn fx:id="idcolumn" prefWidth="75.0" text="idColumn" visible="false" />
                            </columns>
                         </TableView>
-                        <Button layoutX="1144.0" layoutY="462.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="11.0" prefWidth="101.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
-                        <Button layoutX="1387.0" layoutY="462.0" mnemonicParsing="false" onAction="#addBtn" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                        </Button>
-                        <Button layoutX="1275.0" layoutY="462.0" mnemonicParsing="false" onAction="#editBtn" styleClass="btn_login" stylesheets="@login.css" text="تعديل" />
                         <Text layoutX="1426.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="أسم المريض ">
                            <font>
                               <Font name="System Bold" size="20.0" />
@@ -91,6 +84,21 @@
                            </font>
                         </Text>
                         <TextArea fx:id="txtNotes" layoutX="1119.0" layoutY="314.0" prefHeight="93.0" prefWidth="290.0" />
+                        <Button layoutX="1150.0" layoutY="486.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="1280.0" layoutY="486.0" mnemonicParsing="false" onAction="#editBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_login" stylesheets="@login.css" text="تعديل">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="1405.0" layoutY="486.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="أضافة">
+                           <font>
+                              <Font name="Arial Bold" size="20.0" />
+                           </font>
+                        </Button>
                      </children>
                      <HBox.margin>
                         <Insets right="100.0" />

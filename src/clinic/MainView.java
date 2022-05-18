@@ -7,6 +7,7 @@ import javafx.application.Preloader;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class MainView extends Application {
@@ -16,7 +17,6 @@ public class MainView extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-
         scene = new Scene(loadFXML("login"),910,700);
         primaryStage = stage;
         primaryStage.setScene(scene);

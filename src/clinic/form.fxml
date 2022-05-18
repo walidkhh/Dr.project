@@ -12,50 +12,34 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="903.0" style="-fx-background-color: #dde#c5c6d08f1;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.FormController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="903.0" style="-fx-background-color: #dde8f1;" stylesheets="@reservation.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.FormController">
    <right>
       <AnchorPane prefHeight="740.0" prefWidth="890.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="drName" layoutX="165.0" layoutY="66.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="589.0" wrapText="true" />
-            <TextField fx:id="addressid" layoutX="166.0" layoutY="184.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="48.0" prefWidth="590.0" />
-            <Label contentDisplay="CENTER" layoutX="370.0" layoutY="12.0" prefHeight="39.0" prefWidth="127.0" text="معلومات عن الدكتور" textAlignment="CENTER" textFill="#0d0d0d">
+            <Label contentDisplay="CENTER" layoutX="370.0" layoutY="12.0" prefHeight="39.0" prefWidth="127.0" text="معلومات الراجيتة " textAlignment="CENTER" textFill="#0d0d0d">
                <font>
                   <Font name="Arabic Typesetting" size="28.0" />
                </font></Label>
-            <TextField fx:id="paitentNameId" layoutX="509.0" layoutY="250.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="33.0" prefWidth="247.0" />
-            <Label layoutX="779.0" layoutY="185.0" prefHeight="45.0" prefWidth="58.0" text="العنوان">
-               <font>
-                  <Font name="Arabic Typesetting" size="29.0" />
-               </font></Label>
-            <TextField fx:id="ageId" layoutX="703.0" layoutY="306.0" prefHeight="33.0" prefWidth="53.0" />
-            <Label layoutX="773.0" layoutY="244.0" prefHeight="45.0" prefWidth="71.0" text="اسم المريض">
+            <TextField fx:id="paitentNameId" layoutX="511.0" layoutY="97.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="37.0" prefWidth="247.0" />
+            <TextField fx:id="ageId" layoutX="512.0" layoutY="166.0" prefHeight="34.0" prefWidth="246.0" />
+            <Label layoutX="777.0" layoutY="94.0" prefHeight="25.0" prefWidth="71.0" text="اسم المريض">
                <font>
                   <Font name="Arabic Typesetting" size="27.0" />
                </font></Label>
-            <Label layoutX="794.0" layoutY="295.0" prefHeight="25.0" prefWidth="29.0" text="العمر">
+            <Label layoutX="799.0" layoutY="163.0" prefHeight="25.0" prefWidth="29.0" text="العمر">
                <font>
                   <Font name="Arabic Typesetting" size="27.0" />
                </font></Label>
-            <TextArea fx:id="aboudPaitentId" layoutX="166.0" layoutY="390.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="176.0" prefWidth="590.0" />
-            <Label alignment="CENTER" layoutX="394.0" layoutY="351.0" prefHeight="11.0" prefWidth="132.0" text="العلاج">
+            <TextArea fx:id="aboudPaitentId" layoutX="49.0" layoutY="342.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="176.0" prefWidth="792.0" />
+            <Label layoutX="379.0" layoutY="262.0" prefHeight="39.0" prefWidth="132.0" text="معلومات عن المرضى">
                <font>
                   <Font name="Arabic Typesetting" size="28.0" />
                </font></Label>
-            <DatePicker fx:id="dateId" layoutX="585.0" layoutY="584.0" prefHeight="25.0" prefWidth="184.0" />
-            <Label layoutX="796.0" layoutY="580.0" prefHeight="25.0" prefWidth="34.0" text="التاريخ">
+            <DatePicker fx:id="dateId" layoutX="522.0" layoutY="578.0" prefHeight="41.0" prefWidth="247.0" />
+            <Label alignment="CENTER" layoutX="796.0" layoutY="580.0" prefHeight="36.0" prefWidth="57.0" text="التاريخ">
                <font>
-                  <Font name="Arabic Typesetting" size="24.0" />
+                  <Font name="Arabic Typesetting" size="26.0" />
                </font></Label>
-            <Label layoutX="787.0" layoutY="625.0" prefHeight="25.0" prefWidth="53.0" text="رقم الهاتف">
-               <font>
-                  <Font name="Arabic Typesetting" size="24.0" />
-               </font></Label>
-            <Label layoutX="780.0" layoutY="664.0" prefHeight="34.0" prefWidth="85.0" text="تاريخ التسجيل">
-               <font>
-                  <Font name="Arabic Typesetting" size="24.0" />
-               </font></Label>
-            <TextField fx:id="phoneNumId" layoutX="585.0" layoutY="628.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="186.0" />
-            <TextField fx:id="rigesterId" layoutX="583.0" layoutY="668.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="188.0" />
             <Button layoutX="63.0" layoutY="646.0" mnemonicParsing="false" onAction="#print" prefHeight="44.0" prefWidth="138.0" styleClass="btn_login" stylesheets="@login.css" text="طباعة" />
             <ImageView fitHeight="37.0" fitWidth="46.0" layoutX="26.0" layoutY="13.0" onMouseClicked="#backTo" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
@@ -63,17 +47,6 @@
                </image>
             </ImageView>
             <Label layoutX="784.0" layoutY="76.0" />
-            <TextArea fx:id="drSpe" layoutX="166.0" layoutY="124.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="36.0" prefWidth="589.0" wrapText="true" />
-            <Label layoutX="766.0" layoutY="64.0" prefHeight="46.0" prefWidth="95.0" text="أسم الدكتور">
-               <font>
-                  <Font name="Arabic Typesetting" size="29.0" />
-               </font>
-            </Label>
-            <Label layoutX="766.0" layoutY="122.0" prefHeight="51.0" prefWidth="95.0" text="ألاختصاص">
-               <font>
-                  <Font name="Arabic Typesetting" size="29.0" />
-               </font>
-            </Label>
          </children>
          <effect>
             <Glow />
