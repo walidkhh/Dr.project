@@ -2,7 +2,7 @@ package clinic;
 
 public class AllPatientsHelper {
 
-    String name;
+    String Name;
     String phoneNumber;
     String address;
     String sickCondition;
@@ -11,7 +11,7 @@ public class AllPatientsHelper {
 
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes,
             String id) {
-        this.name = name;
+        this.Name = Name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.sickCondition = sickCondition;
@@ -20,7 +20,7 @@ public class AllPatientsHelper {
     }
 
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes) {
-        this.name = name;
+        this.Name = Name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.sickCondition = sickCondition;
@@ -28,11 +28,11 @@ public class AllPatientsHelper {
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.Name = Name;
     }
 
     public String getPhoneNumber() {

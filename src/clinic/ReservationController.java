@@ -87,8 +87,7 @@ public class ReservationController implements Initializable {
     @FXML
     private TableColumn<ReservationHelper, String> reservationType;
 
-    @FXML
-    private TableColumn<ReservationHelper, Integer> reservationCost;
+
 
     @FXML
     private TableColumn<ReservationHelper, LocalDate> reservationDate;
@@ -115,7 +114,6 @@ public class ReservationController implements Initializable {
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
                     resultSet.getString("booking_type"),
-                    resultSet.getInt("booking_cost"),
                     resultSet.getInt("id")
             ));
         }
@@ -141,7 +139,6 @@ public class ReservationController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
-        reservationCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         // اضافة البيانات الى الجدول
@@ -259,8 +256,7 @@ public class ReservationController implements Initializable {
                     resultSet.getString("p_age"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("booking_date"),
-                    resultSet.getString("booking_type"),
-                    resultSet.getInt("booking_cost")
+                    resultSet.getString("booking_type")
             ));
 
             while (resultSet.next()) {
@@ -272,8 +268,10 @@ public class ReservationController implements Initializable {
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("booking_date"),
                         resultSet.getString("booking_type"),
-                        resultSet.getInt("booking_cost")
                 ));
+                        
+                        
+                    
             }
 
             resultSet.close();
@@ -293,7 +291,7 @@ public class ReservationController implements Initializable {
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         reservationType.setCellValueFactory(new PropertyValueFactory<>("reservationType"));
         reservationDate.setCellValueFactory(new PropertyValueFactory<>("reservationDate"));
-        reservationCost.setCellValueFactory(new PropertyValueFactory<>("cost"));
+        
 
         // اضافة البيانات الى الجدول
         reservationTable.setItems(data);
@@ -313,7 +311,6 @@ public class ReservationController implements Initializable {
         tfAge.setText(reservationTable.getSelectionModel().getSelectedItem().getAge());
         tfPhoneNumber.setText(reservationTable.getSelectionModel().getSelectedItem().getPhoneNumber());
 
-        tfReservationCost.setText(String.valueOf(reservationTable.getSelectionModel().getSelectedItem().getCost()));
         reservationTypeList.setValue(reservationTable.getSelectionModel().getSelectedItem().getReservationType());
         genderList.setValue(reservationTable.getSelectionModel().getSelectedItem().getGender());
         reservationDatePicker.setValue(LocalDate.parse(reservationTable.getSelectionModel().getSelectedItem().getReservationDate()));
@@ -325,7 +322,6 @@ public class ReservationController implements Initializable {
         tfPName.clear();
         tfAge.clear();
         tfPhoneNumber.clear();
-        tfReservationCost.clear();
 
     }
 
@@ -349,8 +345,8 @@ public class ReservationController implements Initializable {
                 tfAge.getText(),
                 tfPhoneNumber.getText(),
                 reservationTypeList.getValue(),
-                reservationDatePicker.getValue().toString(),
-                tfReservationCost.getText()
+                reservationDatePicker.getValue().toString()
+                
         );
         MainView.setRoot("rachetaReservation", 1000, 760);
     }
