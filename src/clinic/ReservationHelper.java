@@ -9,7 +9,6 @@ public class ReservationHelper {
     String phoneNumber;
     String reservationDate;
     String reservationType;
-    int cost;
     int id;
 
     public ReservationHelper() {
@@ -24,7 +23,6 @@ public class ReservationHelper {
         this.phoneNumber = phoneNumber;
         this.reservationDate = reservationDate;
         this.reservationType = reservationType;
-        this.cost = cost;
     }
 
     public ReservationHelper(String reservationNumber, String name, String gender, String age, String phoneNumber, String reservationDate, String reservationType, int cost, int id) {
@@ -35,7 +33,6 @@ public class ReservationHelper {
         this.phoneNumber = phoneNumber;
         this.reservationDate = reservationDate;
         this.reservationType = reservationType;
-        this.cost = cost;
         this.id = id;
     }
 
@@ -95,13 +92,6 @@ public class ReservationHelper {
         this.reservationType = reservationType;
     }
 
-    public int getCost() {
-        return cost;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
 
     public int getId() {
         return id;
