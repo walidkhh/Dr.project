@@ -65,36 +65,8 @@ public class LoginController {
         }
 
         if (isLoggedIn) {
-
-            // التاكد فيما اذا كان المستخدم ادمن
-            if (resultSet.getString("user_type").equals("1") && admin.isSelected()) {
-                // تفعيل زر معلومات المستخدمين للادمن
-                ChosseController.isVisibled(true);
-                 // فتح الواجهة بعد التسجيل بشكل صحيح
-                MainView.setRoot("chosse", 950, 760);
-                
-            } else if (resultSet.getString("user_type").equals("0") && normalUser.isSelected()) {
-                // ايقاف تفعيل زر معلومات المستخدمين
-                ChosseController.isVisibled(false);
-                 // فتح الواجهة بعد التسجيل بشكل صحيح
-                MainView.setRoot("chosse", 950, 760);
-                
-            } else if (resultSet.getString("user_type").equals("0") && !normalUser.isSelected()) {
-                 // التاكد بان المستخدم موجود في القاعدة سواء كان ادمن او مستخدم اعتيادي
-                accesDenail.setTitle("خطا");
-                accesDenail.setHeaderText("");
-                accesDenail.setContentText("غير مصرح لك بالدخول كمسؤول");
-                accesDenail.showAndWait();
-                ChosseController.isVisibled(false);
-                
-            } else {
-
-                accesDenail.setTitle("خطا");
-                accesDenail.setHeaderText("");
-                accesDenail.setContentText("هذا الحساب يمتلك صلاحية مسؤول يرجى الدخول كمسؤول");
-                accesDenail.showAndWait();
-                ChosseController.isVisibled(false);
-            }
+            // فتح الواجهة بعد التسجيل بشكل صحيح
+            MainView.setRoot("chosse", 950, 760);
 
         } else {
             error.showAndWait(); // اظهار رسالة الخطا
