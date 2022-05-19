@@ -33,27 +33,30 @@ public class Database {
     }
 
     // دالة اضافة بيانات المرضى
-    public static int addPatient(String pName, String phoneNumber, String pAddress, String pStatus, String notes) throws ClassNotFoundException, SQLException {
+    public static int addPatient(String pName, String phoneNumber, String pAddress, String pStatus, String notes,
+            String pAge, String pGender) throws ClassNotFoundException, SQLException {
 
-        String query = "INSERT INTO adding_pateints(p_name,p_phone_number, p_address, p_status, notes) "
-                + "VALUES(?,?,?,?,?)";
+        String query = "INSERT INTO adding_pateints(p_name, age, gender, p_phone_number, p_address, p_status, notes) "
+                + "VALUES(?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);
-        pstmt.setString(2, phoneNumber);
-        pstmt.setString(3, pAddress);
-        pstmt.setString(4, pStatus);
-        pstmt.setString(5, notes);
+        pstmt.setString(2, pAge);
+        pstmt.setString(3, pGender);
+        pstmt.setString(4, phoneNumber);
+        pstmt.setString(5, pAddress);
+        pstmt.setString(6, pStatus);
+        pstmt.setString(7, notes);
 
         return pstmt.executeUpdate();
     }
 
     // التعديل على بيانات المريض 
     public static int updatePatient(String pName, String phoneNumber, String pAddress,
-            String pStatus, String notes, int id) throws ClassNotFoundException, SQLException {
+            String pStatus, String notes, int id, String pAge, String pGender) throws ClassNotFoundException, SQLException {
 
         String query = "UPDATE adding_pateints SET  p_name = ? ,p_phone_number = ? ,p_address = ?"
-                + ", p_status = ?, notes = ?  WHERE id = ? ";
+                + ", p_status = ?, notes = ?, age = ?, gender = ?  WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);
@@ -61,7 +64,9 @@ public class Database {
         pstmt.setString(3, pAddress);
         pstmt.setString(4, pStatus);
         pstmt.setString(5, notes);
-        pstmt.setInt(6, id);
+        pstmt.setString(6, pAge);
+        pstmt.setString(7, pGender);
+        pstmt.setInt(8, id);
 
         return pstmt.executeUpdate();
     }
@@ -132,10 +137,10 @@ public class Database {
 
     // اضافة حجز
     public static int addReservation(String bookingNumber, String pName, String pAge, String pGender,
-            String phoneNumber, String bookingDate, String bookingType, int bookingCost) throws ClassNotFoundException, SQLException {
+            String phoneNumber, String bookingDate, String bookingType) throws ClassNotFoundException, SQLException {
 
-        String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type, booking_cost) "
-                + "VALUES(?,?,?,?,?,?,?,?)";
+        String query = "INSERT INTO booking(booking_number,p_name,p_age,p_gender, p_phone_number, booking_date, booking_type) "
+                + "VALUES(?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setInt(1, Integer.parseInt(bookingNumber));
@@ -145,7 +150,6 @@ public class Database {
         pstmt.setString(5, phoneNumber);
         pstmt.setString(6, bookingDate);
         pstmt.setString(7, bookingType);
-        pstmt.setInt(8, bookingCost);
 
         return pstmt.executeUpdate();
 
@@ -153,11 +157,11 @@ public class Database {
 
     // التعديل على بيانات الحجز 
     public static int updateReservation(String bookNumber, String name, String gender, String age,
-            String phoneNumber, String bookingDate, String bookingType, int bookingCost,
+            String phoneNumber, String bookingDate, String bookingType,
             int id) throws ClassNotFoundException, SQLException {
 
         String query = "UPDATE booking SET  booking_number = ? , p_name = ? , p_age = ?,p_gender = ?"
-                + " , p_phone_number = ? , booking_date = ?, booking_type = ? , booking_cost = ?"
+                + " , p_phone_number = ? , booking_date = ?, booking_type = ?"
                 + " WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
@@ -168,8 +172,7 @@ public class Database {
         pstmt.setString(5, phoneNumber);
         pstmt.setString(6, bookingDate);
         pstmt.setString(7, bookingType);
-        pstmt.setInt(8, bookingCost);
-        pstmt.setInt(9, id);
+        pstmt.setInt(8, id);
 
         return pstmt.executeUpdate();
     }

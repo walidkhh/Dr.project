@@ -89,7 +89,7 @@
                            </font>
                         </Text>
                         <TextArea fx:id="txtNotes" layoutX="1125.0" layoutY="395.0" prefHeight="86.0" prefWidth="290.0" />
-                        <Button layoutX="1150.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف">
+                        <Button layoutX="1150.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_delete" stylesheets="@login.css" text="حذف">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
@@ -99,7 +99,7 @@
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button layoutX="1405.0" layoutY="525.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="42.0" prefWidth="102.0" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="أضافة">
+                        <Button layoutX="1405.0" layoutY="525.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_add" stylesheets="@login.css" text="أضافة">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>

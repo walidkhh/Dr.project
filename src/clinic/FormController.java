@@ -1,26 +1,23 @@
 package clinic;
 
+import static clinic.PatientController.formData;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class FormController {
+public class FormController implements Initializable {
 
     private static final Alert fillText = new Alert(Alert.AlertType.WARNING);
-
-    @FXML
-    private TextArea drName;
-
-    @FXML
-    private TextField addressid;
 
     @FXML
     private TextField paitentNameId;
@@ -34,24 +31,23 @@ public class FormController {
     @FXML
     private DatePicker dateId;
 
-    @FXML
-    private TextField phoneNumId;
-
-    @FXML
-    private TextField rigesterId;
-
-    @FXML
-    private TextArea drSpe;
-
     static ObservableList<String> data = FXCollections.observableArrayList();
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        data = PatientController.getData();
+        formData.clear(); // مسح كل المحتويات
+        paitentNameId.setText(data.get(0));
+        ageId.setText(data.get(1)); 
+        
+    }
 
     @FXML
     void print(ActionEvent event) throws IOException {
 
-        if (drName.getText().isEmpty() || addressid.getText().isEmpty()
-                || paitentNameId.getText().isEmpty()
+        if (paitentNameId.getText().isEmpty()
                 || ageId.getText().isEmpty()
-                || aboudPaitentId.getText().isEmpty() || phoneNumId.getText().isEmpty() || rigesterId.getText().isEmpty()) {
+                || aboudPaitentId.getText().isEmpty()) {
 
             // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
             fillText.setTitle("تنبيه");
@@ -60,17 +56,13 @@ public class FormController {
             fillText.showAndWait();
         } else {
             data.addAll(
-                    drName.getText(),
-                    drSpe.getText(),
-                    addressid.getText(),
                     paitentNameId.getText(),
                     ageId.getText(),
                     aboudPaitentId.getText(),
-                    phoneNumId.getText(),
-                    rigesterId.getText(),
                     dateId.getValue().toString()
             );
 
+            
             MainView.setRoot("racheta", 1000, 760);
         }
 

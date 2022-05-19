@@ -164,8 +164,8 @@ public class ReservationController implements Initializable {
                     tfAge.getText(),
                     tfPhoneNumber.getText(),
                     reservationDatePicker.getValue().toString(),
-                    reservationTypeList.getValue(),
-                    Integer.parseInt(tfReservationCost.getText()));
+                    reservationTypeList.getValue()
+                   );
 
             if (res != 0) {
                 addReservation.setTitle("تاكيد");
@@ -211,7 +211,7 @@ public class ReservationController implements Initializable {
 
         int isUpdated = Database.updateReservation(tfReservationNumber.getText(), tfPName.getText(),
                 genderList.getValue(), tfAge.getText(), tfPhoneNumber.getText(), reservationDatePicker.getValue().toString(),
-                reservationTypeList.getValue(), Integer.parseInt(tfReservationCost.getText()),
+                reservationTypeList.getValue(),
                 Integer.parseInt(idtext.getText()));
 
         if (isUpdated != 0) {
@@ -333,12 +333,9 @@ public class ReservationController implements Initializable {
     }
 
     @FXML
-    void addPatient(ActionEvent event) throws IOException {
-        sentPatient.addAll(new AllPatientsHelper(
-                tfPName.getText(),
-                tfAge.getText(),
-                genderList.getValue(),
-                tfPhoneNumber.getText())
-        );
+    void addPatient(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
+   
+        Database.addPatient(tfPName.getText(), tfPhoneNumber.getText(), 
+                "", "", "", tfAge.getText(), genderList.getValue());
     }
 }

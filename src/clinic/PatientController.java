@@ -91,6 +91,7 @@ public class PatientController implements Initializable {
     private TextArea txtNotes;
 
     ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
+    static ObservableList<String> formData = FXCollections.observableArrayList();
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
@@ -113,7 +114,9 @@ public class PatientController implements Initializable {
                     resultSet.getString("p_address"),
                     resultSet.getString("p_status"),
                     resultSet.getString("notes"),
-                    resultSet.getString("id")
+                    resultSet.getString("id"),
+                    resultSet.getString("age"),
+                    resultSet.getString("gender")
             ));
 
         }
@@ -124,16 +127,16 @@ public class PatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        tfGender.getItems().addAll("ذكر", "أنثى");
+
         try {
             patientsInfo();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(PatientController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        data = ReservationController.getReservationInfo();
         // ربط اعمدة الجدول مع المتغيرات في كلاس المرضى
         patientName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        patientName.setCellFactory(TextFieldTableCell.forTableColumn());
         phoneNumber.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
@@ -151,9 +154,8 @@ public class PatientController implements Initializable {
     void addBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
         // التاكد بان حقول الادخال غير فارغة
-        if (txtName.getText().isEmpty() || txtPhoneNumber.getText().isEmpty()
-                || txtAddress.getText().isEmpty() || txtSickCondition.getText().isEmpty()
-                || txtNotes.getText().isEmpty()) {
+        if (txtName.getText().isEmpty() || txtPhoneNumber.getText().isEmpty() /*|| txtAddress.getText().isEmpty() || txtSickCondition.getText().isEmpty()
+                || txtNotes.getText().isEmpty()*/) {
 
             // اظهار رسالة تنبيه للمستخدم في حال كانت الحقول فارغة
             fillText.setTitle("تنبيه");
@@ -165,7 +167,7 @@ public class PatientController implements Initializable {
 
             // ارسال المدخلات الى قاعدة البيانات وارجاع النتيجة الى المتغير
             int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
-                    txtSickCondition.getText(), txtNotes.getText());
+                    txtSickCondition.getText(), txtNotes.getText(), tfAge.getText(), tfGender.getValue());
 
             //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
             if (res != 0) {
@@ -216,8 +218,13 @@ public class PatientController implements Initializable {
     @FXML
     void editBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
+//             if( txtNotes.getText().isEmpty()|| txtSickCondition.getText().isEmpty() ||  txtAddress.getText().isEmpty()){
+//                 txtSickCondition.setText("");
+//                 txtNotes.setText("");
+//                 txtAddress.setText("");
+//             }
         int isUpdated = Database.updatePatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
-                txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()));
+                txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()), tfAge.getText(), tfGender.getValue());
 
         if (isUpdated != 0) {
             editUser.setTitle("تاكيد");
@@ -256,22 +263,22 @@ public class PatientController implements Initializable {
 
             data.add(new AllPatientsHelper(
                     resultSet.getString("p_name"),
-                    resultSet.getString("age"),
-                    resultSet.getString("gender"),
                     resultSet.getString("p_phone_number"),
                     resultSet.getString("p_address"),
                     resultSet.getString("p_status"),
-                    resultSet.getString("notes")));
+                    resultSet.getString("notes"),
+                    resultSet.getString("age"),
+                    resultSet.getString("gender")));
 
             while (resultSet.next()) {
                 data.add(new AllPatientsHelper(
                         resultSet.getString("p_name"),
-                        resultSet.getString("age"),
-                        resultSet.getString("gender"),
                         resultSet.getString("p_phone_number"),
                         resultSet.getString("p_address"),
                         resultSet.getString("p_status"),
-                        resultSet.getString("notes")
+                        resultSet.getString("notes"),
+                        resultSet.getString("age"),
+                        resultSet.getString("gender")
                 ));
             }
 
@@ -290,6 +297,8 @@ public class PatientController implements Initializable {
         address.setCellValueFactory(new PropertyValueFactory<>("address"));
         sickCondition.setCellValueFactory(new PropertyValueFactory<>("sickCondition"));
         notes.setCellValueFactory(new PropertyValueFactory<>("notes"));
+        ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
@@ -322,12 +331,23 @@ public class PatientController implements Initializable {
         txtSickCondition.clear();
         txtNotes.clear();
         tfAge.clear();
-       
+
     }
 
     // طباعة 
     @FXML
-    void print(ActionEvent event) {
+    void print(ActionEvent event) throws IOException {
 
+        formData.addAll(
+                txtName.getText(),
+                tfAge.getText()
+        );
+        
+          MainView.setRoot("form", 1000, 760);
+          formData.clear(); // مسح كل المحتويات
+    }
+    
+     public static ObservableList<String> getData() {
+        return formData;
     }
 }

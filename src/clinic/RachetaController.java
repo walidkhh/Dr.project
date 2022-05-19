@@ -20,15 +20,6 @@ public class RachetaController implements Initializable {
     private VBox root;
 
     @FXML
-    private Label drName;
-
-    @FXML
-    private Label firstDrInfo;
-
-    @FXML
-    private Label location;
-
-    @FXML
     private Label patientName;
 
     @FXML
@@ -36,13 +27,7 @@ public class RachetaController implements Initializable {
 
     @FXML
     private Label infoMidic;
-
-    @FXML
-    private Label clinicPhone;
-
-    @FXML
-    private Label rigesterNum;
-
+    
     @FXML
      private Label date;
     static ObservableList<String> data = FXCollections.observableArrayList();
@@ -52,15 +37,10 @@ public class RachetaController implements Initializable {
 
         data = FormController.getData();
 
-        drName.setText(data.get(0));
-        firstDrInfo.setText(data.get(1));   
-        location.setText(data.get(2));
-        patientName.setText(data.get(3));
-        patientAge.setText(data.get(4));
-        infoMidic.setText(data.get(5));
-        clinicPhone.setText(data.get(6));
-        rigesterNum.setText(data.get(7));
-         date.setText(data.get(8));
+        patientName.setText(data.get(0));
+        patientAge.setText(data.get(1));
+        infoMidic.setText(data.get(2));
+        date.setText(data.get(3));
     }
 
     @FXML

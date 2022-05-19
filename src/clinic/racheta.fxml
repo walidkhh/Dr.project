@@ -23,13 +23,13 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="drName" alignment="CENTER" prefHeight="21.0" prefWidth="264.0" text="Label" textAlignment="CENTER" textFill="#c90f0f" VBox.vgrow="ALWAYS" />
-                        <Label id="description" fx:id="firstDrInfo" alignment="CENTER" contentDisplay="RIGHT" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر " textAlignment="RIGHT" textFill="#6047dc" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS" />
+                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="264.0" text="وليد خالد الهدلك" textAlignment="CENTER" textFill="#c90f0f" VBox.vgrow="ALWAYS" />
+                        <Label id="description" alignment="CENTER" contentDisplay="RIGHT" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر " textAlignment="RIGHT" textFill="#6047dc" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="34.0" prefWidth="395.0" style="-fx-background-color: #160563;">
                      <children>
-                        <Label id="title" fx:id="location" text="المركز التركي - شارع السعدي - قرب شركة كيا" textFill="WHITE">
+                        <Label id="title" text="المركز التركي - شارع السعدي - قرب شركة كيا" textFill="WHITE">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -92,7 +92,7 @@
                      <children>
                         <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="395.0">
                            <children>
-                              <Label fx:id="clinicPhone" contentDisplay="CENTER" prefHeight="20.0" prefWidth="226.0" text=" ( )" textFill="#cc0808">
+                              <Label contentDisplay="CENTER" prefHeight="20.0" prefWidth="96.0" text="077077077" textFill="#cc0808">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -106,7 +106,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" prefHeight="26.0" prefWidth="395.0">
                            <children>
-                              <Label fx:id="rigesterNum" alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="83.0" textFill="#160563">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="20.0" prefWidth="111.0" text="2010-10-20" textFill="#160563">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

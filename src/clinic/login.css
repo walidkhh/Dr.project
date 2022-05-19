@@ -1,23 +1,40 @@
 
 
-.btn_login{
- -fx-background-color: #2197f3;
+.btn_login,.btn_add, .btn_delete{
  -fx-font-family:Tahoma;
  -fx-font-size:22px;
  -fx-text-fill: #FFF;
  -fx-background-radius: 20px;
+ -fx-rotate: 0;
+}
+
+.btn_login{
+     -fx-background-color: #2197f3;
+}
+.btn_add{
+     -fx-background-color: #32CD32;
+}
+
+.btn_delete{
+    -fx-background-color: #FF0000;
 }
 
  
-.btn_login:hover{
+.btn_login:hover,.btn_add:hover, .btn_delete:hover{
     -fx-cursor:hand;
-    -fx-border-color: #2196f3;
     -fx-border-videth:3px;
-    -fx-border-radius: 20px;
+    -fx-border-radius: 25px;
     -fx-background-color: #FFF;
     -fx-text-fill: #000;
     -fx-font-veight:bold;
 }
 .btn_login{
-    -fx-rotate: 0;
+     -fx-border-color: #2196f3;
+}
+.btn_add:hover{
+    -fx-border-color:  #32CD32;
+}
+
+.btn_delete:hover{
+    -fx-border-color:#FF0000;
 }

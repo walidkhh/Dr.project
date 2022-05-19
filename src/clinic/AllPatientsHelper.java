@@ -12,8 +12,8 @@ public class AllPatientsHelper {
     String id;
 
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes,
-            String id) {
-        this.Name = Name;
+            String id, String age , String gender) {
+        this.Name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.sickCondition = sickCondition;
@@ -23,8 +23,9 @@ public class AllPatientsHelper {
         this.gender = gender;
     }
 
-    public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes, String age, String gender) {
-        this.Name = Name;
+    public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition,
+            String notes, String age, String gender) {
+        this.Name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.sickCondition = sickCondition;
@@ -46,7 +47,7 @@ public class AllPatientsHelper {
     }
 
     public void setName(String name) {
-        this.Name = Name;
+        this.Name = name;
     }
 
     public String getPhoneNumber() {
