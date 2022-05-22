@@ -58,8 +58,8 @@
                               <TableColumn fx:id="idColumn" editable="false" maxWidth="200.0" prefWidth="10.0" text="id" visible="false" />
                            </columns>
                         </TableView>
-                        <Button layoutX="1183.0" layoutY="521.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="90.0" style="-fx-background-color: #FF0000;" styleClass="btn_login" stylesheets="@login.css" text="حذف" />
-                        <Button layoutX="1392.0" layoutY="521.0" mnemonicParsing="false" onAction="#addBtn" style="-fx-background-color: #32CD32;" styleClass="btn_login" stylesheets="@login.css" text="اضافة">
+                        <Button layoutX="1183.0" layoutY="521.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="90.0" styleClass="btn_delete" stylesheets="@login.css" text="حذف" />
+                        <Button layoutX="1392.0" layoutY="521.0" mnemonicParsing="false" onAction="#addBtn" styleClass="btn_add" stylesheets="@login.css" text="اضافة">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>

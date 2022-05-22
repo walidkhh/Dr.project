@@ -344,10 +344,5 @@ public class PatientController implements Initializable {
         );
         
           MainView.setRoot("form", 1000, 760);
-          formData.clear(); // مسح كل المحتويات
-    }
-    
-     public static ObservableList<String> getData() {
-        return formData;
     }
 }

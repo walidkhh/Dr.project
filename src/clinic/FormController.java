@@ -35,11 +35,14 @@ public class FormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        data = PatientController.getData();
-        formData.clear(); // مسح كل المحتويات
-        paitentNameId.setText(data.get(0));
-        ageId.setText(data.get(1)); 
+
+        if (!formData.isEmpty()) {
+            paitentNameId.setText(formData.get(0));
+            ageId.setText(formData.get(1));
+        }
         
+        formData.clear();
+
     }
 
     @FXML
@@ -62,7 +65,6 @@ public class FormController implements Initializable {
                     dateId.getValue().toString()
             );
 
-            
             MainView.setRoot("racheta", 1000, 760);
         }
 

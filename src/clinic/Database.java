@@ -13,8 +13,6 @@ public class Database {
 
         Class.forName("org.sqlite.JDBC");
         return DriverManager.getConnection("jdbc:sqlite:my_clinic.sql");
-//        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-//        return DriverManager.getConnection("jdbc:ucanaccess://my_clinic.accdb");
     }
 
     // دالة ارجاع معلومات المستخدم
@@ -90,48 +88,6 @@ public class Database {
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, patientName);
         return pstmt.executeQuery();
-
-    }
-
-    // اضافة مستخدم جديد
-    public static int addUser(String username, String password, String privilegeType) throws ClassNotFoundException, SQLException {
-
-        String query = "INSERT INTO login(user_name , pass_word, user_type) "
-                + "VALUES(?,?,?)";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setString(1, username);
-        pstmt.setString(2, password);
-        pstmt.setString(3, privilegeType);
-
-        return pstmt.executeUpdate();
-
-    }
-
-    // التعديل على بيانات المستخدم 
-    public static int updateUser(String username, String password, String privilegeType, int id) throws ClassNotFoundException, SQLException {
-
-        String query = "UPDATE login SET  user_name = ? , pass_word = ? , user_type = ? WHERE id = ? ";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setString(1, username);
-        pstmt.setString(2, password);
-        pstmt.setString(3, privilegeType);
-        pstmt.setInt(4, id);
-
-        return pstmt.executeUpdate();
-
-    }
-
-    // حذف مستخدم 
-    public static int deleteUser(int id) throws ClassNotFoundException, SQLException {
-
-        String query = "DELETE FROM login  WHERE id = ? ";
-
-        PreparedStatement pstmt = getConnection().prepareStatement(query);
-        pstmt.setInt(1, id);
-
-        return pstmt.executeUpdate();
 
     }
 
