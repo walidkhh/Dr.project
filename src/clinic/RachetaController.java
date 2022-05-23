@@ -46,15 +46,15 @@ public class RachetaController implements Initializable {
     void print(ActionEvent event) throws IOException {
         PrinterJob job = PrinterJob.createPrinterJob();
 
-        boolean isShowPageSetup = job.showPageSetupDialog(MainView.getPrimaryStage());
+       // boolean isShowPageSetup = job.showPageSetupDialog(MainView.getPrimaryStage());
 
-        if (isShowPageSetup) {
+        //if (isShowPageSetup) {
             boolean isPrinted = job.printPage(root);
             if (isPrinted) {
                 job.endJob();
             }
 
-        }
+        //}
           data.clear(); // مسح كل المحتويات
 
         MainView.setRoot("form", 1000, 790); // العودة الى الواجهة السابقة
