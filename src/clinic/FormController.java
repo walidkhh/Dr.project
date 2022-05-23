@@ -78,5 +78,4 @@ public class FormController implements Initializable {
     void backTo(MouseEvent event) throws IOException {
         MainView.setRoot("patientsInfo", 950, 760);
     }
-
 }
