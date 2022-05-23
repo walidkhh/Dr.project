@@ -55,9 +55,6 @@ public class ReservationController implements Initializable {
     private TextField tfPhoneNumber;
 
     @FXML
-    private TextField tfReservationCost;
-
-    @FXML
     private ComboBox<String> reservationTypeList;
 
     @FXML
@@ -336,6 +333,6 @@ public class ReservationController implements Initializable {
     void addPatient(ActionEvent event) throws IOException, ClassNotFoundException, SQLException {
    
         Database.addPatient(tfPName.getText(), tfPhoneNumber.getText(), 
-                "", "", "", tfAge.getText(), genderList.getValue());
+                " ", " ", " ", tfAge.getText(), genderList.getValue(), reservationDatePicker.getValue().toString() );
     }
 }

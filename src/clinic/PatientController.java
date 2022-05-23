@@ -70,6 +70,9 @@ public class PatientController implements Initializable {
     private TableColumn<AllPatientsHelper, String> idcolumn;
 
     @FXML
+    private TableColumn<AllPatientsHelper, String> pDateColumn;
+
+    @FXML
     private TextField txtName;
 
     @FXML
@@ -89,6 +92,9 @@ public class PatientController implements Initializable {
 
     @FXML
     private TextArea txtNotes;
+
+    @FXML
+    private TextField tfDate;
 
     ObservableList<AllPatientsHelper> data = FXCollections.observableArrayList();
     static ObservableList<String> formData = FXCollections.observableArrayList();
@@ -116,7 +122,8 @@ public class PatientController implements Initializable {
                     resultSet.getString("notes"),
                     resultSet.getString("id"),
                     resultSet.getString("age"),
-                    resultSet.getString("gender")
+                    resultSet.getString("gender"),
+                    resultSet.getString("p_date")
             ));
 
         }
@@ -144,6 +151,7 @@ public class PatientController implements Initializable {
         idcolumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        pDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
@@ -167,7 +175,7 @@ public class PatientController implements Initializable {
 
             // ارسال المدخلات الى قاعدة البيانات وارجاع النتيجة الى المتغير
             int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
-                    txtSickCondition.getText(), txtNotes.getText(), tfAge.getText(), tfGender.getValue());
+                    txtSickCondition.getText(), txtNotes.getText(), tfAge.getText(), tfGender.getValue(), "");
 
             //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
             if (res != 0) {
@@ -218,13 +226,8 @@ public class PatientController implements Initializable {
     @FXML
     void editBtn(ActionEvent event) throws ClassNotFoundException, SQLException {
 
-//             if( txtNotes.getText().isEmpty()|| txtSickCondition.getText().isEmpty() ||  txtAddress.getText().isEmpty()){
-//                 txtSickCondition.setText("");
-//                 txtNotes.setText("");
-//                 txtAddress.setText("");
-//             }
         int isUpdated = Database.updatePatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
-                txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()), tfAge.getText(), tfGender.getValue());
+                txtSickCondition.getText(), txtNotes.getText(), Integer.parseInt(idtext.getText()), tfAge.getText(), tfGender.getValue(), tfDate.getText());
 
         if (isUpdated != 0) {
             editUser.setTitle("تاكيد");
@@ -268,7 +271,8 @@ public class PatientController implements Initializable {
                     resultSet.getString("p_status"),
                     resultSet.getString("notes"),
                     resultSet.getString("age"),
-                    resultSet.getString("gender")));
+                    resultSet.getString("gender"),
+                    resultSet.getString("p_date")));
 
             while (resultSet.next()) {
                 data.add(new AllPatientsHelper(
@@ -278,7 +282,8 @@ public class PatientController implements Initializable {
                         resultSet.getString("p_status"),
                         resultSet.getString("notes"),
                         resultSet.getString("age"),
-                        resultSet.getString("gender")
+                        resultSet.getString("gender"),
+                        resultSet.getString("p_date")
                 ));
             }
 
@@ -299,6 +304,7 @@ public class PatientController implements Initializable {
         notes.setCellValueFactory(new PropertyValueFactory<>("notes"));
         ageColumn.setCellValueFactory(new PropertyValueFactory<>("age"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
+        pDateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 
         // اضافة البيانات الى الجدول
         patientsInfo.setItems(data);
@@ -320,7 +326,7 @@ public class PatientController implements Initializable {
         txtNotes.setText(patientsInfo.getSelectionModel().getSelectedItem().getNotes());
         tfAge.setText(patientsInfo.getSelectionModel().getSelectedItem().getAge());
         tfGender.setValue(patientsInfo.getSelectionModel().getSelectedItem().getGender());
-
+        tfDate.setText(patientsInfo.getSelectionModel().getSelectedItem().getDate());
     }
 
     // دالة مسح محتوى حقول الادخال
@@ -342,7 +348,7 @@ public class PatientController implements Initializable {
                 txtName.getText(),
                 tfAge.getText()
         );
-        
-          MainView.setRoot("form", 1000, 760);
+
+        MainView.setRoot("form", 1000, 760);
     }
 }

@@ -23,7 +23,11 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label alignment="CENTER" prefHeight="21.0" prefWidth="264.0" text="وليد خالد الهدلك" textAlignment="CENTER" textFill="#c90f0f" VBox.vgrow="ALWAYS" />
+                        <Label id="dr.specialist" alignment="CENTER" contentDisplay="TOP" prefHeight="20.0" prefWidth="126.0" text="وليد خالد الهدلك" textFill="#fc0101">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
                         <Label id="description" alignment="CENTER" contentDisplay="RIGHT" text="دكتور بالامراض القلبية والصدرية وأمراض  الدم والكليتين وداء السكر " textAlignment="RIGHT" textFill="#6047dc" textOverrun="CLIP" wrapText="true" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
@@ -36,9 +40,9 @@
                         </Label>
                      </children>
                   </VBox>
-                  <VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="57.0" prefWidth="395.0">
+                  <VBox alignment="CENTER" nodeOrientation="RIGHT_TO_LEFT" prefHeight="57.0" prefWidth="395.0">
                      <children>
-                        <HBox prefHeight="22.0" prefWidth="395.0">
+                        <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="395.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label id="patient_name" prefHeight="20.0" prefWidth="97.0" text="أسم المريض : ">
                                  <font>
@@ -55,7 +59,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="27.0" prefWidth="395.0">
+                        <HBox prefHeight="27.0" prefWidth="395.0" VBox.vgrow="ALWAYS">
                            <children>
                               <Label prefHeight="20.0" prefWidth="60.0" text="العمر : ">
                                  <font>

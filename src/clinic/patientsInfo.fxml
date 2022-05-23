@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="1699.0" style="-fx-background-color: #c5c6d0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.PatientController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1750.0" style="-fx-background-color: #c5c6d0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="clinic.PatientController">
    <children>
       <VBox prefHeight="507.0" prefWidth="1274.0" HBox.hgrow="ALWAYS">
          <children>
@@ -43,82 +43,84 @@
                   <Insets top="20.0" />
                </padding>
             </HBox>
-            <HBox alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="1709.0">
+            <HBox alignment="CENTER_RIGHT" prefHeight="600.0" prefWidth="1750.0" VBox.vgrow="ALWAYS">
                <children>
-                  <AnchorPane prefHeight="660.0" prefWidth="1213.0" HBox.hgrow="ALWAYS">
+                  <AnchorPane prefHeight="605.0" prefWidth="1725.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <TableView fx:id="patientsInfo" editable="true" layoutX="54.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#getSelectedPatient" prefHeight="582.0" prefWidth="1032.0">
+                        <TableView fx:id="patientsInfo" editable="true" layoutX="116.0" layoutY="23.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#getSelectedPatient" prefHeight="582.0" prefWidth="1120.0">
                            <columns>
                               <TableColumn fx:id="patientName" prefWidth="194.0" text="اسم المريض" />
                               <TableColumn fx:id="ageColumn" prefWidth="75.0" text="العمر" />
                               <TableColumn fx:id="genderColumn" prefWidth="131.0" text="الجنس" />
                               <TableColumn fx:id="phoneNumber" prefWidth="110.0" text="رقم الهاتف" />
                               <TableColumn fx:id="address" prefWidth="247.0" text="العنوان" />
-                              <TableColumn fx:id="sickCondition" prefWidth="221.0" text="الحالة المرضية" />
-                              <TableColumn fx:id="notes" prefWidth="250.0" text="ملاحظات" />
+                              <TableColumn fx:id="sickCondition" prefWidth="82.0" text="الحالة المرضية" />
+                              <TableColumn fx:id="notes" prefWidth="389.0" text="ملاحظات" />
                               <TableColumn fx:id="idcolumn" prefWidth="75.0" text="idColumn" visible="false" />
+                              <TableColumn fx:id="pDateColumn" prefWidth="75.0" text="date" visible="false" />
                            </columns>
                         </TableView>
-                        <Text layoutX="1426.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="أسم المريض ">
+                        <Text layoutX="1566.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="أسم المريض ">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField id="name" fx:id="txtName" layoutX="1119.0" layoutY="23.0" prefHeight="35.0" prefWidth="290.0" />
-                        <Text layoutX="1448.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الهاتف">
+                        <TextField id="name" fx:id="txtName" layoutX="1259.0" layoutY="14.0" prefHeight="35.0" prefWidth="290.0" />
+                        <Text layoutX="1588.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="رقم الهاتف">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField id="number" fx:id="txtPhoneNumber" layoutX="1119.0" layoutY="192.0" prefHeight="42.0" prefWidth="290.0" />
-                        <Text layoutX="1459.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="العنوان">
+                        <TextField id="number" fx:id="txtPhoneNumber" layoutX="1259.0" layoutY="183.0" prefHeight="42.0" prefWidth="290.0" />
+                        <Text layoutX="1599.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" text="العنوان">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextField id="title" fx:id="txtAddress" layoutX="1119.0" layoutY="246.0" prefHeight="42.0" prefWidth="290.0" />
-                        <Text layoutX="1448.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="الحالة المرضية">
+                        <TextField id="title" fx:id="txtAddress" layoutX="1259.0" layoutY="237.0" prefHeight="42.0" prefWidth="290.0" />
+                        <Text layoutX="1588.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="الحالة المرضية">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="txtSickCondition" layoutX="1119.0" layoutY="300.0" prefHeight="71.0" prefWidth="290.0" />
-                        <Text layoutX="1462.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ملاحظات">
+                        <TextArea fx:id="txtSickCondition" layoutX="1259.0" layoutY="291.0" prefHeight="71.0" prefWidth="290.0" />
+                        <Text layoutX="1602.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ملاحظات">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Text>
-                        <TextArea fx:id="txtNotes" layoutX="1125.0" layoutY="395.0" prefHeight="86.0" prefWidth="290.0" />
-                        <Button layoutX="1150.0" layoutY="525.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_delete" stylesheets="@login.css" text="حذف">
+                        <TextArea fx:id="txtNotes" layoutX="1265.0" layoutY="386.0" prefHeight="86.0" prefWidth="290.0" />
+                        <Button layoutX="1290.0" layoutY="516.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_delete" stylesheets="@login.css" text="حذف">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button layoutX="1280.0" layoutY="525.0" mnemonicParsing="false" onAction="#editBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_login" stylesheets="@login.css" text="تعديل">
+                        <Button layoutX="1420.0" layoutY="516.0" mnemonicParsing="false" onAction="#editBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_login" stylesheets="@login.css" text="تعديل">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Button layoutX="1405.0" layoutY="525.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_add" stylesheets="@login.css" text="أضافة">
+                        <Button layoutX="1545.0" layoutY="516.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="42.0" prefWidth="102.0" styleClass="btn_add" stylesheets="@login.css" text="أضافة">
                            <font>
                               <Font name="Arial Bold" size="20.0" />
                            </font>
                         </Button>
-                        <Label layoutX="1463.0" layoutY="133.0" text="الجنس">
+                        <Label layoutX="1603.0" layoutY="124.0" text="الجنس">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="tfAge" layoutX="1119.0" layoutY="72.0" prefHeight="42.0" prefWidth="290.0" />
-                        <ComboBox fx:id="tfGender" layoutX="1119.0" layoutY="131.0" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #fff;" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1446.0" layoutY="83.0" prefHeight="30.0" prefWidth="75.0" text="العمر" textAlignment="RIGHT">
+                        <TextField fx:id="tfAge" layoutX="1259.0" layoutY="63.0" prefHeight="42.0" prefWidth="290.0" />
+                        <ComboBox fx:id="tfGender" layoutX="1259.0" layoutY="122.0" prefHeight="44.0" prefWidth="290.0" style="-fx-background-color: #fff;" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="1586.0" layoutY="74.0" prefHeight="30.0" prefWidth="75.0" text="العمر" textAlignment="RIGHT">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
+                        <TextField fx:id="tfDate" layoutX="1389.0" layoutY="481.0" visible="false" />
                      </children>
                      <HBox.margin>
-                        <Insets right="100.0" />
+                        <Insets />
                      </HBox.margin>
                   </AnchorPane>
                </children>

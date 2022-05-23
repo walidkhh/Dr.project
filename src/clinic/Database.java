@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 public class Database {
 
@@ -26,16 +27,19 @@ public class Database {
     // دالة ارجاع معلومات المرضى واضافتها الى صفحة جميع المرضى
     public static ResultSet getPatientsInfo() throws SQLException, ClassNotFoundException {
 
-        Statement statement = getConnection().createStatement();
-        return statement.executeQuery("SELECT * FROM adding_pateints;");
+        LocalDate date = LocalDate.now();
+        String query = "SELECT * FROM adding_pateints WHERE p_date = ?";
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, date.toString());
+        return pstmt.executeQuery();
     }
 
     // دالة اضافة بيانات المرضى
     public static int addPatient(String pName, String phoneNumber, String pAddress, String pStatus, String notes,
-            String pAge, String pGender) throws ClassNotFoundException, SQLException {
+            String pAge, String pGender, String pDate) throws ClassNotFoundException, SQLException {
 
-        String query = "INSERT INTO adding_pateints(p_name, age, gender, p_phone_number, p_address, p_status, notes) "
-                + "VALUES(?,?,?,?,?,?,?)";
+        String query = "INSERT INTO adding_pateints(p_name, age, gender, p_phone_number, p_address, p_status, notes, p_date) "
+                + "VALUES(?,?,?,?,?,?,?,?)";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);
@@ -45,16 +49,16 @@ public class Database {
         pstmt.setString(5, pAddress);
         pstmt.setString(6, pStatus);
         pstmt.setString(7, notes);
-
+        pstmt.setString(8, pDate);
         return pstmt.executeUpdate();
     }
 
     // التعديل على بيانات المريض 
     public static int updatePatient(String pName, String phoneNumber, String pAddress,
-            String pStatus, String notes, int id, String pAge, String pGender) throws ClassNotFoundException, SQLException {
+            String pStatus, String notes, int id, String pAge, String pGender, String pDate) throws ClassNotFoundException, SQLException {
 
         String query = "UPDATE adding_pateints SET  p_name = ? ,p_phone_number = ? ,p_address = ?"
-                + ", p_status = ?, notes = ?, age = ?, gender = ?  WHERE id = ? ";
+                + ", p_status = ?, notes = ?, age = ?, gender = ?, p_date =?  WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);
@@ -64,7 +68,8 @@ public class Database {
         pstmt.setString(5, notes);
         pstmt.setString(6, pAge);
         pstmt.setString(7, pGender);
-        pstmt.setInt(8, id);
+        pstmt.setString(8, pDate);
+        pstmt.setInt(9, id);
 
         return pstmt.executeUpdate();
     }
@@ -148,8 +153,12 @@ public class Database {
     // ارجاع كل الحجوزات
     public static ResultSet getReservationInfo() throws SQLException, ClassNotFoundException {
 
-        Statement statement = getConnection().createStatement();
-        return statement.executeQuery("SELECT * FROM booking;");
+        LocalDate date = LocalDate.now();
+        String query = "SELECT * FROM booking WHERE booking_date = ?";
+
+        PreparedStatement pstmt = getConnection().prepareStatement(query);
+        pstmt.setString(1, date.toString());
+        return pstmt.executeQuery();
     }
 
     // البحث عن حجز معين

@@ -10,9 +10,9 @@ public class AllPatientsHelper {
     String age;
     String gender;
     String id;
-
+    String date;
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition, String notes,
-            String id, String age , String gender) {
+            String id, String age , String gender, String date) {
         this.Name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -21,10 +21,11 @@ public class AllPatientsHelper {
         this.id = id;
         this.age = age;
         this.gender = gender;
+        this.date = date;
     }
 
     public AllPatientsHelper(String name, String phoneNumber, String address, String sickCondition,
-            String notes, String age, String gender) {
+            String notes, String age, String gender, String date) {
         this.Name = name;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -32,13 +33,15 @@ public class AllPatientsHelper {
         this.notes = notes;
         this.age = age;
         this.gender = gender;
+        this.date = date;
     }
 
-    public AllPatientsHelper(String Name, String age,String gender,String phoneNumber) {
+    public AllPatientsHelper(String Name, String age,String gender,String phoneNumber, String date) {
         this.Name = Name;
         this.phoneNumber = phoneNumber;
         this.age = age;
         this.gender = gender;
+        this.date = date;
     }
     
 
@@ -106,6 +109,15 @@ public class AllPatientsHelper {
         this.gender = gender;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    
     
     public AllPatientsHelper() {
     }
