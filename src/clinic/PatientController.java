@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -173,9 +174,10 @@ public class PatientController implements Initializable {
 
         } else {
 
+            LocalDate date = LocalDate.now();
             // ارسال المدخلات الى قاعدة البيانات وارجاع النتيجة الى المتغير
             int res = Database.addPatient(txtName.getText(), txtPhoneNumber.getText(), txtAddress.getText(),
-                    txtSickCondition.getText(), txtNotes.getText(), tfAge.getText(), tfGender.getValue(), "");
+                    txtSickCondition.getText(), txtNotes.getText(), tfAge.getText(), tfGender.getValue(), date.toString());
 
             //  التاكد بان قيمة المتغير لاتساوي صفر دلالة على اضافة البيانات بشكل صحيح
             if (res != 0) {

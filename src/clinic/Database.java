@@ -58,7 +58,7 @@ public class Database {
             String pStatus, String notes, int id, String pAge, String pGender, String pDate) throws ClassNotFoundException, SQLException {
 
         String query = "UPDATE adding_pateints SET  p_name = ? ,p_phone_number = ? ,p_address = ?"
-                + ", p_status = ?, notes = ?, age = ?, gender = ?, p_date =?  WHERE id = ? ";
+                + ", p_status = ?, notes = ?, age = ?, gender = ?, p_date = ?  WHERE id = ? ";
 
         PreparedStatement pstmt = getConnection().prepareStatement(query);
         pstmt.setString(1, pName);

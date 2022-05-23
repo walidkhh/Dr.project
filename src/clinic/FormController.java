@@ -76,7 +76,7 @@ public class FormController implements Initializable {
 
     @FXML
     void backTo(MouseEvent event) throws IOException {
-        MainView.setRoot("chosse", 950, 760);
+        MainView.setRoot("patientsInfo", 950, 760);
     }
 
 }
